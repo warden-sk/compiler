@@ -15,11 +15,10 @@ const testPlugin = ({ name }: { name: string }): esbuild.Plugin => {
     setup(build) {
       build.onEnd(async $ => {
         await htmlPlugin({
-          assets: Object.keys($.metafile?.outputs ?? {}).map(
-            asset => `${path.resolve(build.initialOptions.outdir!)}/${asset}`
-          ),
+          assets: Object.keys($.metafile?.outputs ?? {}),
           name,
           outputPath: path.resolve(build.initialOptions.outdir!),
+          publicPath: 'http://127.0.0.1',
           template: compileReact,
         });
       });
@@ -35,12 +34,14 @@ const testPlugin = ({ name }: { name: string }): esbuild.Plugin => {
   };
 };
 
-esbuild.build({
-  bundle: true,
-  entryPoints: ['private/index.tsx'],
-  globalName: 'xyz',
-  metafile: true,
-  minify: true,
-  outdir: 'public',
-  plugins: [testPlugin({ name: 'xyz' })],
-});
+(async () => {
+  await esbuild.build({
+    bundle: true,
+    entryPoints: ['private/index.tsx'],
+    globalName: 'xyz',
+    metafile: true,
+    minify: true,
+    outdir: 'public',
+    plugins: [testPlugin({ name: 'xyz' })],
+  });
+})();
