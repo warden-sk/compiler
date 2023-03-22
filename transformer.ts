@@ -3,19 +3,14 @@
  */
 
 import * as ts from 'typescript';
-
-const allowedJSXAttributes = {
-  m: 'm',
-  p: 'p',
-};
+import allowedHTMLElements from './allowedHTMLElements';
+import allowedJSXAttributes from './allowedJSXAttributes';
 
 const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
   return sourceFile => {
     const visitor: ts.Visitor = node => {
       if (ts.isJsxOpeningElement(node)) {
-        if (ts.isIdentifier(node.tagName)) {
-          console.log('JsxOpeningElement.Identifier', `"${node.tagName.text}"`);
-
+        if (ts.isIdentifier(node.tagName) && node.tagName.text in allowedHTMLElements) {
           const attributes: (ts.JsxAttribute | ts.JsxSpreadAttribute)[] = [];
           const className: ts.Expression[] = [];
 
@@ -24,7 +19,6 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
               if (attribute.initializer) {
                 /* (1) */
                 if (attribute.name.text === 'className') {
-                  console.log('JsxOpeningElement.JsxAttribute', '"className" exists');
                   /* (1.1) */
                   if (ts.isJsxExpression(attribute.initializer) || ts.isStringLiteral(attribute.initializer)) {
                     return className.push(attribute.initializer);
@@ -32,7 +26,6 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
                 }
                 /* (2) */
                 if (attribute.name.text in allowedJSXAttributes) {
-                  console.log('JsxOpeningElement.JsxAttribute', `"${attribute.name.text}" exists`);
                   /* (2.1) */
                   if (ts.isJsxExpression(attribute.initializer) || ts.isStringLiteral(attribute.initializer)) {
                     return className.push(
@@ -48,11 +41,6 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
             }
             /* (2) */
             if (ts.isJsxSpreadAttribute(attribute)) {
-              console.log(
-                'JsxOpeningElement.JsxSpreadAttribute',
-                ts.isIdentifier(attribute.expression) && `"${attribute.expression.text}"`
-              );
-
               attributes.push(
                 ts.factory.createJsxSpreadAttribute(
                   ts.factory.createCallExpression(ts.factory.createIdentifier('filterJsxSpreadAttributes'), undefined, [

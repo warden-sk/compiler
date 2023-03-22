@@ -2,7 +2,8 @@
  * Copyright 2023 Marek Kobida
  */
 
-import * as ts from 'typescript';
+import fs from 'fs';
+import ts from 'typescript';
 import transformer from './transformer';
 
 const compilerOptions: ts.CompilerOptions = {
@@ -14,18 +15,24 @@ const compilerOptions: ts.CompilerOptions = {
   target: ts.ScriptTarget.ESNext,
 };
 
-const files: string[] = ['/Users/marekkobida/Documents/warden/compiler/private/index.tsx'];
+const transformers: ts.CustomTransformers = { before: [transformer] };
 
-const program: ts.Program = ts.createProgram(files, compilerOptions);
+function compile(path: string): string {
+  const text = fs.readFileSync(path).toString();
 
-const emitResult: ts.EmitResult = program.emit(undefined, undefined, undefined, undefined, { before: [transformer] });
+  const transpileOutput = ts.transpileModule(text, { compilerOptions, fileName: path, transformers });
 
-const diagnostics: ts.Diagnostic[] = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
+  if (transpileOutput.diagnostics) {
+    for (const diagnostic of transpileOutput.diagnostics) {
+      if (diagnostic.file) {
+        const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
 
-for (const diagnostic of diagnostics) {
-  if (diagnostic.file) {
-    const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
-
-    console.log(`\x1b[31m${diagnostic.file.fileName}\x1b[0m\n${message}`);
+        console.log(`\x1b[31m${diagnostic.file.fileName}\x1b[0m\n${message}`);
+      }
+    }
   }
+
+  return transpileOutput.outputText;
 }
+
+export default compile;

@@ -7,7 +7,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 function Client() {
-  return <div>Client</div>;
+  // @ts-ignore
+  return <div p="2">Client</div>;
 }
 
 if (typeof window !== 'undefined') {
