@@ -7,11 +7,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 function Client() {
-  return <div p="4">Client</div>;
+  return <div>Client</div>;
 }
 
 if (typeof window !== 'undefined') {
-  ReactDOM.createRoot(window.document.querySelector('#client')).render(<Client />);
+  ReactDOM.createRoot(window.document.querySelector('#client')!).render(<Client />);
 }
 
 export default <div id="client"></div>;
