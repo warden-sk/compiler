@@ -12,7 +12,7 @@ interface P {
   template: (code: string) => [string, string][] | string;
 }
 
-async function htmlPlugin({ assets, name, outputPath, publicPath, template }: P) {
+async function compileHtml({ assets, name, outputPath, publicPath, template }: P) {
   console.log(assets, outputPath, publicPath);
 
   const assetsToHtml = (assets: string[], pattern: RegExp, template: (asset: string) => string): string[] => {
@@ -60,4 +60,4 @@ async function htmlPlugin({ assets, name, outputPath, publicPath, template }: P)
   }
 }
 
-export default htmlPlugin;
+export default compileHtml;

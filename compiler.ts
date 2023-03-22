@@ -14,12 +14,18 @@ const compilerOptions: ts.CompilerOptions = {
   target: ts.ScriptTarget.ESNext,
 };
 
-const files = ['/Users/marekkobida/Documents/warden/compiler/private/index.tsx'];
+const files: string[] = ['/Users/marekkobida/Documents/warden/compiler/private/index.tsx'];
 
-const program = ts.createProgram(files, compilerOptions, ts.createCompilerHost({}));
+const program: ts.Program = ts.createProgram(files, compilerOptions);
 
-const emitResult = program.emit(undefined, undefined, undefined, undefined, { before: [transformer] });
+const emitResult: ts.EmitResult = program.emit(undefined, undefined, undefined, undefined, { before: [transformer] });
 
-const diagnostics = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
+const diagnostics: ts.Diagnostic[] = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
 
-console.log(diagnostics);
+for (const diagnostic of diagnostics) {
+  if (diagnostic.file) {
+    const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
+
+    console.log(`\x1b[31m${diagnostic.file.fileName}\x1b[0m\n${message}`);
+  }
+}
