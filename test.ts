@@ -4,4 +4,6 @@
 
 import compile from './compiler';
 
-compile('/Users/marekkobida/Documents/warden/compiler/private/index.tsx');
+const compiled = compile('/Users/marekkobida/Documents/warden/compiler/private/index.tsx');
+
+console.log(compiled);

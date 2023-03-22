@@ -24,6 +24,6 @@ const allowedHTMLElements = {
   thead: '',
   title: '',
   tr: '',
-};
+} as const;
 
 export default allowedHTMLElements;
