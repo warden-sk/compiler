@@ -6,13 +6,27 @@ import ts from 'typescript';
 import allowedHTMLElements from './allowedHTMLElements';
 import allowedJSXAttributes from './allowedJSXAttributes';
 
-function createImportDeclaration(name: string | undefined, path: string): ts.ImportDeclaration {
+function createImportDeclaration(name: ts.Identifier | undefined, path: string): ts.ImportDeclaration {
   return ts.factory.createImportDeclaration(
     undefined,
-    name ? ts.factory.createImportClause(false, ts.factory.createIdentifier(name), undefined) : undefined,
+    name ? ts.factory.createImportClause(false, name, undefined) : undefined,
     ts.factory.createStringLiteral(path)
   );
 }
+
+const decodeClassName = ts.factory.createUniqueName('decodeClassName');
+const decodeJSXSpreadAttributes = ts.factory.createUniqueName('decodeJSXSpreadAttributes');
+const decodeResponsiveClassName = ts.factory.createUniqueName('decodeResponsiveClassName');
+const filterJSXSpreadAttributes = ts.factory.createUniqueName('filterJSXSpreadAttributes');
+
+const test = (
+  [
+    [decodeClassName, '@warden-sk/compiler/helpers/decodeClassName'],
+    [decodeJSXSpreadAttributes, '@warden-sk/compiler/helpers/decodeJSXSpreadAttributes'],
+    [decodeResponsiveClassName, '@warden-sk/compiler/helpers/decodeResponsiveClassName'],
+    [filterJSXSpreadAttributes, '@warden-sk/compiler/helpers/filterJSXSpreadAttributes'],
+  ] as const
+).map(([l, r]) => createImportDeclaration(l, r));
 
 const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
   return sourceFile => {
@@ -20,16 +34,7 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
       console.log(node.kind, `\t# ts.SyntaxKind.${ts.SyntaxKind[node.kind]}`);
 
       if (ts.isSourceFile(node)) {
-        const updatedNode = ts.factory.updateSourceFile(node, [
-          ...[
-            // ['', '@warden-sk/design/index.css'],
-            ['decodeClassName', '@warden-sk/compiler/helpers/decodeClassName'],
-            ['decodeJSXSpreadAttributes', '@warden-sk/compiler/helpers/decodeJSXSpreadAttributes'],
-            ['decodeResponsiveClassName', '@warden-sk/compiler/helpers/decodeResponsiveClassName'],
-            ['filterJSXSpreadAttributes', '@warden-sk/compiler/helpers/filterJSXSpreadAttributes'],
-          ].map(([l, r]) => createImportDeclaration(l, r)),
-          ...node.statements,
-        ]);
+        const updatedNode = ts.factory.updateSourceFile(node, [...test, ...node.statements]);
 
         return ts.visitEachChild(updatedNode, visitor, context);
       }
@@ -54,11 +59,10 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
                   /* (2.1) */
                   if (ts.isJsxExpression(attribute.initializer) || ts.isStringLiteral(attribute.initializer)) {
                     return className.push(
-                      ts.factory.createCallExpression(
-                        ts.factory.createIdentifier('decodeResponsiveClassName'),
-                        undefined,
-                        [ts.factory.createStringLiteral(attribute.name.text), attribute.initializer]
-                      )
+                      ts.factory.createCallExpression(decodeResponsiveClassName, undefined, [
+                        ts.factory.createStringLiteral(attribute.name.text),
+                        attribute.initializer,
+                      ])
                     );
                   }
                 }
@@ -68,16 +72,12 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
             if (ts.isJsxSpreadAttribute(attribute)) {
               attributes.push(
                 ts.factory.createJsxSpreadAttribute(
-                  ts.factory.createCallExpression(ts.factory.createIdentifier('filterJsxSpreadAttributes'), undefined, [
-                    attribute.expression,
-                  ])
+                  ts.factory.createCallExpression(filterJSXSpreadAttributes, undefined, [attribute.expression])
                 )
               );
 
               return className.push(
-                ts.factory.createCallExpression(ts.factory.createIdentifier('decodeJsxSpreadAttributes'), undefined, [
-                  attribute.expression,
-                ])
+                ts.factory.createCallExpression(decodeJSXSpreadAttributes, undefined, [attribute.expression])
               );
             }
 
@@ -91,7 +91,7 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
                 ts.factory.createIdentifier('className'),
                 ts.factory.createJsxExpression(
                   undefined,
-                  ts.factory.createCallExpression(ts.factory.createIdentifier('decodeClassName'), undefined, className)
+                  ts.factory.createCallExpression(decodeClassName, undefined, className)
                 )
               )
             );
