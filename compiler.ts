@@ -16,26 +16,32 @@ const compilerOptions: ts.CompilerOptions = {
 
 const transformers: ts.CustomTransformers = { before: [transformer] };
 
-function compile(code: string, filePath: string, useTransformers: boolean): string {
-  const transpileOutput: ts.TranspileOutput = ts.transpileModule(code, {
-    compilerOptions,
-    fileName: filePath,
-    transformers: useTransformers ? transformers : undefined,
-  });
+function compile(filePath: string, useTransformers: boolean): string {
+  let response = '';
 
-  if (transpileOutput.diagnostics) {
-    for (const diagnostic of transpileOutput.diagnostics) {
-      if (diagnostic.file) {
-        const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
+  const program: ts.Program = ts.createProgram([filePath], compilerOptions);
 
-        console.log(`\x1b[31m${diagnostic.file.fileName}\x1b[0m\n${message}`);
-      }
+  const emitResult: ts.EmitResult = program.emit(
+    undefined,
+    (fileName, text) => (response = text),
+    undefined,
+    undefined,
+    useTransformers ? transformers : undefined
+  );
+
+  const diagnostics: ts.Diagnostic[] = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
+
+  for (const diagnostic of diagnostics) {
+    if (diagnostic.file) {
+      const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
+
+      console.log(`\x1b[31m${diagnostic.file.fileName}\x1b[0m\n${message}`);
     }
   }
 
   console.log('compiled', filePath);
 
-  return transpileOutput.outputText;
+  return response;
 }
 
 export default compile;
