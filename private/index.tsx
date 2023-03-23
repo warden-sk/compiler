@@ -5,11 +5,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-// import './index.css';
-
 function Client() {
-  // @ts-ignore
-  return <div p="2">Client</div>;
+  return <div>Client</div>;
 }
 
 if (typeof window !== 'undefined') {

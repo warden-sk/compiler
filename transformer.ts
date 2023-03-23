@@ -29,12 +29,12 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
 
   return sourceFile => {
     const visitor: ts.Visitor = node => {
-      console.log(node.kind, `\t# ts.SyntaxKind.${ts.SyntaxKind[node.kind]}`);
+      // console.log(node.kind, `\t# ts.SyntaxKind.${ts.SyntaxKind[node.kind]}`);
 
-      const decodeClassName = factory.createUniqueName('decodeClassName');
-      const decodeJSXSpreadAttributes = factory.createUniqueName('decodeJSXSpreadAttributes');
-      const decodeResponsiveClassName = factory.createUniqueName('decodeResponsiveClassName');
-      const filterJSXSpreadAttributes = factory.createUniqueName('filterJSXSpreadAttributes');
+      const decodeClassName = factory.createIdentifier('decodeClassName');
+      const decodeJSXSpreadAttributes = factory.createIdentifier('decodeJSXSpreadAttributes');
+      const decodeResponsiveClassName = factory.createIdentifier('decodeResponsiveClassName');
+      const filterJSXSpreadAttributes = factory.createIdentifier('filterJSXSpreadAttributes');
 
       if (ts.isSourceFile(node)) {
         const test = (

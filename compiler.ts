@@ -16,8 +16,11 @@ const compilerOptions: ts.CompilerOptions = {
 
 const transformers: ts.CustomTransformers = { before: [transformer] };
 
-function compile(code: string): string {
-  const transpileOutput = ts.transpileModule(code, { compilerOptions, transformers });
+function compile(code: string, useTransformers: boolean): string {
+  const transpileOutput = ts.transpileModule(code, {
+    compilerOptions,
+    transformers: useTransformers ? transformers : undefined,
+  });
 
   if (transpileOutput.diagnostics) {
     for (const diagnostic of transpileOutput.diagnostics) {
