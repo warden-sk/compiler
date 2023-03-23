@@ -3,6 +3,7 @@
  */
 
 const allowedJSXAttributes = {
+  m: '',
   p: '',
 } as const;
 
