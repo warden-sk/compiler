@@ -2,7 +2,6 @@
  * Copyright 2023 Marek Kobida
  */
 
-import fs from 'fs';
 import ts from 'typescript';
 import transformer from './transformer';
 
@@ -17,10 +16,8 @@ const compilerOptions: ts.CompilerOptions = {
 
 const transformers: ts.CustomTransformers = { before: [transformer] };
 
-function compile(path: string): string {
-  const text = fs.readFileSync(path).toString();
-
-  const transpileOutput = ts.transpileModule(text, { compilerOptions, fileName: path, transformers });
+function compile(code: string): string {
+  const transpileOutput = ts.transpileModule(code, { compilerOptions, transformers });
 
   if (transpileOutput.diagnostics) {
     for (const diagnostic of transpileOutput.diagnostics) {
