@@ -22,11 +22,11 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
       if (ts.isSourceFile(node)) {
         const updatedNode = ts.factory.updateSourceFile(node, [
           ...[
-            ['', '@warden-sk/design/index.css'],
-            ['decodeClassName', '@warden-sk/babel-plugin/private/decodeClassName'],
-            ['decodeJSXSpreadAttributes', '@warden-sk/babel-plugin/private/decodeJSXSpreadAttributes'],
-            ['decodeResponsiveClassName', '@warden-sk/babel-plugin/private/decodeResponsiveClassName'],
-            ['filterJSXSpreadAttributes', '@warden-sk/babel-plugin/private/filterJSXSpreadAttributes'],
+            // ['', '@warden-sk/design/index.css'],
+            ['decodeClassName', '@warden-sk/compiler/helpers/decodeClassName'],
+            ['decodeJSXSpreadAttributes', '@warden-sk/compiler/helpers/decodeJSXSpreadAttributes'],
+            ['decodeResponsiveClassName', '@warden-sk/compiler/helpers/decodeResponsiveClassName'],
+            ['filterJSXSpreadAttributes', '@warden-sk/compiler/helpers/filterJSXSpreadAttributes'],
           ].map(([l, r]) => createImportDeclaration(l, r)),
           ...node.statements,
         ]);

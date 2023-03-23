@@ -6,6 +6,5 @@
     "module": "CommonJS",
     "strict": true,
     "target": "ESNext"
-  },
-  "include": ["./helpers/**/*"]
+  }
 }
