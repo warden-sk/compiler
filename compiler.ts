@@ -16,9 +16,10 @@ const compilerOptions: ts.CompilerOptions = {
 
 const transformers: ts.CustomTransformers = { before: [transformer] };
 
-function compile(code: string, useTransformers: boolean): string {
-  const transpileOutput = ts.transpileModule(code, {
+function compile(code: string, filePath: string, useTransformers: boolean): string {
+  const transpileOutput: ts.TranspileOutput = ts.transpileModule(code, {
     compilerOptions,
+    fileName: filePath,
     transformers: useTransformers ? transformers : undefined,
   });
 
@@ -31,6 +32,8 @@ function compile(code: string, useTransformers: boolean): string {
       }
     }
   }
+
+  console.log('compiled', filePath);
 
   return transpileOutput.outputText;
 }
