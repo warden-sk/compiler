@@ -2,14 +2,14 @@
  * Copyright 2023 Marek Kobida
  */
 
-import * as ts from 'typescript';
+import ts from 'typescript';
 import allowedHTMLElements from './allowedHTMLElements';
 import allowedJSXAttributes from './allowedJSXAttributes';
 
-function createImportDeclaration(name: string, path: string): ts.ImportDeclaration {
+function createImportDeclaration(name: string | undefined, path: string): ts.ImportDeclaration {
   return ts.factory.createImportDeclaration(
     undefined,
-    ts.factory.createImportClause(false, ts.factory.createIdentifier(name), undefined),
+    name ? ts.factory.createImportClause(false, ts.factory.createIdentifier(name), undefined) : undefined,
     ts.factory.createStringLiteral(path)
   );
 }
@@ -21,12 +21,8 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
 
       if (ts.isSourceFile(node)) {
         const updatedNode = ts.factory.updateSourceFile(node, [
-          ts.factory.createImportDeclaration(
-            undefined,
-            undefined,
-            ts.factory.createStringLiteral('@warden-sk/design/index.css')
-          ),
           ...[
+            ['', '@warden-sk/design/index.css'],
             ['decodeClassName', '@warden-sk/babel-plugin/private/decodeClassName'],
             ['decodeJSXSpreadAttributes', '@warden-sk/babel-plugin/private/decodeJSXSpreadAttributes'],
             ['decodeResponsiveClassName', '@warden-sk/babel-plugin/private/decodeResponsiveClassName'],
