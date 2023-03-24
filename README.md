@@ -1,6 +1,6 @@
 # Compiler
 
-> "Your TypeScript code is expanded by the compiler with supplementary JSX attributes, as specified in the allowedJsxAttributes file."
+> "Your TypeScript code is expanded by the compiler with supplementary JSX attributes, as specified in the [allowedJsxAttributes](allowedJsxAttributes.ts) file."
 > 
 > — Marek Kobida
 
@@ -14,7 +14,7 @@ The `compile` function compiles a TypeScript file into JavaScript code.
 import compile from '@warden-sk/compiler';
 
 const filePath = './path/to/file.tsx';
-const useTransformers = true;
+const useTransformers = false;
 
 const compiled = compile(filePath, { useTransformers });
 ```
