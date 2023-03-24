@@ -3,7 +3,7 @@
  */
 
 import allowedJsxAttributes from './allowedJsxAttributes';
-import Dictionary from './helpers/dict';
+import Dictionary from './helpers/dictionary';
 
 const dictionary = new Dictionary([
   ...Object.keys(allowedJsxAttributes).reduce<string[]>(($, key) => [...$, key], []),
