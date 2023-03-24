@@ -1,6 +1,6 @@
 # Compiler
 
-> "Your TypeScript code is expanded by the compiler with supplementary JSX attributes, as specified in the [allowedJsxAttributes](#allowedjsxattributes) file."
+> "Your TypeScript code is expanded by the compiler with supplementary JSX attributes, as specified in the [allowedJsxAttributes](#allowedjsxattributes)."
 > 
 > — Marek Kobida
 
