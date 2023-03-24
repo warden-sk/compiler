@@ -3,8 +3,8 @@
  */
 
 import ts from 'typescript';
-import allowedHTMLElements from './allowedHTMLElements';
-import allowedJSXAttributes from './allowedJSXAttributes';
+import allowedHtmlElements from './allowedHtmlElements';
+import allowedJsxAttributes from './allowedJsxAttributes';
 import dictionary from './helpers/dictionary';
 
 function createTest(factory: ts.NodeFactory, name: ts.Identifier, path: string): ts.VariableStatement {
@@ -52,7 +52,7 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
       }
 
       if (ts.isJsxOpeningElement(node)) {
-        if (ts.isIdentifier(node.tagName) && node.tagName.text in allowedHTMLElements) {
+        if (ts.isIdentifier(node.tagName) && node.tagName.text in allowedHtmlElements) {
           const attributes: (ts.JsxAttribute | ts.JsxSpreadAttribute)[] = [];
           const className: ts.Expression[] = [];
 
@@ -67,7 +67,7 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
                   }
                 }
                 /* (2) */
-                if (attribute.name.text in allowedJSXAttributes) {
+                if (attribute.name.text in allowedJsxAttributes) {
                   /* (2.1) */
                   if (ts.isJsxExpression(attribute.initializer) || ts.isStringLiteral(attribute.initializer)) {
                     return className.push(

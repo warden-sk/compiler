@@ -2,7 +2,7 @@
  * Copyright 2023 Marek Kobida
  */
 
-const allowedHTMLElements = {
+const allowedHtmlElements = {
   a: '',
   button: '',
   canvas: '',
@@ -26,4 +26,4 @@ const allowedHTMLElements = {
   tr: '',
 } as const;
 
-export default allowedHTMLElements;
+export default allowedHtmlElements;

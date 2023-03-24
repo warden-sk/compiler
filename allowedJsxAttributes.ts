@@ -4,7 +4,7 @@
 
 import * as t from '@warden-sk/design/private/storage';
 
-const allowedJSXAttributes = {
+const allowedJsxAttributes = {
   alignContent: t.AlignContent,
   alignItems: t.AlignItems,
   alignSelf: t.AlignSelf,
@@ -59,4 +59,4 @@ const allowedJSXAttributes = {
   width: t.Width,
 } as const;
 
-export default allowedJSXAttributes;
+export default allowedJsxAttributes;
