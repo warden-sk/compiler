@@ -1,7 +1,10 @@
-# Author
-- Marek Kobida
+# Compiler
 
-# Usage
+> "Your TypeScript code is expanded by the compiler with supplementary JSX attributes, as specified in the allowedJsxAttributes file."
+> 
+> — Marek Kobida
+
+## Usage
 
 `npm i @warden-sk/compiler typescript`
 
@@ -16,7 +19,7 @@ const useTransformers = true;
 const compiled = compile(filePath, { useTransformers });
 ```
 
-## Options
+### Options
 
 The `compile` function takes two arguments:
 
@@ -24,25 +27,25 @@ The `compile` function takes two arguments:
 2. `options`: An `object`
    1. `useTransformers`: A `boolean` indicating whether you want to use built-in transformers during compilation.
 
-# `transformer.ts`
+## `transformer.ts`
 
 1. The transformer first requires the [helper functions](#helper-functions) and adds them to the beginning of the source file.
 2. For each `JsxOpeningElement` in the source file, it checks if the element is allowed based on [allowedHtmlElements](#allowedhtmlelements). If allowed, it processes its attributes and updates the element with the modified attributes.
 
-## Input file
+### Input file
 
 ```tsx
 <div p="2">Client</div>;
 ```
 
-## Output file with `useTransformers` set to `false`
+### Output file with `useTransformers` set to `false`
 
 ```tsx
 'use strict';
 React.createElement('div', { p: '2' }, 'Client');
 ```
 
-## Output file with `useTransformers` set to `true`
+### Output file with `useTransformers` set to `true`
 
 ```tsx
 'use strict';
@@ -53,20 +56,22 @@ const filterJSXSpreadAttributes = require('@warden-sk/compiler/helpers/filterJSX
 React.createElement('div', { className: decodeClassName(decodeResponsiveClassName('Ya', '2')) }, 'Client');
 ```
 
-## Helper functions
+---
+
+### Helper functions
 
 1. `decodeClassName`
 2. `decodeJSXSpreadAttributes`
 3. `decodeResponsiveClassName`
 4. `filterJSXSpreadAttributes`
 
-## `allowedHtmlElements`
+### `allowedHtmlElements`
 
 A list of allowed HTML elements for transformation.
 
 `a, abbr, address, area, article, aside, audio, b, base, bdi, bdo, big, blockquote, body, br, button, canvas, caption, center, cite, code, col, colgroup, data, datalist, dd, del, details, dfn, dialog, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, head, header, hgroup, hr, html, i, iframe, img, input, ins, kbd, keygen, label, legend, li, link, main, map, mark, menu, menuitem, meta, meter, nav, noindex, noscript, object, ol, optgroup, option, output, p, param, picture, pre, progress, q, rp, rt, ruby, s, samp, script, section, select, slot, small, source, span, strong, style, sub, summary, sup, table, tbody, td, template, textarea, tfoot, th, thead, time, title, tr, track, u, ul, var, video, wbr, webview`
 
-## `allowedJsxAttributes`
+### `allowedJsxAttributes`
 
 A list of allowed JSX attributes for transformation.
 
