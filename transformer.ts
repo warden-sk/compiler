@@ -7,34 +7,34 @@ import allowedHtmlElements from './allowedHtmlElements';
 import allowedJsxAttributes from './allowedJsxAttributes';
 import dictionary from './dictionary';
 
-function createTest(factory: ts.NodeFactory, name: ts.Identifier, path: string): ts.VariableStatement {
-  const variableDeclaration: ts.VariableDeclaration = factory.createVariableDeclaration(
+function createTest(f: ts.NodeFactory, name: ts.Identifier, path: string): ts.VariableStatement {
+  const variableDeclaration: ts.VariableDeclaration = f.createVariableDeclaration(
     name,
     undefined,
     undefined,
-    factory.createPropertyAccessExpression(
-      factory.createCallExpression(factory.createIdentifier('require'), undefined, [factory.createStringLiteral(path)]),
-      factory.createIdentifier('default')
+    f.createPropertyAccessExpression(
+      f.createCallExpression(f.createIdentifier('require'), undefined, [f.createStringLiteral(path)]),
+      f.createIdentifier('default')
     )
   );
 
-  return factory.createVariableStatement(
+  return f.createVariableStatement(
     undefined,
-    factory.createVariableDeclarationList([variableDeclaration], ts.NodeFlags.Const)
+    f.createVariableDeclarationList([variableDeclaration], ts.NodeFlags.Const)
   );
 }
 
 const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
-  const { factory } = context;
+  const { factory: f } = context;
 
   return sourceFile => {
     const visitor: ts.Visitor = node => {
       // console.log(node.kind, `\t# ts.SyntaxKind.${ts.SyntaxKind[node.kind]}`);
 
-      const decodeClassName = factory.createIdentifier('decodeClassName');
-      const decodeJSXSpreadAttributes = factory.createIdentifier('decodeJSXSpreadAttributes');
-      const decodeResponsiveClassName = factory.createIdentifier('decodeResponsiveClassName');
-      const filterJSXSpreadAttributes = factory.createIdentifier('filterJSXSpreadAttributes');
+      const decodeClassName = f.createIdentifier('decodeClassName');
+      const decodeJSXSpreadAttributes = f.createIdentifier('decodeJSXSpreadAttributes');
+      const decodeResponsiveClassName = f.createIdentifier('decodeResponsiveClassName');
+      const filterJSXSpreadAttributes = f.createIdentifier('filterJSXSpreadAttributes');
 
       if (ts.isSourceFile(node)) {
         const test = (
@@ -44,9 +44,9 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
             [decodeResponsiveClassName, '@warden-sk/compiler/helpers/decodeResponsiveClassName'],
             [filterJSXSpreadAttributes, '@warden-sk/compiler/helpers/filterJSXSpreadAttributes'],
           ] as const
-        ).map(([l, r]) => createTest(factory, l, r));
+        ).map(([l, r]) => createTest(f, l, r));
 
-        const updatedNode = factory.updateSourceFile(node, [...test, ...node.statements]);
+        const updatedNode = f.updateSourceFile(node, [...test, ...node.statements]);
 
         return ts.visitEachChild(updatedNode, visitor, context);
       }
@@ -58,22 +58,25 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
 
           node.attributes.properties.forEach(attribute => {
             if (ts.isJsxAttribute(attribute)) {
-              if (attribute.initializer) {
+              // <Component test /> – "$" would be "undefined" for the "test" attribute
+              const $: ts.JsxAttributeValue | undefined = attribute.initializer;
+
+              if ($) {
                 /* (1) */
                 if (attribute.name.text === 'className') {
                   /* (1.1) */
-                  if (ts.isJsxExpression(attribute.initializer) || ts.isStringLiteral(attribute.initializer)) {
-                    return className.push(attribute.initializer);
+                  if (ts.isJsxExpression($) || ts.isStringLiteral($)) {
+                    return className.push($);
                   }
                 }
                 /* (2) */
                 if (attribute.name.text in allowedJsxAttributes) {
                   /* (2.1) */
-                  if (ts.isJsxExpression(attribute.initializer) || ts.isStringLiteral(attribute.initializer)) {
+                  if (ts.isJsxExpression($) || ts.isStringLiteral($)) {
                     return className.push(
-                      factory.createCallExpression(decodeResponsiveClassName, undefined, [
-                        factory.createStringLiteral(dictionary.getKey(attribute.name.text)),
-                        attribute.initializer,
+                      f.createCallExpression(decodeResponsiveClassName, undefined, [
+                        f.createStringLiteral(dictionary.getKey(attribute.name.text)),
+                        $,
                       ])
                     );
                   }
@@ -83,13 +86,13 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
             /* (2) */
             if (ts.isJsxSpreadAttribute(attribute)) {
               attributes.push(
-                factory.createJsxSpreadAttribute(
-                  factory.createCallExpression(filterJSXSpreadAttributes, undefined, [attribute.expression])
+                f.createJsxSpreadAttribute(
+                  f.createCallExpression(filterJSXSpreadAttributes, undefined, [attribute.expression])
                 )
               );
 
               return className.push(
-                factory.createCallExpression(decodeJSXSpreadAttributes, undefined, [attribute.expression])
+                f.createCallExpression(decodeJSXSpreadAttributes, undefined, [attribute.expression])
               );
             }
 
@@ -99,21 +102,18 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
           /* (3) */
           if (className.length) {
             attributes.push(
-              factory.createJsxAttribute(
-                factory.createIdentifier('className'),
-                factory.createJsxExpression(
-                  undefined,
-                  factory.createCallExpression(decodeClassName, undefined, className)
-                )
+              f.createJsxAttribute(
+                f.createIdentifier('className'),
+                f.createJsxExpression(undefined, f.createCallExpression(decodeClassName, undefined, className))
               )
             );
           }
 
-          const updatedNode = factory.updateJsxOpeningElement(
+          const updatedNode = f.updateJsxOpeningElement(
             node,
             node.tagName,
             node.typeArguments,
-            factory.updateJsxAttributes(node.attributes, attributes)
+            f.updateJsxAttributes(node.attributes, attributes)
           );
 
           return ts.visitEachChild(updatedNode, visitor, context);
