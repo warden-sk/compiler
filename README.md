@@ -23,7 +23,7 @@ The `compile` function takes two arguments:
 1. `filePath`: A `string` containing the path to the TypeScript file you want to compile.
 2. `useTransformers`: A `boolean` indicating whether you want to use built-in transformers during compilation.
 
-# Transformer
+# `transformer.ts`
 
 1. The transformer first requires the [helper functions](#helper-functions) and adds them to the beginning of the source file.
 2. For each `JsxOpeningElement` in the source file, it checks if the element is allowed based on [allowedHtmlElements](#allowedhtmlelements). If allowed, it processes its attributes and updates the element with the modified attributes.
