@@ -1,3 +1,6 @@
+# Author
+- Marek Kobida
+
 # Usage
 
 The `compile` function compiles a TypeScript file into JavaScript code.
