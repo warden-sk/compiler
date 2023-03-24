@@ -19,7 +19,11 @@ const compilerOptions: ts.CompilerOptions = {
 
 const transformers: ts.CustomTransformers = { before: [cssTransformer, transformer] };
 
-function compile(filePath: string, useTransformers: boolean): string {
+interface Options {
+  useTransformers: boolean;
+}
+
+function compile(filePath: string, options: Options): string {
   let compiled = '';
 
   const compilerHost: ts.CompilerHost = ts.createCompilerHost({});
@@ -32,7 +36,7 @@ function compile(filePath: string, useTransformers: boolean): string {
     undefined,
     undefined,
     undefined,
-    useTransformers ? transformers : undefined
+    options.useTransformers ? transformers : undefined
   );
 
   const diagnostics: ts.Diagnostic[] = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics);

@@ -13,7 +13,7 @@ import compile from '@warden-sk/compiler';
 const filePath = './path/to/file.tsx';
 const useTransformers = true;
 
-const compiled = compile(filePath, useTransformers);
+const compiled = compile(filePath, { useTransformers });
 ```
 
 ## Options
@@ -21,7 +21,8 @@ const compiled = compile(filePath, useTransformers);
 The `compile` function takes two arguments:
 
 1. `filePath`: A `string` containing the path to the TypeScript file you want to compile.
-2. `useTransformers`: A `boolean` indicating whether you want to use built-in transformers during compilation.
+2. `options`
+   1. `useTransformers`: A `boolean` indicating whether you want to use built-in transformers during compilation.
 
 # `transformer.ts`
 

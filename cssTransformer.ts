@@ -3,10 +3,10 @@
  */
 
 import ts from 'typescript';
+import report from './helpers/report';
+import sizeToReadable from './helpers/sizeToReadable';
 
 const cssTransformer: ts.TransformerFactory<ts.SourceFile> = context => {
-  const { factory: f } = context;
-
   return sourceFile => {
     const visitor: ts.Visitor = node => {
       if (ts.isImportDeclaration(node)) {
@@ -14,6 +14,8 @@ const cssTransformer: ts.TransformerFactory<ts.SourceFile> = context => {
 
         if (ts.isStringLiteral(expression)) {
           if (/\.css/.test(expression.text)) {
+            report(undefined, expression.text, `${sizeToReadable(0)}`);
+
             return;
           }
         }
