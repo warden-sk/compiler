@@ -45,7 +45,7 @@ The `compile` function takes two arguments:
 React.createElement('div', { pX: '2' }, 'Client');
 ```
 
-### Output file with `useTransformers` set to `true`
+### Output files with `useTransformers` set to `true`
 
 ```tsx
 'use strict';
