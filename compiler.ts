@@ -19,11 +19,14 @@ const transformers: ts.CustomTransformers = { before: [transformer] };
 function compile(filePath: string, useTransformers: boolean): string {
   let response = '';
 
-  const program: ts.Program = ts.createProgram([filePath], compilerOptions);
+  const compilerHost: ts.CompilerHost = ts.createCompilerHost({});
+  compilerHost.writeFile = (fileName, text) => (response = text);
+
+  const program: ts.Program = ts.createProgram([filePath], compilerOptions, compilerHost);
 
   const emitResult: ts.EmitResult = program.emit(
     undefined,
-    (fileName, text) => (response = text),
+    undefined,
     undefined,
     undefined,
     useTransformers ? transformers : undefined
@@ -38,8 +41,6 @@ function compile(filePath: string, useTransformers: boolean): string {
       console.log(`\x1b[31m${diagnostic.file.fileName}\x1b[0m\n${message}`);
     }
   }
-
-  console.log('compiled', filePath);
 
   return response;
 }
