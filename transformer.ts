@@ -5,7 +5,7 @@
 import ts from 'typescript';
 import allowedHtmlElements from './allowedHtmlElements';
 import allowedJsxAttributes from './allowedJsxAttributes';
-import dictionary from './helpers/dictionary';
+import dictionary from './dictionary';
 
 function createTest(factory: ts.NodeFactory, name: ts.Identifier, path: string): ts.VariableStatement {
   const variableDeclaration: ts.VariableDeclaration = factory.createVariableDeclaration(

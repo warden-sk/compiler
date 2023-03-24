@@ -2,7 +2,7 @@
  * Copyright 2023 Marek Kobida
  */
 
-import dictionary from './dictionary';
+import dictionary from '../dictionary';
 
 export type DecodedResponsiveClassName = string;
 

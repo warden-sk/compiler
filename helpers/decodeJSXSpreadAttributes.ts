@@ -3,9 +3,9 @@
  */
 
 import allowedJsxAttributes from '../allowedJsxAttributes';
+import dictionary from '../dictionary';
 import type { EncodedClassName } from './decodeClassName';
 import decodeResponsiveClassName from './decodeResponsiveClassName';
-import dictionary from './dictionary';
 
 function decodeJSXSpreadAttributes(attributes: { [key: string]: any }): EncodedClassName[] {
   return Object.keys(attributes).reduce<EncodedClassName[]>(($, key) => {

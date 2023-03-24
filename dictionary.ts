@@ -2,8 +2,8 @@
  * Copyright 2023 Marek Kobida
  */
 
-import allowedJsxAttributes from '../allowedJsxAttributes';
-import Dictionary from './dict';
+import allowedJsxAttributes from './allowedJsxAttributes';
+import Dictionary from './helpers/dict';
 
 const dictionary = new Dictionary([
   ...Object.keys(allowedJsxAttributes).reduce<string[]>(($, key) => [...$, key], []),
