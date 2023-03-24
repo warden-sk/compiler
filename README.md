@@ -21,7 +21,7 @@ The `compile` function takes two arguments:
 # Transformer
 
 1. The transformer function first requires the [helper functions](#helper-functions) and adds them to the beginning of the source file.
-2. For each `JsxOpeningElement` in the source file, it checks if the element is allowed based on `allowedHtmlElements`. If allowed, it processes its attributes and updates the element with the modified attributes.
+2. For each `JsxOpeningElement` in the source file, it checks if the element is allowed based on [allowedHtmlElements](#allowedhtmlelements). If allowed, it processes its attributes and updates the element with the modified attributes.
 
 ## `allowedHtmlElements`
 
