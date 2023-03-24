@@ -3,6 +3,8 @@
 
 # Usage
 
+`npm i @warden-sk/compiler typescript`
+
 The `compile` function compiles a TypeScript file into JavaScript code.
 
 ```ts
@@ -14,7 +16,7 @@ const useTransformers = true;
 const compiled = compile(filePath, useTransformers);
 ```
 
-# Options
+## Options
 
 The `compile` function takes two arguments:
 
@@ -43,6 +45,13 @@ const filterJSXSpreadAttributes = require('@warden-sk/compiler/helpers/filterJSX
 React.createElement('div', { className: decodeClassName(decodeResponsiveClassName('Ya', '2')) }, 'Client');
 ```
 
+## Helper functions
+
+1. `decodeClassName`
+2. `decodeJSXSpreadAttributes`
+3. `decodeResponsiveClassName`
+4. `filterJSXSpreadAttributes`
+
 ## `allowedHtmlElements`
 
 A list of allowed HTML elements for transformation.
@@ -54,10 +63,3 @@ A list of allowed HTML elements for transformation.
 A list of allowed JSX attributes for transformation.
 
 `alignContent, alignItems, alignSelf, border, borderBottom, borderBottomRadius, borderLeft, borderLeftRadius, borderRadius, borderRight, borderRightRadius, borderTop, borderTopRadius, borderX, borderY, cursor, display, flex, flexBasis, flexDirection, flexWrap, fontSize, fontWeight, gap, gapX, gapY, gridTemplateColumns, height, justifyContent, justifyItems, justifySelf, lineHeight, m, mB, mL, mR, mT, mX, mY, opacity, p, pB, pL, pR, pT, pX, pY, spaceX, spaceY, textAlign, whiteSpace, width`
-
-## Helper functions
-
-1. `decodeClassName`
-2. `decodeJSXSpreadAttributes`
-3. `decodeResponsiveClassName`
-4. `filterJSXSpreadAttributes`
