@@ -52,7 +52,8 @@ function compile(filePath: string, useTransformers: boolean): string {
     if (diagnostic.file) {
       const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
 
-      console.log(`\x1b[31m${diagnostic.file.fileName}\x1b[0m\n${message}`);
+      report(undefined, `\x1b[31m${diagnostic.file.fileName}\x1b[0m`);
+      report(undefined, message);
     }
   }
 
