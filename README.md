@@ -38,6 +38,12 @@ The `compile` function takes two arguments:
  * After
  */
 'use strict';
+React.createElement('div', { p: '2' }, 'Client');
+
+/**
+ * After with `useTransformers` set to `true`
+ */
+'use strict';
 const decodeClassName = require('@warden-sk/compiler/helpers/decodeClassName').default;
 const decodeJSXSpreadAttributes = require('@warden-sk/compiler/helpers/decodeJSXSpreadAttributes').default;
 const decodeResponsiveClassName = require('@warden-sk/compiler/helpers/decodeResponsiveClassName').default;
