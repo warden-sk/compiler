@@ -56,8 +56,9 @@ const filterJSXSpreadAttributes = require('@warden-sk/compiler/helpers/filterJSX
 React.createElement('div', { className: decodeClassName(decodeResponsiveClassName('fb', '2')) }, 'Client');
 ```
 
-### CSS
-```
+### Output CSS file with `useTransformers` set to `true`
+
+```css
 .\$ar,
 .fbr {
   padding-left: 0.5rem !important;
