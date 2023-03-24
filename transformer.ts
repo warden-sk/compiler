@@ -7,7 +7,7 @@ import allowedHtmlElements from './allowedHtmlElements';
 import allowedJsxAttributes from './allowedJsxAttributes';
 import dictionary from './dictionary';
 
-function createTest(f: ts.NodeFactory, name: ts.Identifier, path: string): ts.VariableStatement {
+function createRequireStatement(f: ts.NodeFactory, name: ts.Identifier, path: string): ts.VariableStatement {
   const variableDeclaration: ts.VariableDeclaration = f.createVariableDeclaration(
     name,
     undefined,
@@ -44,7 +44,7 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
             [decodeResponsiveClassName, '@warden-sk/compiler/helpers/decodeResponsiveClassName'],
             [filterJSXSpreadAttributes, '@warden-sk/compiler/helpers/filterJSXSpreadAttributes'],
           ] as const
-        ).map(([l, r]) => createTest(f, l, r));
+        ).map(([l, r]) => createRequireStatement(f, l, r));
 
         const updatedNode = f.updateSourceFile(node, [...test, ...node.statements]);
 
