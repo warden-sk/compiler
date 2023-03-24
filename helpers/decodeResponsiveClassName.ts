@@ -3,6 +3,7 @@
  */
 
 import dictionary from '../dictionary';
+import isObject from './isObject';
 
 export type DecodedResponsiveClassName = string;
 
@@ -43,7 +44,7 @@ function decodeResponsiveClassName(
   }
 
   // { [breakpointName: string]: T }
-  else if (encodedResponsiveClassName !== null && typeof encodedResponsiveClassName === 'object') {
+  else if (isObject(encodedResponsiveClassName)) {
     for (const breakpointName in encodedResponsiveClassName) {
       decodedResponsiveClassNames.push(
         `${breakpointName}${className}${dictionary.getKey(encodedResponsiveClassName[breakpointName])}`

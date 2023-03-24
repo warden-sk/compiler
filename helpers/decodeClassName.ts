@@ -2,6 +2,8 @@
  * Copyright 2023 Marek Kobida
  */
 
+import isObject from './isObject';
+
 export type DecodedClassName = string | undefined;
 
 export type EncodedClassName =
@@ -37,7 +39,7 @@ function decodeClassName(...encodedClassNames: EncodedClassName[]): DecodedClass
     }
 
     // { [decodedClassName: string]: Falsy | boolean }
-    else if (encodedClassName !== null && typeof encodedClassName === 'object') {
+    else if (isObject(encodedClassName)) {
       for (const decodedClassName in encodedClassName) {
         if (encodedClassName[decodedClassName]) {
           decodedClassNames.push(decodedClassName);

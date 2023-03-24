@@ -4,6 +4,7 @@
 
 import ts from 'typescript';
 import report from './helpers/report';
+import sizeToReadable from './helpers/sizeToReadable';
 import transformer from './transformer';
 
 const compilerOptions: ts.CompilerOptions = {
@@ -16,19 +17,6 @@ const compilerOptions: ts.CompilerOptions = {
 };
 
 const transformers: ts.CustomTransformers = { before: [transformer] };
-
-function sizeToReadable(size: number): string {
-  const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-
-  let unitIndex = 0;
-
-  while (size >= 1024 && unitIndex < units.length - 1) {
-    size /= 1024;
-    unitIndex++;
-  }
-
-  return `${size.toFixed(2)} ${units[unitIndex]}`;
-}
 
 function compile(filePath: string, useTransformers: boolean): string {
   let compiled = '';
