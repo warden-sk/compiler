@@ -3,6 +3,7 @@
  */
 
 import ts from 'typescript';
+import cssTransformer from './cssTransformer';
 import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
 import transformer from './transformer';
@@ -16,7 +17,7 @@ const compilerOptions: ts.CompilerOptions = {
   target: ts.ScriptTarget.ESNext,
 };
 
-const transformers: ts.CustomTransformers = { before: [transformer] };
+const transformers: ts.CustomTransformers = { before: [cssTransformer, transformer] };
 
 function compile(filePath: string, useTransformers: boolean): string {
   let compiled = '';
