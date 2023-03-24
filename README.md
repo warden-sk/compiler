@@ -35,7 +35,7 @@ The `compile` function takes two arguments:
 <div p="2">Client</div>;
 
 /**
- * After
+ * After with `useTransformers` set to `false`
  */
 'use strict';
 React.createElement('div', { p: '2' }, 'Client');
