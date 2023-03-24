@@ -35,14 +35,14 @@ The `compile` function takes two arguments:
 ### Input file
 
 ```tsx
-<div p="2">Client</div>;
+<div pX="2">Client</div>;
 ```
 
 ### Output file with `useTransformers` set to `false`
 
 ```tsx
 'use strict';
-React.createElement('div', { p: '2' }, 'Client');
+React.createElement('div', { pX: '2' }, 'Client');
 ```
 
 ### Output file with `useTransformers` set to `true`
@@ -53,7 +53,19 @@ const decodeClassName = require('@warden-sk/compiler/helpers/decodeClassName').d
 const decodeJSXSpreadAttributes = require('@warden-sk/compiler/helpers/decodeJSXSpreadAttributes').default;
 const decodeResponsiveClassName = require('@warden-sk/compiler/helpers/decodeResponsiveClassName').default;
 const filterJSXSpreadAttributes = require('@warden-sk/compiler/helpers/filterJSXSpreadAttributes').default;
-React.createElement('div', { className: decodeClassName(decodeResponsiveClassName('Ya', '2')) }, 'Client');
+React.createElement('div', { className: decodeClassName(decodeResponsiveClassName('fb', '2')) }, 'Client');
+```
+
+### CSS
+```
+.\$ar,
+.fbr {
+  padding-left: 0.5rem !important;
+}
+.abr,
+.fbr {
+  padding-right: 0.5rem !important;
+}
 ```
 
 ---
