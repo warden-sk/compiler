@@ -4,6 +4,8 @@
 > 
 > — Marek Kobida
 
+## Features
+
 ## Usage
 
 `npm i @warden-sk/compiler typescript`
@@ -24,7 +26,7 @@ const compiled = compile(filePath, { useTransformers });
 The `compile` function takes two arguments:
 
 1. `filePath`: A `string` containing the path to the TypeScript file you want to compile.
-2. `options`: An `object`
+2. `options`
    1. `useTransformers`: A `boolean` indicating whether you want to use built-in transformers during compilation.
 
 ## `transformer.ts`
@@ -45,6 +47,8 @@ The `compile` function takes two arguments:
 React.createElement('div', { pX: '2' }, 'Client');
 ```
 
+It compiles a TypeScript file into JavaScript code.
+
 ### Output files with `useTransformers` set to `true`
 
 ```tsx
@@ -55,6 +59,8 @@ const decodeResponsiveClassName = require('@warden-sk/compiler/helpers/decodeRes
 const filterJsxSpreadAttributes = require('@warden-sk/compiler/helpers/filterJsxSpreadAttributes').default;
 React.createElement('div', { className: decodeClassName(decodeResponsiveClassName('fb', '2')) }, 'Client');
 ```
+
+It compiles a TypeScript file into JavaScript code and, with the help of a [transformer](#transformerts), the code is updated and a corresponding CSS file is created.
 
 ```css
 .\$ar,
