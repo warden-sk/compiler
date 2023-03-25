@@ -92,6 +92,6 @@ A list of allowed HTML elements for transformation.
 
 ### `availableJsxAttributes`
 
-A list of allowed JSX attributes for transformation.
+A list of available JSX attributes for transformation.
 
 `alignContent, alignItems, alignSelf, border, borderBottom, borderBottomRadius, borderLeft, borderLeftRadius, borderRadius, borderRight, borderRightRadius, borderTop, borderTopRadius, borderX, borderY, cursor, display, flex, flexBasis, flexDirection, flexWrap, fontSize, fontWeight, gap, gapX, gapY, gridTemplateColumns, height, justifyContent, justifyItems, justifySelf, lineHeight, m, mB, mL, mR, mT, mX, mY, opacity, p, pB, pL, pR, pT, pX, pY, spaceX, spaceY, textAlign, whiteSpace, width`
