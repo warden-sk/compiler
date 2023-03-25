@@ -40,6 +40,8 @@ The `compile` function takes two arguments:
 <div pX="2">Client</div>;
 ```
 
+---
+
 ### Output file with `useTransformers` set to `false`
 
 ```tsx
@@ -48,6 +50,8 @@ React.createElement('div', { pX: '2' }, 'Client');
 ```
 
 It compiles a TypeScript file into JavaScript code.
+
+---
 
 ### Output files with `useTransformers` set to `true`
 
@@ -60,7 +64,7 @@ const filterJsxSpreadAttributes = require('@warden-sk/compiler/helpers/filterJsx
 React.createElement('div', { className: decodeClassName(decodeResponsiveClassName('fb', '2')) }, 'Client');
 ```
 
-It compiles a TypeScript file into JavaScript code and, with the help of a [transformer](#transformerts), the code is updated and a corresponding CSS file is created.
+It compiles a TypeScript file into JavaScript code and, with the help of a [transformer](#transformerts), the code is modified and a corresponding CSS file is created.
 
 ```css
 .\$ar,
