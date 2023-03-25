@@ -50,9 +50,9 @@ React.createElement('div', { pX: '2' }, 'Client');
 ```tsx
 'use strict';
 const decodeClassName = require('@warden-sk/compiler/helpers/decodeClassName').default;
-const decodeJSXSpreadAttributes = require('@warden-sk/compiler/helpers/decodeJSXSpreadAttributes').default;
+const decodeJsxSpreadAttributes = require('@warden-sk/compiler/helpers/decodeJsxSpreadAttributes').default;
 const decodeResponsiveClassName = require('@warden-sk/compiler/helpers/decodeResponsiveClassName').default;
-const filterJSXSpreadAttributes = require('@warden-sk/compiler/helpers/filterJSXSpreadAttributes').default;
+const filterJsxSpreadAttributes = require('@warden-sk/compiler/helpers/filterJsxSpreadAttributes').default;
 React.createElement('div', { className: decodeClassName(decodeResponsiveClassName('fb', '2')) }, 'Client');
 ```
 
@@ -72,9 +72,9 @@ React.createElement('div', { className: decodeClassName(decodeResponsiveClassNam
 ### Helper functions
 
 1. `decodeClassName`
-2. `decodeJSXSpreadAttributes`
+2. `decodeJsxSpreadAttributes`
 3. `decodeResponsiveClassName`
-4. `filterJSXSpreadAttributes`
+4. `filterJsxSpreadAttributes`
 
 ### `allowedHtmlElements`
 

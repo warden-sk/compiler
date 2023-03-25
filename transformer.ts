@@ -32,17 +32,17 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
       // console.log(node.kind, `\t# ts.SyntaxKind.${ts.SyntaxKind[node.kind]}`);
 
       const decodeClassName = f.createIdentifier('decodeClassName');
-      const decodeJSXSpreadAttributes = f.createIdentifier('decodeJSXSpreadAttributes');
+      const decodeJsxSpreadAttributes = f.createIdentifier('decodeJsxSpreadAttributes');
       const decodeResponsiveClassName = f.createIdentifier('decodeResponsiveClassName');
-      const filterJSXSpreadAttributes = f.createIdentifier('filterJSXSpreadAttributes');
+      const filterJsxSpreadAttributes = f.createIdentifier('filterJsxSpreadAttributes');
 
       if (ts.isSourceFile(node)) {
         const test = (
           [
             [decodeClassName, '@warden-sk/compiler/helpers/decodeClassName'],
-            [decodeJSXSpreadAttributes, '@warden-sk/compiler/helpers/decodeJSXSpreadAttributes'],
+            [decodeJsxSpreadAttributes, '@warden-sk/compiler/helpers/decodeJsxSpreadAttributes'],
             [decodeResponsiveClassName, '@warden-sk/compiler/helpers/decodeResponsiveClassName'],
-            [filterJSXSpreadAttributes, '@warden-sk/compiler/helpers/filterJSXSpreadAttributes'],
+            [filterJsxSpreadAttributes, '@warden-sk/compiler/helpers/filterJsxSpreadAttributes'],
           ] as const
         ).map(([l, r]) => createRequireStatement(f, l, r));
 
@@ -87,12 +87,12 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
             if (ts.isJsxSpreadAttribute(attribute)) {
               attributes.push(
                 f.createJsxSpreadAttribute(
-                  f.createCallExpression(filterJSXSpreadAttributes, undefined, [attribute.expression])
+                  f.createCallExpression(filterJsxSpreadAttributes, undefined, [attribute.expression])
                 )
               );
 
               return className.push(
-                f.createCallExpression(decodeJSXSpreadAttributes, undefined, [attribute.expression])
+                f.createCallExpression(decodeJsxSpreadAttributes, undefined, [attribute.expression])
               );
             }
 
