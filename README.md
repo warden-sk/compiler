@@ -4,8 +4,6 @@
 > 
 > — Marek Kobida
 
-## Features
-
 ## Usage
 
 `npm i @warden-sk/compiler typescript`
@@ -44,16 +42,18 @@ The `compile` function takes two arguments:
 
 ### Output file with `useTransformers` set to `false`
 
+It compiles a TypeScript file into JavaScript code.
+
 ```tsx
 'use strict';
 React.createElement('div', { pX: '2' }, 'Client');
 ```
 
-It compiles a TypeScript file into JavaScript code.
-
 ---
 
 ### Output files with `useTransformers` set to `true`
+
+It compiles a TypeScript file into JavaScript code and, with the help of a [transformer](#transformerts), the code is modified and a corresponding CSS file is created.
 
 ```tsx
 'use strict';
@@ -63,8 +63,6 @@ const decodeResponsiveClassName = require('@warden-sk/compiler/helpers/decodeRes
 const filterJsxSpreadAttributes = require('@warden-sk/compiler/helpers/filterJsxSpreadAttributes').default;
 React.createElement('div', { className: decodeClassName(decodeResponsiveClassName('fb', '2')) }, 'Client');
 ```
-
-It compiles a TypeScript file into JavaScript code and, with the help of a [transformer](#transformerts), the code is modified and a corresponding CSS file is created.
 
 ```css
 .\$ar,
