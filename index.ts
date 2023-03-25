@@ -50,7 +50,7 @@ function compile(filePath: string, options: Options): string {
     }
   }
 
-  report(undefined, filePath, `${sizeToReadable(compiled.length)}`);
+  report(undefined, filePath, sizeToReadable(compiled.length));
 
   return compiled;
 }
