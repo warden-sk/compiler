@@ -17,13 +17,14 @@ const compilerOptions: ts.CompilerOptions = {
   target: ts.ScriptTarget.ESNext,
 };
 
-const transformers: ts.CustomTransformers = { before: [cssTransformer, transformer] };
-
 interface Options {
+  cssOutputPath: string;
   useTransformers: boolean;
 }
 
 function compile(filePath: string, options: Options): string {
+  const transformers: ts.CustomTransformers = { before: [cssTransformer(options), transformer] };
+
   let compiled = '';
 
   const compilerHost: ts.CompilerHost = ts.createCompilerHost({});

@@ -21,9 +21,9 @@ async function compileHtml({ assets, name, outputPath, publicPath, template }: O
   };
 
   const assetToUrl = (asset: string): string => {
-    const enhancedPublicPath = publicPath ? publicPath : `file://${outputPath}`;
+    const updatedPublicPath = publicPath ? publicPath : `file://${outputPath}`;
 
-    const url = /^https?:\/\//.test(asset) ? new URL(asset) : new URL(`${enhancedPublicPath}/${asset}`);
+    const url = /^https?:\/\//.test(asset) ? new URL(asset) : new URL(`${updatedPublicPath}/${asset}`);
 
     url.searchParams.set('date', (+new Date()).toString());
 
@@ -35,9 +35,9 @@ async function compileHtml({ assets, name, outputPath, publicPath, template }: O
 
   const code = (await fs.promises.readFile(`${outputPath}/index.js`)).toString();
 
-  const enhancedCode = template(`${code}\nmodule.exports = xyz;`);
+  const updatedCode = template(`${code}\nmodule.exports = xyz;`);
 
-  if (typeof enhancedCode === 'string') {
+  if (typeof updatedCode === 'string') {
     const html = `<!DOCTYPE html>
 <html>
   <head>

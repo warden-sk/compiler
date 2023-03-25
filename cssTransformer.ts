@@ -6,26 +6,32 @@ import ts from 'typescript';
 import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
 
-const cssTransformer: ts.TransformerFactory<ts.SourceFile> = context => {
-  return sourceFile => {
-    const visitor: ts.Visitor = node => {
-      if (ts.isImportDeclaration(node)) {
-        const expression: ts.Expression = node.moduleSpecifier;
+interface Options {
+  cssOutputPath: string;
+}
 
-        if (ts.isStringLiteral(expression)) {
-          if (/\.css/.test(expression.text)) {
-            report(undefined, expression.text, sizeToReadable(expression.text.length));
+const cssTransformer =
+  (options: Options): ts.TransformerFactory<ts.SourceFile> =>
+  context => {
+    return sourceFile => {
+      const visitor: ts.Visitor = node => {
+        if (ts.isImportDeclaration(node)) {
+          const expression: ts.Expression = node.moduleSpecifier;
 
-            return;
+          if (ts.isStringLiteral(expression)) {
+            if (/\.css/.test(expression.text)) {
+              report(undefined, expression.text, sizeToReadable(expression.text.length));
+
+              return;
+            }
           }
         }
-      }
 
-      return ts.visitEachChild(node, visitor, context);
+        return ts.visitEachChild(node, visitor, context);
+      };
+
+      return ts.visitNode(sourceFile, visitor) as ts.SourceFile;
     };
-
-    return ts.visitNode(sourceFile, visitor) as ts.SourceFile;
   };
-};
 
 export default cssTransformer;
