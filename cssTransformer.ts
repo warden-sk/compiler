@@ -14,7 +14,7 @@ const cssTransformer: ts.TransformerFactory<ts.SourceFile> = context => {
 
         if (ts.isStringLiteral(expression)) {
           if (/\.css/.test(expression.text)) {
-            report(undefined, expression.text, `${sizeToReadable(0)}`);
+            report(undefined, expression.text, sizeToReadable(expression.text.length));
 
             return;
           }

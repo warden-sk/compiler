@@ -4,7 +4,7 @@
 
 import fs from 'fs';
 
-interface P {
+interface Options {
   assets: string[];
   name: string;
   outputPath: string;
@@ -12,7 +12,7 @@ interface P {
   template: (code: string) => [string, string][] | string;
 }
 
-async function compileHtml({ assets, name, outputPath, publicPath, template }: P) {
+async function compileHtml({ assets, name, outputPath, publicPath, template }: Options) {
   const assetsToHtml = (assets: string[], pattern: RegExp, template: (asset: string) => string): string[] => {
     return assets
       .filter(asset => pattern.test(asset))
