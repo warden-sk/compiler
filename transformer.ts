@@ -6,23 +6,7 @@ import ts from 'typescript';
 import allowedHtmlElements from './allowedHtmlElements';
 import availableJsxAttributes from './availableJsxAttributes';
 import dictionary from './dictionary';
-
-function createRequireStatement(f: ts.NodeFactory, name: ts.Identifier, path: string): ts.VariableStatement {
-  const variableDeclaration: ts.VariableDeclaration = f.createVariableDeclaration(
-    name,
-    undefined,
-    undefined,
-    f.createPropertyAccessExpression(
-      f.createCallExpression(f.createIdentifier('require'), undefined, [f.createStringLiteral(path)]),
-      f.createIdentifier('default')
-    )
-  );
-
-  return f.createVariableStatement(
-    undefined,
-    f.createVariableDeclarationList([variableDeclaration], ts.NodeFlags.Const)
-  );
-}
+import createRequireStatement from './helpers/createRequireStatement';
 
 const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
   const { factory: f } = context;
@@ -37,16 +21,16 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
       const filterJsxSpreadAttributes = f.createIdentifier('filterJsxSpreadAttributes');
 
       if (ts.isSourceFile(node)) {
-        const test = (
+        const $ = (
           [
             [decodeClassName, '@warden-sk/compiler/helpers/decodeClassName'],
             [decodeJsxSpreadAttributes, '@warden-sk/compiler/helpers/decodeJsxSpreadAttributes'],
             [decodeResponsiveClassName, '@warden-sk/compiler/helpers/decodeResponsiveClassName'],
             [filterJsxSpreadAttributes, '@warden-sk/compiler/helpers/filterJsxSpreadAttributes'],
           ] as const
-        ).map(([l, r]) => createRequireStatement(f, l, r));
+        ).map(([name, path]) => createRequireStatement(name, path));
 
-        const updatedNode = f.updateSourceFile(node, [...test, ...node.statements]);
+        const updatedNode = f.updateSourceFile(node, [...$, ...node.statements]);
 
         return ts.visitEachChild(updatedNode, visitor, context);
       }

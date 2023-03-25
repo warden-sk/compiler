@@ -10,9 +10,8 @@ interface Options {
   cssOutputPath: string;
 }
 
-const cssTransformer =
-  (options: Options): ts.TransformerFactory<ts.SourceFile> =>
-  context => {
+const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> => {
+  return context => {
     return sourceFile => {
       const visitor: ts.Visitor = node => {
         if (ts.isImportDeclaration(node)) {
@@ -33,5 +32,6 @@ const cssTransformer =
       return ts.visitNode(sourceFile, visitor) as ts.SourceFile;
     };
   };
+};
 
 export default cssTransformer;
