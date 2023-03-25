@@ -4,7 +4,7 @@
 
 import ts from 'typescript';
 import allowedHtmlElements from './allowedHtmlElements';
-import allowedJsxAttributes from './allowedJsxAttributes';
+import availableJsxAttributes from './availableJsxAttributes';
 import dictionary from './dictionary';
 
 function createRequireStatement(f: ts.NodeFactory, name: ts.Identifier, path: string): ts.VariableStatement {
@@ -70,7 +70,7 @@ const transformer: ts.TransformerFactory<ts.SourceFile> = context => {
                   }
                 }
                 /* (2) */
-                if (attribute.name.text in allowedJsxAttributes) {
+                if (attribute.name.text in availableJsxAttributes) {
                   /* (2.1) */
                   if (ts.isJsxExpression($) || ts.isStringLiteral($)) {
                     return className.push(

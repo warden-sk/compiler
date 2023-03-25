@@ -2,13 +2,13 @@
  * Copyright 2023 Marek Kobida
  */
 
-import allowedJsxAttributes from './allowedJsxAttributes';
+import availableJsxAttributes from './availableJsxAttributes';
 import Dictionary from './helpers/dictionary';
 
 const dictionary = new Dictionary([
-  ...Object.keys(allowedJsxAttributes).reduce<string[]>(($, key) => [...$, key], []),
-  ...Object.keys(allowedJsxAttributes).reduce<string[]>(
-    ($, key) => [...$, ...allowedJsxAttributes[key as keyof typeof allowedJsxAttributes]],
+  ...Object.keys(availableJsxAttributes).reduce<string[]>(($, key) => [...$, key], []),
+  ...Object.keys(availableJsxAttributes).reduce<string[]>(
+    ($, key) => [...$, ...availableJsxAttributes[key as keyof typeof availableJsxAttributes]],
     []
   ),
 ]);

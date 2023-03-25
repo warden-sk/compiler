@@ -2,7 +2,7 @@
  * Copyright 2023 Marek Kobida
  */
 
-import allowedJsxAttributes from '../allowedJsxAttributes';
+import availableJsxAttributes from '../availableJsxAttributes';
 import dictionary from '../dictionary';
 import type { EncodedClassName } from './decodeClassName';
 import decodeResponsiveClassName from './decodeResponsiveClassName';
@@ -15,7 +15,7 @@ function decodeJSXSpreadAttributes(attributes: { [key: string]: any }): EncodedC
       return [...$, attribute];
     }
 
-    if (key in allowedJsxAttributes) {
+    if (key in availableJsxAttributes) {
       return [...$, decodeResponsiveClassName(dictionary.getKey(key), attribute)];
     }
 

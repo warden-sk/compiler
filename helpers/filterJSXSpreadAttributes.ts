@@ -2,7 +2,7 @@
  * Copyright 2023 Marek Kobida
  */
 
-import allowedJsxAttributes from '../allowedJsxAttributes';
+import availableJsxAttributes from '../availableJsxAttributes';
 
 function filterJSXSpreadAttributes(attributes: { [key: string]: any }) {
   return Object.keys(attributes).reduce(($, key) => {
@@ -12,7 +12,7 @@ function filterJSXSpreadAttributes(attributes: { [key: string]: any }) {
       return $;
     }
 
-    if (key in allowedJsxAttributes) {
+    if (key in availableJsxAttributes) {
       return $;
     }
 
