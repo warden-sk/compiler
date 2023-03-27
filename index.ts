@@ -23,14 +23,14 @@ interface Options {
 }
 
 function compile(filePath: string, options: Options): string {
-  const transformers: ts.CustomTransformers = { before: [cssTransformer(options), transformer] };
-
   let compiled = '';
 
   const compilerHost: ts.CompilerHost = ts.createCompilerHost({});
   compilerHost.writeFile = (fileName, text) => (compiled = text);
 
   const program: ts.Program = ts.createProgram([filePath], compilerOptions, compilerHost);
+
+  const transformers: ts.CustomTransformers = { before: [cssTransformer(options, program), transformer(program)] };
 
   const emitResult: ts.EmitResult = program.emit(
     undefined,
