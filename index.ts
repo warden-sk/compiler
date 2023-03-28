@@ -33,7 +33,7 @@ function compile(filePath: string, options: Options): string {
     const { outputText: compiled } = ts.transpileModule(fs.readFileSync(filePath).toString(), {
       compilerOptions,
       fileName: filePath,
-      transformers: options.useTransformers ? transformers : undefined,
+      transformers: options.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined,
     });
 
     const endDate: number = +new Date();
@@ -60,7 +60,7 @@ function compile(filePath: string, options: Options): string {
     undefined,
     undefined,
     undefined,
-    options.useTransformers ? transformers : undefined
+    options.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined
   );
 
   const diagnostics: ts.Diagnostic[] = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
