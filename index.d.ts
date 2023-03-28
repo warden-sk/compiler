@@ -1,5 +1,5 @@
 interface Options {
-    cssOutputPath?: string;
+    outputPath?: string;
     transpileOnly?: boolean;
     useTransformers?: boolean;
 }

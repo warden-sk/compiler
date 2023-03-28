@@ -19,7 +19,7 @@ const compilerOptions: ts.CompilerOptions = {
 };
 
 interface Options {
-  cssOutputPath?: string;
+  outputPath?: string;
   transpileOnly?: boolean;
   useTransformers?: boolean;
 }
@@ -40,8 +40,9 @@ function compile(filePath: string, options: Options): string {
 
     report(
       undefined,
+      '🟢',
       `${((endDate - startDate) / 1000).toFixed(2)} second(s)`,
-      `🟩 ${filePath}`,
+      filePath,
       sizeToReadable(compiled.length)
     );
 
@@ -74,16 +75,18 @@ function compile(filePath: string, options: Options): string {
 
         report(
           undefined,
+          '🔴',
           `${((endDate - startDate) / 1000).toFixed(2)} second(s)`,
-          `🟥 \x1b[31m${diagnostic.file.fileName}\n\n${message}\n\x1b[0m`
+          `\x1b[31m${diagnostic.file.fileName}\n\n${message}\n\x1b[0m`
         );
       }
     }
   } else {
     report(
       undefined,
+      '🟢',
       `${((endDate - startDate) / 1000).toFixed(2)} second(s)`,
-      `🟩 ${filePath}`,
+      filePath,
       sizeToReadable(compiled.length)
     );
   }

@@ -9,7 +9,7 @@ import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
 
 interface Options {
-  cssOutputPath?: string;
+  outputPath?: string;
 }
 
 const cache = new Map<string, Buffer>();
@@ -34,20 +34,20 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
 
               const DESIGN_CSS_PATH = './node_modules/@warden-sk/design/index.css';
 
-              if (cache.has(DESIGN_CSS_PATH)) {
-                report(undefined, `🟧 ${CSS_PATH}`, sizeToReadable(cache.get(CSS_PATH)!.length));
-              } else {
-                cache.set(DESIGN_CSS_PATH, fs.readFileSync(path.resolve(process.cwd(), DESIGN_CSS_PATH)));
+              const icon = cache.has(DESIGN_CSS_PATH) ? '🟠' : '🟢';
 
-                report(undefined, `🟩 ${CSS_PATH}`, sizeToReadable(cache.get(CSS_PATH)!.length));
+              if (icon === '🟢') {
+                cache.set(DESIGN_CSS_PATH, fs.readFileSync(DESIGN_CSS_PATH));
               }
 
-              if (options.cssOutputPath) {
+              if (options.outputPath) {
                 fs.writeFileSync(
-                  path.resolve(process.cwd(), options.cssOutputPath),
+                  path.resolve(options.outputPath, './index.css'),
                   [...cache].reduce((l, r) => Buffer.concat([l, r[1]]), Buffer.alloc(0))
                 );
               }
+
+              report(undefined, icon, CSS_PATH, sizeToReadable(cache.get(CSS_PATH)!.length));
 
               return;
             }

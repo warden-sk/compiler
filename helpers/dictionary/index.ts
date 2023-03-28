@@ -2,7 +2,6 @@
  * Copyright 2023 Marek Kobida
  */
 
-import report from '../report';
 import base54 from './base54';
 
 class Dictionary {
@@ -19,8 +18,6 @@ class Dictionary {
   }
 
   getKey(key: string): string {
-    report(undefined, key, this.#dictionary[key] ?? key);
-
     return this.#dictionary[key] ?? key;
   }
 }
