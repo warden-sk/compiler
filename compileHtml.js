@@ -7,7 +7,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
-async function compileHtml({ assets, name, outputPath, publicPath, template }) {
+const compileReact_1 = __importDefault(require("./compileReact"));
+async function compileHtml({ assets, outputPath, publicPath }) {
     const assetsToHtml = (assets, pattern, template) => {
         return assets
             .filter(asset => pattern.test(asset))
@@ -23,24 +24,20 @@ async function compileHtml({ assets, name, outputPath, publicPath, template }) {
     const css = assetsToHtml(assets, /\.css/, url => `<link href="${url}" rel="stylesheet" />`);
     const js = assetsToHtml(assets, /\.js/, url => `<script src="${url}"></script>`);
     const code = (await fs_1.default.promises.readFile(`${outputPath}/index.js`)).toString();
-    const updatedCode = template(`${code}\nmodule.exports = xyz;`);
-    if (typeof updatedCode === 'string') {
-        const html = `<!DOCTYPE html>
+    const html = `<!DOCTYPE html>
 <html>
   <head>
     ${css.join('\n    ')}
     <meta charset="utf-8" />
     <meta content="viewport-fit=cover, width=device-width" name="viewport" />
     <script>window.updatedAt=${+new Date()};</script>
-    <title>${name}</title>
   </head>
   <body>
-    ${template(`${code}\nmodule.exports = xyz;`)}
+    ${(0, compileReact_1.default)(code)}
     ${js.join('\n    ')}
   </body>
 </html>
 `;
-        await fs_1.default.promises.writeFile(`${outputPath}/index.html`, html);
-    }
+    await fs_1.default.promises.writeFile(`${outputPath}/index.html`, html);
 }
 exports.default = compileHtml;

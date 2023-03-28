@@ -3,16 +3,15 @@
  */
 
 import fs from 'fs';
+import compileReact from './compileReact';
 
 interface Options {
   assets: string[];
-  name: string;
   outputPath: string;
   publicPath?: string;
-  template: (code: string) => [string, string][] | string;
 }
 
-async function compileHtml({ assets, name, outputPath, publicPath, template }: Options) {
+async function compileHtml({ assets, outputPath, publicPath }: Options) {
   const assetsToHtml = (assets: string[], pattern: RegExp, template: (asset: string) => string): string[] => {
     return assets
       .filter(asset => pattern.test(asset))
@@ -35,27 +34,22 @@ async function compileHtml({ assets, name, outputPath, publicPath, template }: O
 
   const code = (await fs.promises.readFile(`${outputPath}/index.js`)).toString();
 
-  const updatedCode = template(`${code}\nmodule.exports = xyz;`);
-
-  if (typeof updatedCode === 'string') {
-    const html = `<!DOCTYPE html>
+  const html = `<!DOCTYPE html>
 <html>
   <head>
     ${css.join('\n    ')}
     <meta charset="utf-8" />
     <meta content="viewport-fit=cover, width=device-width" name="viewport" />
     <script>window.updatedAt=${+new Date()};</script>
-    <title>${name}</title>
   </head>
   <body>
-    ${template(`${code}\nmodule.exports = xyz;`)}
+    ${compileReact(code)}
     ${js.join('\n    ')}
   </body>
 </html>
 `;
 
-    await fs.promises.writeFile(`${outputPath}/index.html`, html);
-  }
+  await fs.promises.writeFile(`${outputPath}/index.html`, html);
 }
 
 export default compileHtml;
