@@ -14,7 +14,7 @@ const transformer = (): ts.TransformerFactory<ts.SourceFile> => {
 
     return sourceFile => {
       const visitor: ts.Visitor = node => {
-        // console.log(node.kind, `\t# ts.SyntaxKind.${ts.SyntaxKind[node.kind]}`);
+        // report(undefined, node.kind, `\t# ts.SyntaxKind.${ts.SyntaxKind[node.kind]}`);
 
         const decodeClassName = f.createIdentifier('decodeClassName');
         const decodeJsxSpreadAttributes = f.createIdentifier('decodeJsxSpreadAttributes');
