@@ -7,7 +7,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 const typescript_1 = __importDefault(require("typescript"));
+const compileHtml_1 = __importDefault(require("./compileHtml"));
 const cssTransformer_1 = __importDefault(require("./cssTransformer"));
 const report_1 = __importDefault(require("./helpers/report"));
 const sizeToReadable_1 = __importDefault(require("./helpers/sizeToReadable"));
@@ -22,6 +24,10 @@ const compilerOptions = {
 };
 function compile(filePath, options) {
     const startDate = +new Date();
+    (0, compileHtml_1.default)({
+        assets: options.assets ?? [],
+        outputPath: path_1.default.resolve(options.outputPath ?? '/'),
+    });
     const transformers = { before: [(0, cssTransformer_1.default)(options), (0, transformer_1.default)()] };
     if (options.transpileOnly) {
         const { outputText: compiled } = typescript_1.default.transpileModule(fs_1.default.readFileSync(filePath).toString(), {

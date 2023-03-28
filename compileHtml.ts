@@ -4,6 +4,8 @@
 
 import fs from 'fs';
 import compileReact from './compileReact';
+import report from './helpers/report';
+import sizeToReadable from './helpers/sizeToReadable';
 
 interface Options {
   assets: string[];
@@ -34,6 +36,8 @@ async function compileHtml({ assets, outputPath, publicPath }: Options) {
 
   const code = (await fs.promises.readFile(`${outputPath}/index.js`)).toString();
 
+  const HTML_PATH = `${outputPath}/index.html`;
+
   const html = `<!DOCTYPE html>
 <html>
   <head>
@@ -49,7 +53,9 @@ async function compileHtml({ assets, outputPath, publicPath }: Options) {
 </html>
 `;
 
-  await fs.promises.writeFile(`${outputPath}/index.html`, html);
+  await fs.promises.writeFile(HTML_PATH, html);
+
+  report(undefined, '🟢', HTML_PATH, sizeToReadable(html.length));
 }
 
 export default compileHtml;

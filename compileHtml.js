@@ -8,6 +8,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
 const compileReact_1 = __importDefault(require("./compileReact"));
+const report_1 = __importDefault(require("./helpers/report"));
+const sizeToReadable_1 = __importDefault(require("./helpers/sizeToReadable"));
 async function compileHtml({ assets, outputPath, publicPath }) {
     const assetsToHtml = (assets, pattern, template) => {
         return assets
@@ -24,6 +26,7 @@ async function compileHtml({ assets, outputPath, publicPath }) {
     const css = assetsToHtml(assets, /\.css/, url => `<link href="${url}" rel="stylesheet" />`);
     const js = assetsToHtml(assets, /\.js/, url => `<script src="${url}"></script>`);
     const code = (await fs_1.default.promises.readFile(`${outputPath}/index.js`)).toString();
+    const HTML_PATH = `${outputPath}/index.html`;
     const html = `<!DOCTYPE html>
 <html>
   <head>
@@ -38,6 +41,7 @@ async function compileHtml({ assets, outputPath, publicPath }) {
   </body>
 </html>
 `;
-    await fs_1.default.promises.writeFile(`${outputPath}/index.html`, html);
+    await fs_1.default.promises.writeFile(HTML_PATH, html);
+    (0, report_1.default)(undefined, '🟢', HTML_PATH, (0, sizeToReadable_1.default)(html.length));
 }
 exports.default = compileHtml;
