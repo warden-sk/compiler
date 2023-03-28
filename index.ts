@@ -23,6 +23,8 @@ interface Options {
 }
 
 function compile(filePath: string, options: Options): string {
+  report(undefined, `🟠 compiling ${filePath}`);
+
   let compiled = '';
 
   const compilerHost: ts.CompilerHost = ts.createCompilerHost({});
@@ -42,16 +44,17 @@ function compile(filePath: string, options: Options): string {
 
   const diagnostics: ts.Diagnostic[] = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
 
-  for (const diagnostic of diagnostics) {
-    if (diagnostic.file) {
-      const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
+  if (diagnostics.length > 0) {
+    for (const diagnostic of diagnostics) {
+      if (diagnostic.file) {
+        const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
 
-      report(undefined, `\x1b[31m${diagnostic.file.fileName}\x1b[0m`);
-      report(undefined, message);
+        report(undefined, `🔴 \x1b[31m${diagnostic.file.fileName}\n\n${message}\n\x1b[0m`);
+      }
     }
+  } else {
+    report(undefined, `🟢 ${filePath}`, sizeToReadable(compiled.length));
   }
-
-  report(undefined, filePath, sizeToReadable(compiled.length));
 
   return compiled;
 }
