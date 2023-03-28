@@ -47,7 +47,7 @@ const cssTransformer = (options: Options, program: ts.Program): ts.TransformerFa
                 [...cache].reduce((l, r) => Buffer.concat([l, r[1]]), Buffer.alloc(0))
               );
 
-              report(undefined, `🟢 "${CSS_PATH}"`, sizeToReadable(cache.get(CSS_PATH)!.length));
+              report(undefined, `🟩 "${CSS_PATH}"`, sizeToReadable(cache.get(CSS_PATH)!.length));
 
               return;
             }
