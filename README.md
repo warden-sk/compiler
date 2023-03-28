@@ -6,7 +6,7 @@
 
 ## Usage
 
-`npm i typescript`
+`npm i typescript warden-sk/compiler`
 
 The `compile` function compiles a TypeScript file into JavaScript code.
 
