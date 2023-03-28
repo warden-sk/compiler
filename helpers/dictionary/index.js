@@ -6,6 +6,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const report_1 = __importDefault(require("../report"));
 const base54_1 = __importDefault(require("./base54"));
 class Dictionary {
     #dictionary;
@@ -17,6 +18,7 @@ class Dictionary {
         return this.#dictionary;
     }
     getKey(key) {
+        (0, report_1.default)(undefined, key, this.#dictionary[key] ?? key);
         return this.#dictionary[key] ?? key;
     }
 }
