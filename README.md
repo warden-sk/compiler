@@ -25,8 +25,8 @@ The `compile` function takes two arguments:
 
 1. `filePath`: A `string` containing the path to the TypeScript file you want to compile.
 2. `options`
-   1. `cssOutputPath`
-   2. `transpileOnly`
+   1. `cssOutputPath`: A `string`
+   2. `transpileOnly`: A `boolean`
    3. `useTransformers`: A `boolean` indicating whether you want to use built-in transformers during compilation.
 
 ## `transformer.ts`
