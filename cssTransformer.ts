@@ -9,7 +9,7 @@ import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
 
 interface Options {
-  cssOutputPath: string;
+  cssOutputPath?: string;
 }
 
 const cache = new Map<string, Buffer>();
@@ -42,10 +42,12 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
                 report(undefined, `🟩 ${CSS_PATH}`, sizeToReadable(cache.get(CSS_PATH)!.length));
               }
 
-              fs.writeFileSync(
-                path.resolve(process.cwd(), options.cssOutputPath),
-                [...cache].reduce((l, r) => Buffer.concat([l, r[1]]), Buffer.alloc(0))
-              );
+              if (options.cssOutputPath) {
+                fs.writeFileSync(
+                  path.resolve(process.cwd(), options.cssOutputPath),
+                  [...cache].reduce((l, r) => Buffer.concat([l, r[1]]), Buffer.alloc(0))
+                );
+              }
 
               return;
             }

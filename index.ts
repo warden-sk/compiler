@@ -19,9 +19,9 @@ const compilerOptions: ts.CompilerOptions = {
 };
 
 interface Options {
-  cssOutputPath: string;
-  transpileOnly: boolean;
-  useTransformers: boolean;
+  cssOutputPath?: string;
+  transpileOnly?: boolean;
+  useTransformers?: boolean;
 }
 
 function compile(filePath: string, options: Options): string {
