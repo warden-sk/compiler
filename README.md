@@ -6,7 +6,7 @@
 
 ## Usage
 
-`npm i @warden-sk/compiler typescript`
+`npm i typescript`
 
 The `compile` function compiles a TypeScript file into JavaScript code.
 
