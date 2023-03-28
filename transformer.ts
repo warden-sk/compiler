@@ -8,7 +8,7 @@ import availableJsxAttributes from './availableJsxAttributes';
 import dictionary from './dictionary';
 import createRequireStatement from './helpers/createRequireStatement';
 
-const transformer = (program: ts.Program): ts.TransformerFactory<ts.SourceFile> => {
+const transformer = (): ts.TransformerFactory<ts.SourceFile> => {
   return context => {
     const { factory: f } = context;
 

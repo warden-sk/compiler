@@ -2,6 +2,7 @@
  * Copyright 2023 Marek Kobida
  */
 
+import fs from 'fs';
 import ts from 'typescript';
 import cssTransformer from './cssTransformer';
 import report from './helpers/report';
@@ -19,11 +20,33 @@ const compilerOptions: ts.CompilerOptions = {
 
 interface Options {
   cssOutputPath: string;
+  transpileOnly: boolean;
   useTransformers: boolean;
 }
 
 function compile(filePath: string, options: Options): string {
   const startDate: number = +new Date();
+
+  const transformers: ts.CustomTransformers = { before: [cssTransformer(options), transformer()] };
+
+  if (options.transpileOnly) {
+    const { outputText: compiled } = ts.transpileModule(fs.readFileSync(filePath).toString(), {
+      compilerOptions,
+      fileName: filePath,
+      transformers,
+    });
+
+    const endDate: number = +new Date();
+
+    report(
+      undefined,
+      `${((endDate - startDate) / 1000).toFixed(2)} second(s)`,
+      `🟩 ${filePath}`,
+      sizeToReadable(compiled.length)
+    );
+
+    return compiled;
+  }
 
   let compiled = '';
 
@@ -31,8 +54,6 @@ function compile(filePath: string, options: Options): string {
   compilerHost.writeFile = (fileName, text) => (compiled = text);
 
   const program: ts.Program = ts.createProgram([filePath], compilerOptions, compilerHost);
-
-  const transformers: ts.CustomTransformers = { before: [cssTransformer(options, program), transformer(program)] };
 
   const emitResult: ts.EmitResult = program.emit(
     undefined,

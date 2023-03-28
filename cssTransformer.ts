@@ -14,7 +14,7 @@ interface Options {
 
 const cache = new Map<string, Buffer>();
 
-const cssTransformer = (options: Options, program: ts.Program): ts.TransformerFactory<ts.SourceFile> => {
+const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> => {
   return context => {
     return sourceFile => {
       const visitor: ts.Visitor = node => {
@@ -36,14 +36,11 @@ const cssTransformer = (options: Options, program: ts.Program): ts.TransformerFa
 
               if (cache.has(DESIGN_CSS_PATH)) {
               } else {
-                cache.set(
-                  DESIGN_CSS_PATH,
-                  fs.readFileSync(path.resolve(program.getCurrentDirectory(), DESIGN_CSS_PATH))
-                );
+                cache.set(DESIGN_CSS_PATH, fs.readFileSync(path.resolve(process.cwd(), DESIGN_CSS_PATH)));
               }
 
               fs.writeFileSync(
-                path.resolve(program.getCurrentDirectory(), options.cssOutputPath),
+                path.resolve(process.cwd(), options.cssOutputPath),
                 [...cache].reduce((l, r) => Buffer.concat([l, r[1]]), Buffer.alloc(0))
               );
 
