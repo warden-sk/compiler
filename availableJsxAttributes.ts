@@ -2,7 +2,7 @@
  * Copyright 2023 Marek Kobida
  */
 
-import * as t from '@warden-sk/design/private/storage';
+import * as t from './storage';
 
 const availableJsxAttributes = {
   alignContent: t.AlignContent,
