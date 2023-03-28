@@ -33,7 +33,7 @@ function compile(filePath: string, options: Options): string {
     const { outputText: compiled } = ts.transpileModule(fs.readFileSync(filePath).toString(), {
       compilerOptions,
       fileName: filePath,
-      transformers,
+      transformers: options.useTransformers ? transformers : undefined,
     });
 
     const endDate: number = +new Date();
