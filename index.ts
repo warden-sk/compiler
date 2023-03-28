@@ -23,7 +23,7 @@ interface Options {
 }
 
 function compile(filePath: string, options: Options): string {
-  report(undefined, `🟠 compiling ${filePath}`);
+  const startDate: number = +new Date();
 
   let compiled = '';
 
@@ -44,16 +44,27 @@ function compile(filePath: string, options: Options): string {
 
   const diagnostics: ts.Diagnostic[] = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
 
+  const endDate: number = +new Date();
+
   if (diagnostics.length > 0) {
     for (const diagnostic of diagnostics) {
       if (diagnostic.file) {
         const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
 
-        report(undefined, `🔴 \x1b[31m${diagnostic.file.fileName}\n\n${message}\n\x1b[0m`);
+        report(
+          undefined,
+          `${((endDate - startDate) / 1000).toFixed(2)} second(s)`,
+          `🔴 \x1b[31m"${diagnostic.file.fileName}"\n\n${message}\n\x1b[0m`
+        );
       }
     }
   } else {
-    report(undefined, `🟢 ${filePath}`, sizeToReadable(compiled.length));
+    report(
+      undefined,
+      `${((endDate - startDate) / 1000).toFixed(2)} second(s)`,
+      `🟢 "${filePath}"`,
+      sizeToReadable(compiled.length)
+    );
   }
 
   return compiled;
