@@ -1,6 +1,6 @@
 import ts from 'typescript';
 interface Options {
-    cssOutputPath: string;
+    cssOutputPath?: string;
 }
 declare const cssTransformer: (options: Options) => ts.TransformerFactory<ts.SourceFile>;
 export default cssTransformer;

@@ -36,7 +36,9 @@ const cssTransformer = (options) => {
                                 cache.set(DESIGN_CSS_PATH, fs_1.default.readFileSync(path_1.default.resolve(process.cwd(), DESIGN_CSS_PATH)));
                                 (0, report_1.default)(undefined, `🟩 ${CSS_PATH}`, (0, sizeToReadable_1.default)(cache.get(CSS_PATH).length));
                             }
-                            fs_1.default.writeFileSync(path_1.default.resolve(process.cwd(), options.cssOutputPath), [...cache].reduce((l, r) => Buffer.concat([l, r[1]]), Buffer.alloc(0)));
+                            if (options.cssOutputPath) {
+                                fs_1.default.writeFileSync(path_1.default.resolve(process.cwd(), options.cssOutputPath), [...cache].reduce((l, r) => Buffer.concat([l, r[1]]), Buffer.alloc(0)));
+                            }
                             return;
                         }
                     }
