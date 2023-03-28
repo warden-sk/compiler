@@ -6,5 +6,27 @@
     "module": "CommonJS",
     "strict": true,
     "target": "ESNext"
-  }
+  },
+  "files": [
+    "./allowedHtmlElements.ts",
+    "./availableJsxAttributes.ts",
+    "./compileHtml.ts",
+    "./compileReact.ts",
+    "./cssTransformer.ts",
+    "./dictionary.ts",
+    "./helpers/createRequireStatement.ts",
+    "./helpers/decodeClassName.ts",
+    "./helpers/decodeJsxSpreadAttributes.ts",
+    "./helpers/decodeResponsiveClassName.ts",
+    "./helpers/dictionary/alphabet.ts",
+    "./helpers/dictionary/base54.ts",
+    "./helpers/dictionary/index.ts",
+    "./helpers/filterJsxSpreadAttributes.ts",
+    "./helpers/isObject.ts",
+    "./helpers/report.ts",
+    "./helpers/sizeToReadable.ts",
+    "./index.ts",
+    "./storage.ts",
+    "./transformer.ts"
+  ]
 }
