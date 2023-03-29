@@ -8,12 +8,12 @@ import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
 
 interface Options {
-  assets: string[];
-  outputPath: string;
+  assets?: string[];
+  outputPath?: string;
   publicPath?: string;
 }
 
-function compileHtml({ assets, outputPath, publicPath }: Options): string {
+function compileHtml({ assets = [], outputPath, publicPath }: Options): string {
   const assetsToHtml = (assets: string[], pattern: RegExp, template: (asset: string) => string): string[] => {
     return assets
       .filter(asset => pattern.test(asset))

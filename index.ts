@@ -31,11 +31,9 @@ interface Options {
 function compile(filePath: string, options: Options): string {
   const startDate: number = +new Date();
 
-  compileHtml({
-    assets: options.assets ?? [],
-    outputPath: path.resolve(options.outputPath ?? '/'),
-    publicPath: options.publicPath,
-  });
+  options.outputPath = path.resolve(options.outputPath ?? './public');
+
+  compileHtml(options);
 
   const transformers: ts.CustomTransformers = { before: [cssTransformer(options), transformer()] };
 
