@@ -7,10 +7,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
-const compileReact_1 = __importDefault(require("./compileReact"));
 const report_1 = __importDefault(require("./helpers/report"));
 const sizeToReadable_1 = __importDefault(require("./helpers/sizeToReadable"));
-function compileHtml({ assets = [], outputPath, publicPath }) {
+function compileHtml({ assets = [], outputPath, publicPath, template }) {
     const assetsToHtml = (assets, pattern, template) => {
         return assets
             .filter(asset => pattern.test(asset))
@@ -25,7 +24,6 @@ function compileHtml({ assets = [], outputPath, publicPath }) {
     };
     const css = assetsToHtml(assets, /\.css/, url => `<link href="${url}" rel="stylesheet" />`);
     const js = assetsToHtml(assets, /\.js/, url => `<script src="${url}"></script>`);
-    const code = fs_1.default.readFileSync(`${outputPath}/index.js`).toString();
     const HTML_PATH = `${outputPath}/index.html`;
     const html = `<!DOCTYPE html>
 <html>
@@ -36,7 +34,7 @@ function compileHtml({ assets = [], outputPath, publicPath }) {
     <script>window.updatedAt=${+new Date()};</script>
   </head>
   <body>
-    ${(0, compileReact_1.default)(code)}
+    ${template}
     ${js.join('\n    ')}
   </body>
 </html>

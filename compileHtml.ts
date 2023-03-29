@@ -3,7 +3,6 @@
  */
 
 import fs from 'fs';
-import compileReact from './compileReact';
 import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
 
@@ -11,9 +10,10 @@ interface Options {
   assets?: string[];
   outputPath?: string;
   publicPath?: string;
+  template?: string;
 }
 
-function compileHtml({ assets = [], outputPath, publicPath }: Options): string {
+function compileHtml({ assets = [], outputPath, publicPath, template }: Options): string {
   const assetsToHtml = (assets: string[], pattern: RegExp, template: (asset: string) => string): string[] => {
     return assets
       .filter(asset => pattern.test(asset))
@@ -34,8 +34,6 @@ function compileHtml({ assets = [], outputPath, publicPath }: Options): string {
   const css = assetsToHtml(assets, /\.css/, url => `<link href="${url}" rel="stylesheet" />`);
   const js = assetsToHtml(assets, /\.js/, url => `<script src="${url}"></script>`);
 
-  const code = fs.readFileSync(`${outputPath}/index.js`).toString();
-
   const HTML_PATH = `${outputPath}/index.html`;
 
   const html = `<!DOCTYPE html>
@@ -47,7 +45,7 @@ function compileHtml({ assets = [], outputPath, publicPath }: Options): string {
     <script>window.updatedAt=${+new Date()};</script>
   </head>
   <body>
-    ${compileReact(code)}
+    ${template}
     ${js.join('\n    ')}
   </body>
 </html>
