@@ -40,7 +40,7 @@ function compileHtml({ assets = [], outputPath, publicPath, template }) {
 </html>
 `;
     fs_1.default.writeFileSync(HTML_PATH, html);
-    (0, report_1.default)(undefined, '🟢', HTML_PATH, (0, sizeToReadable_1.default)(html.length));
+    (0, report_1.default)(undefined, '🟢', '\x1b[33m[HTML]\x1b[0m', HTML_PATH, (0, sizeToReadable_1.default)(html.length));
     return html;
 }
 exports.default = compileHtml;

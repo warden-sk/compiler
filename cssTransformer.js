@@ -36,7 +36,7 @@ const cssTransformer = (options) => {
                             if (options.outputPath) {
                                 fs_1.default.writeFileSync(path_1.default.resolve(options.outputPath, './index.css'), [...cache].reduce((l, r) => Buffer.concat([l, r[1]]), Buffer.alloc(0)));
                             }
-                            (0, report_1.default)(undefined, icon, CSS_PATH, (0, sizeToReadable_1.default)(cache.get(CSS_PATH).length));
+                            (0, report_1.default)(undefined, icon, '\x1b[33m[CSS]\x1b[0m', CSS_PATH, (0, sizeToReadable_1.default)(cache.get(CSS_PATH).length));
                             return;
                         }
                     }

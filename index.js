@@ -39,12 +39,12 @@ function compile(filePath, options) {
             for (const diagnostic of diagnostics) {
                 if (diagnostic.file) {
                     const message = typescript_1.default.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
-                    (0, report_1.default)(undefined, '🔴', `${((endDate - startDate) / 1000).toFixed(2)} second(s)`, `\x1b[31m${diagnostic.file.fileName}\n\n${message}\n\x1b[0m`);
+                    (0, report_1.default)(undefined, '🔴', '\x1b[33m[JS]\x1b[0m', `${((endDate - startDate) / 1000).toFixed(2)} second(s)`, `\x1b[31m${diagnostic.file.fileName}\n\n${message}\n\x1b[0m`);
                 }
             }
         }
         else {
-            (0, report_1.default)(undefined, '🟢', `${((endDate - startDate) / 1000).toFixed(2)} second(s)`, filePath, (0, sizeToReadable_1.default)(compiled.length));
+            (0, report_1.default)(undefined, '🟢', '\x1b[33m[JS]\x1b[0m', `${((endDate - startDate) / 1000).toFixed(2)} second(s)`, filePath, (0, sizeToReadable_1.default)(compiled.length));
         }
         return compiled;
     }

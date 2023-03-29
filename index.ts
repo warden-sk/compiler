@@ -66,6 +66,7 @@ function compile(filePath: string, options: Options): string {
           report(
             undefined,
             '🔴',
+            '\x1b[33m[JS]\x1b[0m',
             `${((endDate - startDate) / 1000).toFixed(2)} second(s)`,
             `\x1b[31m${diagnostic.file.fileName}\n\n${message}\n\x1b[0m`
           );
@@ -75,6 +76,7 @@ function compile(filePath: string, options: Options): string {
       report(
         undefined,
         '🟢',
+        '\x1b[33m[JS]\x1b[0m',
         `${((endDate - startDate) / 1000).toFixed(2)} second(s)`,
         filePath,
         sizeToReadable(compiled.length)
