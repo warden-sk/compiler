@@ -13,7 +13,7 @@ interface Options {
   publicPath?: string;
 }
 
-async function compileHtml({ assets, outputPath, publicPath }: Options) {
+function compileHtml({ assets, outputPath, publicPath }: Options): string {
   const assetsToHtml = (assets: string[], pattern: RegExp, template: (asset: string) => string): string[] => {
     return assets
       .filter(asset => pattern.test(asset))
@@ -34,7 +34,7 @@ async function compileHtml({ assets, outputPath, publicPath }: Options) {
   const css = assetsToHtml(assets, /\.css/, url => `<link href="${url}" rel="stylesheet" />`);
   const js = assetsToHtml(assets, /\.js/, url => `<script src="${url}"></script>`);
 
-  const code = (await fs.promises.readFile(`${outputPath}/index.js`)).toString();
+  const code = fs.readFileSync(`${outputPath}/index.js`).toString();
 
   const HTML_PATH = `${outputPath}/index.html`;
 
@@ -53,9 +53,11 @@ async function compileHtml({ assets, outputPath, publicPath }: Options) {
 </html>
 `;
 
-  await fs.promises.writeFile(HTML_PATH, html);
+  fs.writeFileSync(HTML_PATH, html);
 
   report(undefined, '🟢', HTML_PATH, sizeToReadable(html.length));
+
+  return html;
 }
 
 export default compileHtml;

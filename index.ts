@@ -23,6 +23,7 @@ const compilerOptions: ts.CompilerOptions = {
 interface Options {
   assets?: string[];
   outputPath?: string;
+  publicPath?: string;
   transpileOnly?: boolean;
   useTransformers?: boolean;
 }
@@ -33,6 +34,7 @@ function compile(filePath: string, options: Options): string {
   compileHtml({
     assets: options.assets ?? [],
     outputPath: path.resolve(options.outputPath ?? '/'),
+    publicPath: options.publicPath,
   });
 
   const transformers: ts.CustomTransformers = { before: [cssTransformer(options), transformer()] };
