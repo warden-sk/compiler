@@ -5,7 +5,7 @@
 import fs from 'fs';
 import path from 'path';
 import ts from 'typescript';
-import compileHtml from './compileHtml';
+// import compileHtml from './compileHtml';
 import cssTransformer from './cssTransformer';
 import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
@@ -33,7 +33,7 @@ function compile(filePath: string, options: Options): string {
 
   options.outputPath = path.resolve(options.outputPath ?? './public');
 
-  compileHtml(options);
+  // compileHtml(options);
 
   const transformers: ts.CustomTransformers = { before: [cssTransformer(options), transformer()] };
 

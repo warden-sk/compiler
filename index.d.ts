@@ -1,6 +1,7 @@
 interface Options {
     assets?: string[];
     outputPath?: string;
+    publicPath?: string;
     transpileOnly?: boolean;
     useTransformers?: boolean;
 }
