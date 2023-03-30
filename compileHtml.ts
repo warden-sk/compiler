@@ -3,6 +3,7 @@
  */
 
 import fs from 'fs';
+import compileReact from './compileReact';
 import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
 
@@ -10,10 +11,9 @@ interface Options {
   assets?: string[];
   outputPath?: string;
   publicPath?: string;
-  template?: string;
 }
 
-function compileHtml({ assets = [], outputPath, publicPath, template }: Options): string {
+function compileHtml({ assets = [], outputPath, publicPath }: Options): string {
   const assetsToHtml = (assets: string[], pattern: RegExp, template: (asset: string) => string): string[] => {
     return assets
       .filter(asset => pattern.test(asset))
@@ -35,6 +35,12 @@ function compileHtml({ assets = [], outputPath, publicPath, template }: Options)
   const js = assetsToHtml(assets, /\.js/, url => `<script src="${url}"></script>`);
 
   const HTML_PATH = `${outputPath}/index.html`;
+
+  let template: [string, string][] | string = '';
+
+  try {
+    template = compileReact(fs.readFileSync(`${outputPath}/index.js`).toString());
+  } catch (error) {}
 
   const html = `<!DOCTYPE html>
 <html>
