@@ -36,7 +36,7 @@ const transformer = (): ts.TransformerFactory<ts.SourceFile> => {
           return ts.visitEachChild(updatedNode, visitor, context);
         }
 
-        if (ts.isJsxOpeningElement(node)) {
+        if (ts.isJsxOpeningElement(node) || ts.isJsxSelfClosingElement(node)) {
           if (ts.isIdentifier(node.tagName) && node.tagName.text in allowedHtmlElements) {
             const attributes: (ts.JsxAttribute | ts.JsxSpreadAttribute)[] = [];
             const className: ts.Expression[] = [];
@@ -94,12 +94,19 @@ const transformer = (): ts.TransformerFactory<ts.SourceFile> => {
               );
             }
 
-            const updatedNode = f.updateJsxOpeningElement(
-              node,
-              node.tagName,
-              node.typeArguments,
-              f.updateJsxAttributes(node.attributes, attributes)
-            );
+            const updatedNode = ts.isJsxOpeningElement(node)
+              ? f.updateJsxOpeningElement(
+                  node,
+                  node.tagName,
+                  node.typeArguments,
+                  f.updateJsxAttributes(node.attributes, attributes)
+                )
+              : f.updateJsxSelfClosingElement(
+                  node,
+                  node.tagName,
+                  node.typeArguments,
+                  f.updateJsxAttributes(node.attributes, attributes)
+                );
 
             return ts.visitEachChild(updatedNode, visitor, context);
           }

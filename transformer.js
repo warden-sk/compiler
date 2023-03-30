@@ -31,7 +31,7 @@ const transformer = () => {
                     const updatedNode = f.updateSourceFile(node, [...$, ...node.statements]);
                     return typescript_1.default.visitEachChild(updatedNode, visitor, context);
                 }
-                if (typescript_1.default.isJsxOpeningElement(node)) {
+                if (typescript_1.default.isJsxOpeningElement(node) || typescript_1.default.isJsxSelfClosingElement(node)) {
                     if (typescript_1.default.isIdentifier(node.tagName) && node.tagName.text in allowedHtmlElements_1.default) {
                         const attributes = [];
                         const className = [];
@@ -70,7 +70,9 @@ const transformer = () => {
                         if (className.length) {
                             attributes.push(f.createJsxAttribute(f.createIdentifier('className'), f.createJsxExpression(undefined, f.createCallExpression(decodeClassName, undefined, className))));
                         }
-                        const updatedNode = f.updateJsxOpeningElement(node, node.tagName, node.typeArguments, f.updateJsxAttributes(node.attributes, attributes));
+                        const updatedNode = typescript_1.default.isJsxOpeningElement(node)
+                            ? f.updateJsxOpeningElement(node, node.tagName, node.typeArguments, f.updateJsxAttributes(node.attributes, attributes))
+                            : f.updateJsxSelfClosingElement(node, node.tagName, node.typeArguments, f.updateJsxAttributes(node.attributes, attributes));
                         return typescript_1.default.visitEachChild(updatedNode, visitor, context);
                     }
                 }
