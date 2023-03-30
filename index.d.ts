@@ -3,7 +3,6 @@ interface Options {
     outputPath?: string;
     publicPath?: string;
     reportErrors?: boolean;
-    template?: string;
     useTransformers?: boolean;
 }
 declare function compile(filePath: string, options: Options): string;
