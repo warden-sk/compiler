@@ -19,6 +19,7 @@ const compilerOptions = {
     esModuleInterop: true,
     jsx: typescript_1.default.JsxEmit.React,
     module: typescript_1.default.ModuleKind.CommonJS,
+    resolveJsonModule: true,
     strict: true,
     target: typescript_1.default.ScriptTarget.ESNext,
 };
