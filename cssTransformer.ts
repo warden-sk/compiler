@@ -12,7 +12,7 @@ interface Options {
   outputPath?: string;
 }
 
-const cache = new Map<string, Buffer>();
+const cache = new Map<string, [Buffer, Date]>();
 
 const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> => {
   return context => {
@@ -23,34 +23,36 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
 
           if (ts.isStringLiteral(expression)) {
             if (/\.css/.test(expression.text)) {
-              // dokončiť
               const FILE_PATH = sourceFile.fileName.replace(/\/[^\/]+$/, '');
 
               const CSS_PATH = path.resolve(FILE_PATH, expression.text);
 
-              if (cache.has(CSS_PATH)) {
+              const date = new Date();
+              date.setSeconds(date.getSeconds() + 30);
+
+              if (cache.has(CSS_PATH) && cache.get(CSS_PATH)![1] > new Date()) {
               } else {
-                cache.set(CSS_PATH, fs.readFileSync(CSS_PATH));
+                cache.set(CSS_PATH, [fs.readFileSync(CSS_PATH), date]);
               }
 
               const DESIGN_CSS_PATH = '/Users/marekkobida/Documents/warden/design/packages/design/index.css';
 
               if (cache.has(DESIGN_CSS_PATH)) {
               } else {
-                cache.set(DESIGN_CSS_PATH, fs.readFileSync(DESIGN_CSS_PATH));
+                cache.set(DESIGN_CSS_PATH, [fs.readFileSync(DESIGN_CSS_PATH), date]);
               }
 
               if (options.outputPath) {
                 fs.writeFileSync(
                   path.resolve(options.outputPath, './index.css'),
-                  [...cache].reduce((l, r) => l + r[1], '')
+                  [...cache].reduce((l, r) => l + r[1][0], '')
                 );
               }
 
               report(
                 undefined,
                 '\x1b[34m[CSS]\x1b[0m',
-                sizeToReadable(cache.get(CSS_PATH)!.length),
+                sizeToReadable(cache.get(CSS_PATH)![0].length),
                 `\x1b[32m${CSS_PATH}\x1b[0m`
               );
 
