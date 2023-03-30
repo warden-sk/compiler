@@ -49,7 +49,7 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
 
               report(
                 undefined,
-                '\x1b[33m[CSS]\x1b[0m',
+                '\x1b[34m[CSS]\x1b[0m',
                 sizeToReadable(cache.get(CSS_PATH)!.length),
                 `\x1b[32m${CSS_PATH}\x1b[0m`
               );

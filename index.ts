@@ -65,7 +65,7 @@ function compile(filePath: string, options: Options): string {
 
           report(
             undefined,
-            '\x1b[33m[JS]\x1b[0m',
+            '\x1b[34m[JS]\x1b[0m',
             sizeToReadable(compiled.length),
             `${((endDate - startDate) / 1000).toFixed(2)} second(s)`,
             `\x1b[31m${diagnostic.file.fileName}\n\n${message}\n\x1b[0m`
@@ -75,7 +75,7 @@ function compile(filePath: string, options: Options): string {
     } else {
       report(
         undefined,
-        '\x1b[33m[JS]\x1b[0m',
+        '\x1b[34m[JS]\x1b[0m',
         sizeToReadable(compiled.length),
         `${((endDate - startDate) / 1000).toFixed(2)} second(s)`,
         `\x1b[32m${filePath}\x1b[0m`
@@ -95,7 +95,7 @@ function compile(filePath: string, options: Options): string {
 
   report(
     undefined,
-    '\x1b[33m[JS]\x1b[0m',
+    '\x1b[34m[JS]\x1b[0m',
     sizeToReadable(compiled.length),
     `${((endDate - startDate) / 1000).toFixed(2)} second(s)`,
     `\x1b[32m${filePath}\x1b[0m`
