@@ -44,7 +44,7 @@ const transformer = () => {
                                     if (attribute.name.text === 'className') {
                                         /* (1.1) */
                                         if (typescript_1.default.isJsxExpression($) || typescript_1.default.isStringLiteral($)) {
-                                            return className.push($);
+                                            return className.push(typescript_1.default.isJsxExpression($) ? $.expression : $);
                                         }
                                     }
                                     /* (2) */
@@ -53,7 +53,7 @@ const transformer = () => {
                                         if (typescript_1.default.isJsxExpression($) || typescript_1.default.isStringLiteral($)) {
                                             return className.push(f.createCallExpression(decodeResponsiveClassName, undefined, [
                                                 f.createStringLiteral(dictionary_1.default.getKey(attribute.name.text)),
-                                                $,
+                                                typescript_1.default.isJsxExpression($) ? $.expression : $,
                                             ]));
                                         }
                                     }

@@ -51,7 +51,7 @@ const transformer = (): ts.TransformerFactory<ts.SourceFile> => {
                   if (attribute.name.text === 'className') {
                     /* (1.1) */
                     if (ts.isJsxExpression($) || ts.isStringLiteral($)) {
-                      return className.push($);
+                      return className.push(ts.isJsxExpression($) ? $.expression! : $);
                     }
                   }
                   /* (2) */
@@ -61,7 +61,7 @@ const transformer = (): ts.TransformerFactory<ts.SourceFile> => {
                       return className.push(
                         f.createCallExpression(decodeResponsiveClassName, undefined, [
                           f.createStringLiteral(dictionary.getKey(attribute.name.text)),
-                          $,
+                          ts.isJsxExpression($) ? $.expression! : $,
                         ])
                       );
                     }
