@@ -43,7 +43,7 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
               if (options.outputPath) {
                 fs.writeFileSync(
                   path.resolve(options.outputPath, './index.css'),
-                  [...cache].reduce((l, r) => Buffer.concat([l, r[1]]), Buffer.alloc(0))
+                  [...cache].reduce((l, r) => l + r[1], '')
                 );
               }
 
