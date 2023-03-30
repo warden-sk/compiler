@@ -25,6 +25,7 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
             if (/\.css/.test(expression.text)) {
               // dokončiť
               const FILE_PATH = sourceFile.fileName.replace(/\/[^\/]+$/, '');
+
               const CSS_PATH = path.resolve(FILE_PATH, expression.text);
 
               if (cache.has(CSS_PATH)) {
@@ -32,11 +33,10 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
                 cache.set(CSS_PATH, fs.readFileSync(CSS_PATH));
               }
 
-              const DESIGN_CSS_PATH = './node_modules/@warden-sk/design/index.css';
+              const DESIGN_CSS_PATH = '/Users/marekkobida/Documents/warden/design/packages/design/index.css';
 
-              const icon = cache.has(DESIGN_CSS_PATH) ? '🟠' : '🟢';
-
-              if (icon === '🟢') {
+              if (cache.has(DESIGN_CSS_PATH)) {
+              } else {
                 cache.set(DESIGN_CSS_PATH, fs.readFileSync(DESIGN_CSS_PATH));
               }
 

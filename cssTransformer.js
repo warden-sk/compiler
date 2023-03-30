@@ -28,9 +28,10 @@ const cssTransformer = (options) => {
                             else {
                                 cache.set(CSS_PATH, fs_1.default.readFileSync(CSS_PATH));
                             }
-                            const DESIGN_CSS_PATH = './node_modules/@warden-sk/design/index.css';
-                            const icon = cache.has(DESIGN_CSS_PATH) ? '🟠' : '🟢';
-                            if (icon === '🟢') {
+                            const DESIGN_CSS_PATH = '/Users/marekkobida/Documents/warden/design/packages/design/index.css';
+                            if (cache.has(DESIGN_CSS_PATH)) {
+                            }
+                            else {
                                 cache.set(DESIGN_CSS_PATH, fs_1.default.readFileSync(DESIGN_CSS_PATH));
                             }
                             if (options.outputPath) {
