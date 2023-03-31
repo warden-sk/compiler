@@ -41,7 +41,7 @@ function compile(filePath: string, options: Options): string {
 
   const transformers: ts.CustomTransformers = { before: [cssTransformer(updatedOptions), transformer()] };
 
-  if (options.reportErrors) {
+  if (updatedOptions.reportErrors) {
     let compiled = '';
 
     const compilerHost: ts.CompilerHost = ts.createCompilerHost({});
@@ -54,7 +54,7 @@ function compile(filePath: string, options: Options): string {
       undefined,
       undefined,
       undefined,
-      options.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined
+      updatedOptions.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined
     );
 
     const diagnostics: ts.Diagnostic[] = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
@@ -91,7 +91,7 @@ function compile(filePath: string, options: Options): string {
   const { outputText: compiled } = ts.transpileModule(fs.readFileSync(filePath).toString(), {
     compilerOptions,
     fileName: filePath,
-    transformers: options.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined,
+    transformers: updatedOptions.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined,
   });
 
   const endDate: number = +new Date();

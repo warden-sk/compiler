@@ -31,12 +31,12 @@ function compile(filePath, options) {
     };
     (0, compileHtml_1.default)(updatedOptions);
     const transformers = { before: [(0, cssTransformer_1.default)(updatedOptions), (0, transformer_1.default)()] };
-    if (options.reportErrors) {
+    if (updatedOptions.reportErrors) {
         let compiled = '';
         const compilerHost = typescript_1.default.createCompilerHost({});
         compilerHost.writeFile = (fileName, text) => (compiled = text);
         const program = typescript_1.default.createProgram([filePath], compilerOptions, compilerHost);
-        const emitResult = program.emit(undefined, undefined, undefined, undefined, options.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined);
+        const emitResult = program.emit(undefined, undefined, undefined, undefined, updatedOptions.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined);
         const diagnostics = typescript_1.default.getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
         const endDate = +new Date();
         if (diagnostics.length > 0) {
@@ -55,7 +55,7 @@ function compile(filePath, options) {
     const { outputText: compiled } = typescript_1.default.transpileModule(fs_1.default.readFileSync(filePath).toString(), {
         compilerOptions,
         fileName: filePath,
-        transformers: options.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined,
+        transformers: updatedOptions.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined,
     });
     const endDate = +new Date();
     (0, report_1.default)(undefined, '\x1b[34m[JS]\x1b[0m', (0, sizeToReadable_1.default)(compiled.length), `${((endDate - startDate) / 1000).toFixed(2)} second(s)`, `\x1b[32m${filePath}\x1b[0m`);
