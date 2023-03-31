@@ -35,7 +35,7 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
                 cache.set(CSS_PATH, [fs.readFileSync(CSS_PATH), date]);
               }
 
-              const DESIGN_CSS_PATH = '/Users/marekkobida/Documents/warden/design/packages/design/index.css';
+              const DESIGN_CSS_PATH = './node_modules/@warden-sk/compiler/design.css';
 
               if (cache.has(DESIGN_CSS_PATH)) {
               } else {
