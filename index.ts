@@ -32,11 +32,14 @@ interface Options {
 function compile(filePath: string, options: Options): string {
   const startDate: number = +new Date();
 
-  options.outputPath = path.resolve(options.outputPath ?? './public');
+  const updatedOptions: Options & { outputPath: string } = {
+    ...options,
+    outputPath: path.resolve(options.outputPath ?? './public'),
+  };
 
-  compileHtml(options);
+  compileHtml(updatedOptions);
 
-  const transformers: ts.CustomTransformers = { before: [cssTransformer(options), transformer()] };
+  const transformers: ts.CustomTransformers = { before: [cssTransformer(updatedOptions), transformer()] };
 
   if (options.reportErrors) {
     let compiled = '';

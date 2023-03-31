@@ -25,9 +25,12 @@ const compilerOptions = {
 };
 function compile(filePath, options) {
     const startDate = +new Date();
-    options.outputPath = path_1.default.resolve(options.outputPath ?? './public');
-    (0, compileHtml_1.default)(options);
-    const transformers = { before: [(0, cssTransformer_1.default)(options), (0, transformer_1.default)()] };
+    const updatedOptions = {
+        ...options,
+        outputPath: path_1.default.resolve(options.outputPath ?? './public'),
+    };
+    (0, compileHtml_1.default)(updatedOptions);
+    const transformers = { before: [(0, cssTransformer_1.default)(updatedOptions), (0, transformer_1.default)()] };
     if (options.reportErrors) {
         let compiled = '';
         const compilerHost = typescript_1.default.createCompilerHost({});

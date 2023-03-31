@@ -8,6 +8,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
 const compileReact_1 = __importDefault(require("./compileReact"));
+const report_1 = __importDefault(require("./helpers/report"));
+const sizeToReadable_1 = __importDefault(require("./helpers/sizeToReadable"));
 function compileHtml({ assets = [], outputPath, publicPath }) {
     const assetsToHtml = (assets, pattern, template) => {
         return assets
@@ -44,7 +46,7 @@ function compileHtml({ assets = [], outputPath, publicPath }) {
 </html>
 `;
     fs_1.default.writeFileSync(HTML_PATH, html);
-    // report(undefined, '\x1b[34m[HTML]\x1b[0m', sizeToReadable(html.length), `\x1b[32m${HTML_PATH}\x1b[0m`);
+    (0, report_1.default)(undefined, '\x1b[34m[HTML]\x1b[0m', (0, sizeToReadable_1.default)(html.length), `\x1b[32m${HTML_PATH}\x1b[0m`);
     return html;
 }
 exports.default = compileHtml;

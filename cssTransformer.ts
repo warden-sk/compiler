@@ -9,7 +9,7 @@ import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
 
 interface Options {
-  outputPath?: string;
+  outputPath: string;
 }
 
 const cache = new Map<string, [Buffer, Date]>();
@@ -42,12 +42,10 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
                 cache.set(DESIGN_CSS_PATH, [fs.readFileSync(DESIGN_CSS_PATH), date]);
               }
 
-              if (options.outputPath) {
-                fs.writeFileSync(
-                  path.resolve(options.outputPath, './index.css'),
-                  [...cache].reduce((l, r) => l + r[1][0], '')
-                );
-              }
+              fs.writeFileSync(
+                path.resolve(options.outputPath, './index.css'),
+                [...cache].reduce((l, r) => l + r[1][0], '')
+              );
 
               report(
                 undefined,
