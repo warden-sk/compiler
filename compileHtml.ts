@@ -4,8 +4,6 @@
 
 import fs from 'fs';
 import compileReact from './compileReact';
-import report from './helpers/report';
-import sizeToReadable from './helpers/sizeToReadable';
 
 interface Options {
   assets?: string[];
@@ -59,7 +57,7 @@ function compileHtml({ assets = [], outputPath, publicPath }: Options): string {
 
   fs.writeFileSync(HTML_PATH, html);
 
-  report(undefined, '\x1b[34m[HTML]\x1b[0m', sizeToReadable(html.length), `\x1b[32m${HTML_PATH}\x1b[0m`);
+  // report(undefined, '\x1b[34m[HTML]\x1b[0m', sizeToReadable(html.length), `\x1b[32m${HTML_PATH}\x1b[0m`);
 
   return html;
 }
