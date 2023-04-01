@@ -29,7 +29,8 @@ The `compile` function takes two arguments:
    2. `outputPath`: A `string`
    3. `publicPath`: A `string`
    4. `reportErrors`: A `boolean`
-   5. `useTransformers`: A `boolean` indicating whether you want to use built-in transformers during compilation.
+   5. `useServer`: A `boolean`
+   6. `useTransformers`: A `boolean` indicating whether you want to use built-in transformers during compilation.
 
 ## `transformer.ts`
 

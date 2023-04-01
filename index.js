@@ -7,6 +7,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
+const http_1 = __importDefault(require("http"));
 const path_1 = __importDefault(require("path"));
 const typescript_1 = __importDefault(require("typescript"));
 const compileHtml_1 = __importDefault(require("./compileHtml"));
@@ -23,12 +24,28 @@ const compilerOptions = {
     strict: true,
     target: typescript_1.default.ScriptTarget.ESNext,
 };
+let serverStarted = false;
 function compile(filePath, options) {
     const startDate = +new Date();
     const updatedOptions = {
         ...options,
         outputPath: path_1.default.resolve(options.outputPath ?? './public'),
     };
+    // dokončiť
+    if (!serverStarted && updatedOptions.useServer) {
+        const server = http_1.default.createServer((request, response) => {
+            const url = new URL(request.url, 'file:');
+            try {
+                const file = fs_1.default.readFileSync(path_1.default.resolve(updatedOptions.outputPath, `.${url.pathname}`));
+                return response.end(file);
+            }
+            catch (error) {
+                const index = fs_1.default.readFileSync(path_1.default.resolve(updatedOptions.outputPath, './index.html'));
+                return response.end(index);
+            }
+        });
+        server.listen(80, () => (serverStarted = true));
+    }
     (0, compileHtml_1.default)(updatedOptions);
     const transformers = { before: [(0, cssTransformer_1.default)(updatedOptions), (0, transformer_1.default)()] };
     if (updatedOptions.reportErrors) {

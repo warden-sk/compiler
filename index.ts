@@ -3,6 +3,7 @@
  */
 
 import fs from 'fs';
+import http from 'http';
 import path from 'path';
 import ts from 'typescript';
 import compileHtml from './compileHtml';
@@ -26,8 +27,11 @@ interface Options {
   outputPath?: string;
   publicPath?: string;
   reportErrors?: boolean;
+  useServer?: boolean;
   useTransformers?: boolean;
 }
+
+let serverStarted = false;
 
 function compile(filePath: string, options: Options): string {
   const startDate: number = +new Date();
@@ -36,6 +40,25 @@ function compile(filePath: string, options: Options): string {
     ...options,
     outputPath: path.resolve(options.outputPath ?? './public'),
   };
+
+  // dokončiť
+  if (!serverStarted && updatedOptions.useServer) {
+    const server = http.createServer((request, response) => {
+      const url = new URL(request.url!, 'file:');
+
+      try {
+        const file = fs.readFileSync(path.resolve(updatedOptions.outputPath, `.${url.pathname}`));
+
+        return response.end(file);
+      } catch (error) {
+        const index = fs.readFileSync(path.resolve(updatedOptions.outputPath, './index.html'));
+
+        return response.end(index);
+      }
+    });
+
+    server.listen(80, () => (serverStarted = true));
+  }
 
   compileHtml(updatedOptions);
 
