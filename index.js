@@ -24,7 +24,7 @@ const compilerOptions = {
     strict: true,
     target: typescript_1.default.ScriptTarget.ESNext,
 };
-let serverStarted = false;
+let isServerUsed = false;
 function compile(filePath, options) {
     const startDate = +new Date();
     const updatedOptions = {
@@ -32,7 +32,7 @@ function compile(filePath, options) {
         outputPath: path_1.default.resolve(options.outputPath ?? './public'),
     };
     // dokončiť
-    if (!serverStarted && updatedOptions.useServer) {
+    if (!isServerUsed && updatedOptions.useServer) {
         const server = http_1.default.createServer((request, response) => {
             const url = new URL(request.url, 'file:');
             try {
@@ -44,7 +44,9 @@ function compile(filePath, options) {
                 return response.end(index);
             }
         });
-        server.listen(80, () => (serverStarted = true));
+        server.listen(80, () => {
+            isServerUsed = true;
+        });
     }
     (0, compileHtml_1.default)(updatedOptions);
     const transformers = { before: [(0, cssTransformer_1.default)(updatedOptions), (0, transformer_1.default)()] };

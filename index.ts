@@ -31,7 +31,7 @@ interface Options {
   useTransformers?: boolean;
 }
 
-let serverStarted = false;
+let isServerUsed = false;
 
 function compile(filePath: string, options: Options): string {
   const startDate: number = +new Date();
@@ -42,7 +42,7 @@ function compile(filePath: string, options: Options): string {
   };
 
   // dokončiť
-  if (!serverStarted && updatedOptions.useServer) {
+  if (!isServerUsed && updatedOptions.useServer) {
     const server = http.createServer((request, response) => {
       const url = new URL(request.url!, 'file:');
 
@@ -57,7 +57,9 @@ function compile(filePath: string, options: Options): string {
       }
     });
 
-    server.listen(80, () => (serverStarted = true));
+    server.listen(80, () => {
+      isServerUsed = true;
+    });
   }
 
   compileHtml(updatedOptions);
