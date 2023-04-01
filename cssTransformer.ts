@@ -28,9 +28,9 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
               const CSS_PATH = path.resolve(FILE_PATH, expression.text);
 
               const date = new Date();
-              date.setSeconds(date.getSeconds() + 30);
+              // date.setSeconds(date.getSeconds() + 30);
 
-              if (cache.has(CSS_PATH) && cache.get(CSS_PATH)![1] > new Date()) {
+              if (cache.has(CSS_PATH)) {
               } else {
                 cache.set(CSS_PATH, [fs.readFileSync(CSS_PATH), date]);
               }
@@ -54,7 +54,7 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
                 `\x1b[32m${CSS_PATH}\x1b[0m`
               );
 
-              return;
+              // return;
             }
           }
         }

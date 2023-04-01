@@ -23,8 +23,8 @@ const cssTransformer = (options) => {
                             const FILE_PATH = sourceFile.fileName.replace(/\/[^\/]+$/, '');
                             const CSS_PATH = path_1.default.resolve(FILE_PATH, expression.text);
                             const date = new Date();
-                            date.setSeconds(date.getSeconds() + 30);
-                            if (cache.has(CSS_PATH) && cache.get(CSS_PATH)[1] > new Date()) {
+                            // date.setSeconds(date.getSeconds() + 30);
+                            if (cache.has(CSS_PATH)) {
                             }
                             else {
                                 cache.set(CSS_PATH, [fs_1.default.readFileSync(CSS_PATH), date]);
@@ -37,7 +37,7 @@ const cssTransformer = (options) => {
                             }
                             fs_1.default.writeFileSync(path_1.default.resolve(options.outputPath, './index.css'), [...cache].reduce((l, r) => l + r[1][0], ''));
                             (0, report_1.default)(undefined, '\x1b[34m[CSS]\x1b[0m', (0, sizeToReadable_1.default)(cache.get(CSS_PATH)[0].length), `\x1b[32m${CSS_PATH}\x1b[0m`);
-                            return;
+                            // return;
                         }
                     }
                 }
