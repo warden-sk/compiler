@@ -47,10 +47,12 @@ function compile(filePath: string, options: Options): string {
   // dokončiť
   if (!isServerUsed && updatedOptions.useServer) {
     const server = http.createServer((request, response) => {
-      report('IN', '\x1b[34m[SERVER]\x1b[0m', request.url);
+      const url = new URL(request.url!);
+
+      report('IN', '\x1b[34m[SERVER]\x1b[0m', url.pathname);
 
       try {
-        const file = fs.readFileSync(path.resolve(updatedOptions.outputPath, `.${request.url}`));
+        const file = fs.readFileSync(path.resolve(updatedOptions.outputPath, `.${url.pathname}`));
 
         return response.end(file);
       } catch (error) {
