@@ -27,19 +27,13 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
 
               const CSS_PATH = path.resolve(FILE_PATH, expression.text);
 
-              const date = new Date();
-              // date.setSeconds(date.getSeconds() + 30);
-
-              if (cache.has(CSS_PATH)) {
-              } else {
-                cache.set(CSS_PATH, [fs.readFileSync(CSS_PATH), date]);
-              }
+              cache.set(CSS_PATH, [fs.readFileSync(CSS_PATH), new Date()]);
 
               const DESIGN_CSS_PATH = './node_modules/@warden-sk/compiler/design.css';
 
               if (cache.has(DESIGN_CSS_PATH)) {
               } else {
-                cache.set(DESIGN_CSS_PATH, [fs.readFileSync(DESIGN_CSS_PATH), date]);
+                cache.set(DESIGN_CSS_PATH, [fs.readFileSync(DESIGN_CSS_PATH), new Date()]);
               }
 
               fs.writeFileSync(
