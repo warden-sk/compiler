@@ -4,7 +4,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import type Cache from './cache';
+import type Cache from './Cache';
 import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
 

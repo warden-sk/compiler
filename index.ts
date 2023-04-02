@@ -6,7 +6,7 @@ import fs from 'fs';
 import http from 'http';
 import path from 'path';
 import ts from 'typescript';
-import type Cache from './cache';
+import type Cache from './Cache';
 import compileHtml from './compileHtml';
 import cssTransformer from './cssTransformer';
 import report from './helpers/report';

@@ -10,9 +10,9 @@
     "target": "ESNext"
   },
   "files": [
+    "./Cache.ts",
     "./allowedHtmlElements.ts",
     "./availableJsxAttributes.ts",
-    "./cache.ts",
     "./compileCss.ts",
     "./compileHtml.ts",
     "./compileReact.ts",

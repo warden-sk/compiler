@@ -15,4 +15,4 @@ class Cache {
         this.storage[l] = r;
     }
 }
-exports.default = new Cache();
+exports.default = Cache;

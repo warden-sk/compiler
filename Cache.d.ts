@@ -7,5 +7,4 @@ declare class Cache {
     has(l: string): boolean;
     set(l: string, r: [Buffer, Date]): void;
 }
-declare const _default: Cache;
-export default _default;
+export default Cache;
