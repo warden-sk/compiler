@@ -6,7 +6,7 @@ import fs from 'fs';
 import http from 'http';
 import path from 'path';
 import ts from 'typescript';
-import cache from './cache';
+import type Cache from './cache';
 import compileHtml from './compileHtml';
 import cssTransformer from './cssTransformer';
 import report from './helpers/report';
@@ -25,6 +25,7 @@ const compilerOptions: ts.CompilerOptions = {
 
 interface Options {
   assets?: string[];
+  cache?: Cache;
   outputPath?: string;
   publicPath?: string;
   reportErrors?: boolean;
@@ -97,7 +98,7 @@ function compile(filePath: string, options: Options): string {
     compilerHost.writeFile = (fileName, text) => {
       compiled = text;
 
-      cache.set(fileName, [Buffer.from(compiled), new Date()]);
+      updatedOptions.cache?.set(fileName, [Buffer.from(compiled), new Date()]);
     };
 
     const program: ts.Program = ts.createProgram([filePath], compilerOptions, compilerHost);
@@ -147,7 +148,7 @@ function compile(filePath: string, options: Options): string {
     transformers: updatedOptions.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined,
   });
 
-  cache.set(filePath, [Buffer.from(compiled), new Date()]);
+  updatedOptions.cache?.set(filePath, [Buffer.from(compiled), new Date()]);
 
   const endDate: number = +new Date();
 

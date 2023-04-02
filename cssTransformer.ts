@@ -4,9 +4,11 @@
 
 import path from 'path';
 import ts from 'typescript';
+import type Cache from './cache';
 import compileCss from './compileCss';
 
 interface Options {
+  cache?: Cache;
   outputPath: string;
 }
 
