@@ -54,7 +54,7 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
                 `\x1b[32m${CSS_PATH}\x1b[0m`
               );
 
-              // return;
+              return;
             }
           }
         }
