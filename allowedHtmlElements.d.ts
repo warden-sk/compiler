@@ -99,6 +99,7 @@ declare const allowedHtmlElements: {
     readonly sub: "";
     readonly summary: "";
     readonly sup: "";
+    readonly svg: "";
     readonly table: "";
     readonly tbody: "";
     readonly td: "";

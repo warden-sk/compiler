@@ -104,6 +104,7 @@ const allowedHtmlElements = {
     sub: '',
     summary: '',
     sup: '',
+    svg: '',
     table: '',
     tbody: '',
     td: '',
