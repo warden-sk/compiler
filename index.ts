@@ -32,9 +32,31 @@ interface Options {
   useTransformers?: boolean;
 }
 
+let isFirstCompilation = true;
 let isServerUsed = false;
 
 function compile(filePath: string, options: Options): string {
+  if (isFirstCompilation) {
+    report(
+      undefined,
+      `
+   ____                       _       _     _     ____   ___ ____  _____ 
+  / ___|___  _ __  _   _ _ __(_) __ _| |__ | |_  |___ \\ / _ \\___ \\|___ / 
+ | |   / _ \\| '_ \\| | | | '__| |/ _\` | '_ \\| __|   __) | | | |__) | |_ \\ 
+ | |__| (_) | |_) | |_| | |  | | (_| | | | | |_   / __/| |_| / __/ ___) |
+  \\____\\___/| .__/ \\__, |_|  |_|\\__, |_| |_|\\__| |_____|\\___/_____|____/ 
+            |_|    |___/        |___/                                    
+  __  __                _      _  __     _     _     _                   
+ |  \\/  | __ _ _ __ ___| | __ | |/ /___ | |__ (_) __| | __ _             
+ | |\\/| |/ _\` | '__/ _ \\ |/ / | ' // _ \\| '_ \\| |/ _\` |/ _\` |            
+ | |  | | (_| | | |  __/   <  | . \\ (_) | |_) | | (_| | (_| |            
+ |_|  |_|\\__,_|_|  \\___|_|\\_\\ |_|\\_\\___/|_.__/|_|\\__,_|\\__,_|            
+`
+    );
+
+    isFirstCompilation = false;
+  }
+
   const startDate: number = +new Date();
 
   const updatedOptions: Options & { outputPath: string } = {
