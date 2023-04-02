@@ -19,7 +19,7 @@ const cssTransformer = (options) => {
                         if (/\.css/.test(expression.text)) {
                             const FILE_PATH = sourceFile.fileName.replace(/\/[^\/]+$/, '');
                             const CSS_PATH = path_1.default.resolve(FILE_PATH, expression.text);
-                            (0, compileCss_1.default)(options.outputPath, CSS_PATH);
+                            (0, compileCss_1.default)({ ...options, path: CSS_PATH });
                         }
                     }
                 }

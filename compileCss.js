@@ -11,17 +11,17 @@ const path_1 = __importDefault(require("path"));
 const cache_1 = __importDefault(require("./cache"));
 const report_1 = __importDefault(require("./helpers/report"));
 const sizeToReadable_1 = __importDefault(require("./helpers/sizeToReadable"));
-function compileCss(outputPath, PTH) {
-    cache_1.default.set(PTH, [fs_1.default.readFileSync(PTH), new Date()]);
+function compileCss(options) {
+    cache_1.default.set(options.path, [fs_1.default.readFileSync(options.path), new Date()]);
     const DESIGN_CSS_PATH = './node_modules/@warden-sk/compiler/design.css';
     if (cache_1.default.has(DESIGN_CSS_PATH)) {
     }
     else {
         cache_1.default.set(DESIGN_CSS_PATH, [fs_1.default.readFileSync(DESIGN_CSS_PATH), new Date()]);
     }
-    fs_1.default.writeFileSync(path_1.default.resolve(outputPath, './index.css'), Object.keys(cache_1.default.storage)
+    fs_1.default.writeFileSync(path_1.default.resolve(options.outputPath, './index.css'), Object.keys(cache_1.default.storage)
         .filter(l => /\.css/.test(l))
         .reduce((l, r) => l + cache_1.default.storage[r][0], ''));
-    (0, report_1.default)(undefined, '\x1b[34m[CSS]\x1b[0m', (0, sizeToReadable_1.default)(cache_1.default.get(PTH)[0].length), `\x1b[32m${PTH}\x1b[0m`);
+    (0, report_1.default)(undefined, '\x1b[34m[CSS]\x1b[0m', (0, sizeToReadable_1.default)(cache_1.default.get(options.path)[0].length), `\x1b[32m${options.path}\x1b[0m`);
 }
 exports.default = compileCss;

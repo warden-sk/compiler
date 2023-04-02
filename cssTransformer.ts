@@ -23,7 +23,7 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
 
               const CSS_PATH = path.resolve(FILE_PATH, expression.text);
 
-              compileCss(options.outputPath, CSS_PATH);
+              compileCss({ ...options, path: CSS_PATH });
             }
           }
         }
