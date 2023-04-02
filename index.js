@@ -28,7 +28,7 @@ const compilerOptions = {
 let isServerUsed = false;
 function compile(filePath, options) {
     const startDate = +new Date();
-    (0, report_1.default)(undefined, '\x1b[34m[CACHE]\x1b[0m', cache_1.default.size);
+    (0, report_1.default)(undefined, '\x1b[34m[CACHE]\x1b[0m', cache_1.default.size, [...cache_1.default]);
     const updatedOptions = {
         ...options,
         outputPath: path_1.default.resolve(options.outputPath ?? './public'),
