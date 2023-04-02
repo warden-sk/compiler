@@ -37,7 +37,7 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
 
               fs.writeFileSync(
                 path.resolve(options.outputPath, './index.css'),
-                [...cache].reduce((l, r) => l + r[1][0], '')
+                [...cache].filter(l => /\.css/.test(l[0])).reduce((l, r) => l + r[1][0], '')
               );
 
               report(
