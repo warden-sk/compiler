@@ -33,9 +33,15 @@ interface Options {
 }
 
 let isFirstCompilation = true;
-let isServerUsed = false;
 
 function compile(filePath: string, options: Options): string {
+  const startDate: number = +new Date();
+
+  const updatedOptions: Options & { outputPath: string } = {
+    ...options,
+    outputPath: path.resolve(options.outputPath ?? './public'),
+  };
+
   if (isFirstCompilation) {
     report(
       undefined,
@@ -54,39 +60,30 @@ function compile(filePath: string, options: Options): string {
 `
     );
 
+    if (updatedOptions.useServer) {
+      // Content-Type
+      const server = http.createServer((request, response) => {
+        const url = new URL(request.url!, 'file:');
+
+        report('IN', '\x1b[34m[SERVER]\x1b[0m', url.pathname);
+
+        try {
+          const file = fs.readFileSync(path.resolve(updatedOptions.outputPath, `.${url.pathname}`));
+
+          return response.end(file);
+        } catch (error) {
+          const file = fs.readFileSync(path.resolve(updatedOptions.outputPath, './index.html'));
+
+          return response.end(file);
+        }
+      });
+
+      server.listen(80, () => {
+        report(undefined, '\x1b[34m[SERVER]\x1b[0m', 'http://127.0.0.1');
+      });
+    }
+
     isFirstCompilation = false;
-  }
-
-  const startDate: number = +new Date();
-
-  const updatedOptions: Options & { outputPath: string } = {
-    ...options,
-    outputPath: path.resolve(options.outputPath ?? './public'),
-  };
-
-  // dokončiť
-  if (!isServerUsed && updatedOptions.useServer) {
-    const server = http.createServer((request, response) => {
-      const url = new URL(request.url!, 'file:');
-
-      report('IN', '\x1b[34m[SERVER]\x1b[0m', url.pathname);
-
-      try {
-        const file = fs.readFileSync(path.resolve(updatedOptions.outputPath, `.${url.pathname}`));
-
-        return response.end(file);
-      } catch (error) {
-        const file = fs.readFileSync(path.resolve(updatedOptions.outputPath, './index.html'));
-
-        return response.end(file);
-      }
-    });
-
-    server.listen(80, () => {
-      report(undefined, '\x1b[34m[SERVER]\x1b[0m', 'http://127.0.0.1');
-
-      isServerUsed = true;
-    });
   }
 
   compileHtml(updatedOptions);
