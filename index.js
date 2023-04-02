@@ -36,17 +36,18 @@ function compile(filePath, options) {
     // dokončiť
     if (!isServerUsed && updatedOptions.useServer) {
         const server = http_1.default.createServer((request, response) => {
-            const url = new URL(request.url, 'file:');
+            (0, report_1.default)('IN', '\x1b[34m[SERVER]\x1b[0m', request.url);
             try {
-                const file = fs_1.default.readFileSync(path_1.default.resolve(updatedOptions.outputPath, `.${url.pathname}`));
+                const file = fs_1.default.readFileSync(path_1.default.resolve(updatedOptions.outputPath, `.${request.url}`));
                 return response.end(file);
             }
             catch (error) {
-                const index = fs_1.default.readFileSync(path_1.default.resolve(updatedOptions.outputPath, './index.html'));
-                return response.end(index);
+                const file = fs_1.default.readFileSync(path_1.default.resolve(updatedOptions.outputPath, './index.html'));
+                return response.end(file);
             }
         });
         server.listen(80, () => {
+            (0, report_1.default)(undefined, '\x1b[34m[SERVER]\x1b[0m', 'http://127.0.0.1');
             isServerUsed = true;
         });
     }
