@@ -2,6 +2,20 @@
  * Copyright 2023 Marek Kobida
  */
 
-const cache = new Map<string, [Buffer, Date]>();
+class Cache {
+  storage: { [key: string]: [Buffer, Date] } = {};
 
-export default cache;
+  get(l: string): [Buffer, Date] {
+    return this.storage[l];
+  }
+
+  has(l: string): boolean {
+    return l in this.storage;
+  }
+
+  set(l: string, r: [Buffer, Date]) {
+    this.storage[l] = r;
+  }
+}
+
+export default new Cache();

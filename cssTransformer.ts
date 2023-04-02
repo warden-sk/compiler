@@ -37,13 +37,15 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
 
               fs.writeFileSync(
                 path.resolve(options.outputPath, './index.css'),
-                [...cache].filter(l => /\.css/.test(l[0])).reduce((l, r) => l + r[1][0], '')
+                Object.keys(cache.storage)
+                  .filter(l => /\.css/.test(l))
+                  .reduce((l, r) => l + cache.storage[r][0], '')
               );
 
               report(
                 undefined,
                 '\x1b[34m[CSS]\x1b[0m',
-                sizeToReadable(cache.get(CSS_PATH)![0].length),
+                sizeToReadable(cache.get(CSS_PATH)[0].length),
                 `\x1b[32m${CSS_PATH}\x1b[0m`
               );
             }
