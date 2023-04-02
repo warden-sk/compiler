@@ -36,7 +36,7 @@ function compile(filePath, options) {
     // dokončiť
     if (!isServerUsed && updatedOptions.useServer) {
         const server = http_1.default.createServer((request, response) => {
-            const url = new URL(request.url);
+            const url = new URL(request.url, 'file:');
             (0, report_1.default)('IN', '\x1b[34m[SERVER]\x1b[0m', url.pathname);
             try {
                 const file = fs_1.default.readFileSync(path_1.default.resolve(updatedOptions.outputPath, `.${url.pathname}`));

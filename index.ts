@@ -47,7 +47,7 @@ function compile(filePath: string, options: Options): string {
   // dokončiť
   if (!isServerUsed && updatedOptions.useServer) {
     const server = http.createServer((request, response) => {
-      const url = new URL(request.url!);
+      const url = new URL(request.url!, 'file:');
 
       report('IN', '\x1b[34m[SERVER]\x1b[0m', url.pathname);
 
