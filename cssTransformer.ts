@@ -46,8 +46,6 @@ const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> 
                 sizeToReadable(cache.get(CSS_PATH)![0].length),
                 `\x1b[32m${CSS_PATH}\x1b[0m`
               );
-
-              return;
             }
           }
         }

@@ -31,7 +31,6 @@ const cssTransformer = (options) => {
                             }
                             fs_1.default.writeFileSync(path_1.default.resolve(options.outputPath, './index.css'), [...cache_1.default].filter(l => /\.css/.test(l[0])).reduce((l, r) => l + r[1][0], ''));
                             (0, report_1.default)(undefined, '\x1b[34m[CSS]\x1b[0m', (0, sizeToReadable_1.default)(cache_1.default.get(CSS_PATH)[0].length), `\x1b[32m${CSS_PATH}\x1b[0m`);
-                            return;
                         }
                     }
                 }
