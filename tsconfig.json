@@ -11,6 +11,7 @@
   "files": [
     "./allowedHtmlElements.ts",
     "./availableJsxAttributes.ts",
+    "./cache.ts",
     "./compileHtml.ts",
     "./compileReact.ts",
     "./cssTransformer.ts",

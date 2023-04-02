@@ -5,14 +5,13 @@
 import fs from 'fs';
 import path from 'path';
 import ts from 'typescript';
+import cache from './cache';
 import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
 
 interface Options {
   outputPath: string;
 }
-
-const cache = new Map<string, [Buffer, Date]>();
 
 const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> => {
   return context => {
