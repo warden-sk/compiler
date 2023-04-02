@@ -37,7 +37,7 @@ let isServerUsed = false;
 function compile(filePath: string, options: Options): string {
   const startDate: number = +new Date();
 
-  report(undefined, '\x1b[34m[CACHE]\x1b[0m', cache.size, [...cache]);
+  report(undefined, '\x1b[34m[CACHE]\x1b[0m', cache.size);
 
   const updatedOptions: Options & { outputPath: string } = {
     ...options,
