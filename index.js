@@ -10,7 +10,6 @@ const fs_1 = __importDefault(require("fs"));
 const http_1 = __importDefault(require("http"));
 const path_1 = __importDefault(require("path"));
 const typescript_1 = __importDefault(require("typescript"));
-const cache_1 = __importDefault(require("./cache"));
 const compileHtml_1 = __importDefault(require("./compileHtml"));
 const cssTransformer_1 = __importDefault(require("./cssTransformer"));
 const report_1 = __importDefault(require("./helpers/report"));
@@ -26,8 +25,12 @@ const compilerOptions = {
     target: typescript_1.default.ScriptTarget.ESNext,
 };
 let isFirstCompilation = true;
-let isServerUsed = false;
 function compile(filePath, options) {
+    const startDate = +new Date();
+    const updatedOptions = {
+        ...options,
+        outputPath: path_1.default.resolve(options.outputPath ?? './public'),
+    };
     if (isFirstCompilation) {
         (0, report_1.default)(undefined, `
    ____                       _       _     _     ____   ___ ____  _____
@@ -42,31 +45,25 @@ function compile(filePath, options) {
  | |  | | (_| | | |  __/   <  | . \\ (_) | |_) | | (_| | (_| |
  |_|  |_|\\__,_|_|  \\___|_|\\_\\ |_|\\_\\___/|_.__/|_|\\__,_|\\__,_|
 `);
+        if (updatedOptions.useServer) {
+            // Content-Type
+            const server = http_1.default.createServer((request, response) => {
+                const url = new URL(request.url, 'file:');
+                (0, report_1.default)('IN', '\x1b[34m[SERVER]\x1b[0m', url.pathname);
+                try {
+                    const file = fs_1.default.readFileSync(path_1.default.resolve(updatedOptions.outputPath, `.${url.pathname}`));
+                    return response.end(file);
+                }
+                catch (error) {
+                    const file = fs_1.default.readFileSync(path_1.default.resolve(updatedOptions.outputPath, './index.html'));
+                    return response.end(file);
+                }
+            });
+            server.listen(80, () => {
+                (0, report_1.default)(undefined, '\x1b[34m[SERVER]\x1b[0m', 'http://127.0.0.1');
+            });
+        }
         isFirstCompilation = false;
-    }
-    const startDate = +new Date();
-    const updatedOptions = {
-        ...options,
-        outputPath: path_1.default.resolve(options.outputPath ?? './public'),
-    };
-    // dokončiť
-    if (!isServerUsed && updatedOptions.useServer) {
-        const server = http_1.default.createServer((request, response) => {
-            const url = new URL(request.url, 'file:');
-            (0, report_1.default)('IN', '\x1b[34m[SERVER]\x1b[0m', url.pathname);
-            try {
-                const file = fs_1.default.readFileSync(path_1.default.resolve(updatedOptions.outputPath, `.${url.pathname}`));
-                return response.end(file);
-            }
-            catch (error) {
-                const file = fs_1.default.readFileSync(path_1.default.resolve(updatedOptions.outputPath, './index.html'));
-                return response.end(file);
-            }
-        });
-        server.listen(80, () => {
-            (0, report_1.default)(undefined, '\x1b[34m[SERVER]\x1b[0m', 'http://127.0.0.1');
-            isServerUsed = true;
-        });
     }
     (0, compileHtml_1.default)(updatedOptions);
     const transformers = { before: [(0, cssTransformer_1.default)(updatedOptions), (0, transformer_1.default)()] };
@@ -75,7 +72,7 @@ function compile(filePath, options) {
         const compilerHost = typescript_1.default.createCompilerHost({});
         compilerHost.writeFile = (fileName, text) => {
             compiled = text;
-            cache_1.default.set(fileName, [Buffer.from(compiled), new Date()]);
+            updatedOptions.cache?.set(fileName, [Buffer.from(compiled), new Date()]);
         };
         const program = typescript_1.default.createProgram([filePath], compilerOptions, compilerHost);
         const emitResult = program.emit(undefined, undefined, undefined, undefined, updatedOptions.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined);
@@ -99,7 +96,7 @@ function compile(filePath, options) {
         fileName: filePath,
         transformers: updatedOptions.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined,
     });
-    cache_1.default.set(filePath, [Buffer.from(compiled), new Date()]);
+    updatedOptions.cache?.set(filePath, [Buffer.from(compiled), new Date()]);
     const endDate = +new Date();
     (0, report_1.default)(undefined, '\x1b[34m[JS]\x1b[0m', (0, sizeToReadable_1.default)(compiled.length), `${((endDate - startDate) / 1000).toFixed(2)} second(s)`, `\x1b[32m${filePath}\x1b[0m`);
     return compiled;

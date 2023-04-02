@@ -1,5 +1,7 @@
+import type Cache from './Cache';
 interface Options {
     assets?: string[];
+    cache?: Cache;
     outputPath?: string;
     publicPath?: string;
     reportErrors?: boolean;
