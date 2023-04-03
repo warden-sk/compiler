@@ -8,6 +8,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
 const compileReact_1 = __importDefault(require("./compileReact"));
+const getIPv4Addresses_1 = __importDefault(require("./getIPv4Addresses"));
 function compileHtml({ assets = [], outputPath, publicPath }) {
     const assetsToHtml = (assets, pattern, template) => {
         return assets
@@ -16,7 +17,9 @@ function compileHtml({ assets = [], outputPath, publicPath }) {
             .map(template);
     };
     const assetToUrl = (asset) => {
-        const updatedPublicPath = publicPath ? publicPath : `file://${outputPath}`;
+        const IPv4Addresses = (0, getIPv4Addresses_1.default)();
+        const lastIPv4Address = IPv4Addresses[IPv4Addresses.length - 1];
+        const updatedPublicPath = publicPath ? publicPath : `http://${lastIPv4Address}`;
         const url = /^https?:\/\//.test(asset) ? new URL(asset) : new URL(`${updatedPublicPath}/${asset}`);
         url.searchParams.set('date', (+new Date()).toString());
         return url.toString();

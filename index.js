@@ -12,6 +12,7 @@ const path_1 = __importDefault(require("path"));
 const typescript_1 = __importDefault(require("typescript"));
 const compileHtml_1 = __importDefault(require("./compileHtml"));
 const cssTransformer_1 = __importDefault(require("./cssTransformer"));
+const getIPv4Addresses_1 = __importDefault(require("./getIPv4Addresses"));
 const report_1 = __importDefault(require("./helpers/report"));
 const sizeToReadable_1 = __importDefault(require("./helpers/sizeToReadable"));
 const transformer_1 = __importDefault(require("./transformer"));
@@ -60,7 +61,8 @@ function compile(filePath, options) {
                 }
             });
             server.listen(80, () => {
-                (0, report_1.default)(undefined, '\x1b[34m[SERVER]\x1b[0m', 'http://127.0.0.1');
+                const IPv4Addresses = (0, getIPv4Addresses_1.default)();
+                (0, report_1.default)(undefined, '\x1b[34m[SERVER]\x1b[0m', IPv4Addresses.map(address => `http://${address}`));
             });
         }
         isFirstCompilation = false;
