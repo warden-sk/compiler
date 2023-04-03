@@ -18,8 +18,7 @@ function compileCss(options: Options) {
   if (options.cache) {
     const DESIGN_CSS_PATH = './node_modules/@warden-sk/compiler/design.css';
 
-    if (options.cache.has(DESIGN_CSS_PATH)) {
-    } else {
+    if (!options.cache.has(DESIGN_CSS_PATH)) {
       options.cache.set(DESIGN_CSS_PATH, [fs.readFileSync(DESIGN_CSS_PATH), new Date()]);
     }
 
@@ -29,7 +28,7 @@ function compileCss(options: Options) {
       path.resolve(options.outputPath, './index.css'),
       Object.keys(options.cache.storage)
         .filter(l => /\.css/.test(l))
-        .reduce((l, r) => l + options.cache!.storage[r][0], '')
+        .reduce((l, r) => l + `/* ${r} */\n${options.cache!.storage[r][0]}`, '')
     );
 
     report(

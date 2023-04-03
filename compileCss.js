@@ -13,15 +13,13 @@ const sizeToReadable_1 = __importDefault(require("./helpers/sizeToReadable"));
 function compileCss(options) {
     if (options.cache) {
         const DESIGN_CSS_PATH = './node_modules/@warden-sk/compiler/design.css';
-        if (options.cache.has(DESIGN_CSS_PATH)) {
-        }
-        else {
+        if (!options.cache.has(DESIGN_CSS_PATH)) {
             options.cache.set(DESIGN_CSS_PATH, [fs_1.default.readFileSync(DESIGN_CSS_PATH), new Date()]);
         }
         options.cache.set(options.path, [fs_1.default.readFileSync(options.path), new Date()]);
         fs_1.default.writeFileSync(path_1.default.resolve(options.outputPath, './index.css'), Object.keys(options.cache.storage)
             .filter(l => /\.css/.test(l))
-            .reduce((l, r) => l + options.cache.storage[r][0], ''));
+            .reduce((l, r) => l + `/* ${r} */\n${options.cache.storage[r][0]}`, ''));
         (0, report_1.default)(undefined, '\x1b[34m[CSS]\x1b[0m', (0, sizeToReadable_1.default)(options.cache.get(options.path)[0].length), `\x1b[32m${options.path}\x1b[0m`);
     }
 }
