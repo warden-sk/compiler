@@ -83,11 +83,7 @@ function compile(filePath: string, options: Options): string {
       server.listen(80, () => {
         const IPv4Addresses = getIPv4Addresses();
 
-        report(
-          undefined,
-          '\x1b[34m[SERVER]\x1b[0m',
-          IPv4Addresses.map(address => `http://${address}`)
-        );
+        report(undefined, '\x1b[34m[SERVER]\x1b[0m', IPv4Addresses.map(address => `http://${address}`).join(', '));
       });
     }
 
