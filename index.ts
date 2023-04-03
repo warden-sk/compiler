@@ -9,6 +9,7 @@ import ts from 'typescript';
 import type Cache from './Cache';
 import compileHtml from './compileHtml';
 import cssTransformer from './cssTransformer';
+import getIPv4Addresses from './getIPv4Addresses';
 import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
 import transformer from './transformer';
@@ -80,7 +81,13 @@ function compile(filePath: string, options: Options): string {
       });
 
       server.listen(80, () => {
-        report(undefined, '\x1b[34m[SERVER]\x1b[0m', 'http://127.0.0.1');
+        const IPv4Addresses = getIPv4Addresses();
+
+        report(
+          undefined,
+          '\x1b[34m[SERVER]\x1b[0m',
+          IPv4Addresses.map(address => `http://${address}`)
+        );
       });
     }
 

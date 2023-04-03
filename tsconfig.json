@@ -18,6 +18,7 @@
     "./compileReact.ts",
     "./cssTransformer.ts",
     "./dictionary.ts",
+    "./getIPv4Addresses.ts",
     "./helpers/createRequireStatement.ts",
     "./helpers/decodeClassName.ts",
     "./helpers/decodeJsxSpreadAttributes.ts",

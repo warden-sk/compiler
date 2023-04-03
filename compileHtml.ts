@@ -4,6 +4,7 @@
 
 import fs from 'fs';
 import compileReact from './compileReact';
+import getIPv4Addresses from './getIPv4Addresses';
 
 interface Options {
   assets?: string[];
@@ -20,7 +21,11 @@ function compileHtml({ assets = [], outputPath, publicPath }: Options): string {
   };
 
   const assetToUrl = (asset: string): string => {
-    const updatedPublicPath = publicPath ? publicPath : `file://${outputPath}`;
+    const IPv4Addresses = getIPv4Addresses();
+
+    const lastIPv4Address = IPv4Addresses[IPv4Addresses.length - 1];
+
+    const updatedPublicPath = publicPath ? publicPath : `http://${lastIPv4Address}`;
 
     const url = /^https?:\/\//.test(asset) ? new URL(asset) : new URL(`${updatedPublicPath}/${asset}`);
 
