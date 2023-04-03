@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const typescript_1 = __importDefault(require("typescript"));
 const allowedHtmlElements_1 = __importDefault(require("./allowedHtmlElements"));
 const availableJsxAttributes_1 = __importDefault(require("./availableJsxAttributes"));
-const dictionary_1 = __importDefault(require("./dictionary"));
+const getDictionary_1 = __importDefault(require("./getDictionary"));
 const createRequireStatement_1 = __importDefault(require("./helpers/createRequireStatement"));
 const transformer = () => {
     return context => {
@@ -52,7 +52,7 @@ const transformer = () => {
                                         /* (2.1) */
                                         if (typescript_1.default.isJsxExpression($) || typescript_1.default.isStringLiteral($)) {
                                             return className.push(f.createCallExpression(decodeResponsiveClassName, undefined, [
-                                                f.createStringLiteral(dictionary_1.default.getKey(attribute.name.text)),
+                                                f.createStringLiteral(getDictionary_1.default.getKey(attribute.name.text)),
                                                 typescript_1.default.isJsxExpression($) ? $.expression : $,
                                             ]));
                                         }

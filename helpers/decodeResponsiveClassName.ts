@@ -2,7 +2,7 @@
  * Copyright 2023 Marek Kobida
  */
 
-import dictionary from '../dictionary';
+import getDictionary from '../getDictionary';
 import isObject from './isObject';
 
 export type DecodedResponsiveClassName = string;
@@ -26,18 +26,18 @@ function decodeResponsiveClassName(
 
   // T
   if (typeof encodedResponsiveClassName === 'string') {
-    decodedResponsiveClassNames.push(`${className}${dictionary.getKey(encodedResponsiveClassName)}`);
+    decodedResponsiveClassNames.push(`${className}${getDictionary.getKey(encodedResponsiveClassName)}`);
   }
 
   // [T]
   else if (Array.isArray(encodedResponsiveClassName)) {
-    decodedResponsiveClassNames.push(`${className}${dictionary.getKey(encodedResponsiveClassName[0])}`);
+    decodedResponsiveClassNames.push(`${className}${getDictionary.getKey(encodedResponsiveClassName[0])}`);
 
     // [T, { [breakpointName: string]: T }]
     if (encodedResponsiveClassName[1]) {
       for (const breakpointName in encodedResponsiveClassName[1]) {
         decodedResponsiveClassNames.push(
-          `${breakpointName}${className}${dictionary.getKey(encodedResponsiveClassName[1][breakpointName])}`
+          `${breakpointName}${className}${getDictionary.getKey(encodedResponsiveClassName[1][breakpointName])}`
         );
       }
     }
@@ -47,7 +47,7 @@ function decodeResponsiveClassName(
   else if (isObject(encodedResponsiveClassName)) {
     for (const breakpointName in encodedResponsiveClassName) {
       decodedResponsiveClassNames.push(
-        `${breakpointName}${className}${dictionary.getKey(encodedResponsiveClassName[breakpointName])}`
+        `${breakpointName}${className}${getDictionary.getKey(encodedResponsiveClassName[breakpointName])}`
       );
     }
   }

@@ -3,7 +3,7 @@
  */
 
 import availableJsxAttributes from '../availableJsxAttributes';
-import dictionary from '../dictionary';
+import getDictionary from '../getDictionary';
 import type { EncodedClassName } from './decodeClassName';
 import decodeResponsiveClassName from './decodeResponsiveClassName';
 
@@ -16,7 +16,7 @@ function decodeJsxSpreadAttributes(attributes: { [key: string]: any }): EncodedC
     }
 
     if (key in availableJsxAttributes) {
-      return [...$, decodeResponsiveClassName(dictionary.getKey(key), attribute)];
+      return [...$, decodeResponsiveClassName(getDictionary.getKey(key), attribute)];
     }
 
     return $;

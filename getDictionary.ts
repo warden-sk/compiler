@@ -5,7 +5,7 @@
 import availableJsxAttributes from './availableJsxAttributes';
 import Dictionary from './helpers/dictionary';
 
-const dictionary = new Dictionary([
+const getDictionary = new Dictionary([
   ...Object.keys(availableJsxAttributes).reduce<string[]>(($, key) => [...$, key], []),
   ...Object.keys(availableJsxAttributes).reduce<string[]>(
     ($, key) => [...$, ...availableJsxAttributes[key as keyof typeof availableJsxAttributes]],
@@ -13,4 +13,4 @@ const dictionary = new Dictionary([
   ),
 ]);
 
-export default dictionary;
+export default getDictionary;

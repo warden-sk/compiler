@@ -8,7 +8,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
 const compileReact_1 = __importDefault(require("./compileReact"));
-const getIPv4Addresses_1 = __importDefault(require("./getIPv4Addresses"));
+const getIPv4Addresses_1 = __importDefault(require("./helpers/getIPv4Addresses"));
 function compileHtml({ assets = [], outputPath, publicPath }) {
     const assetsToHtml = (assets, pattern, template) => {
         return assets

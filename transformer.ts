@@ -5,7 +5,7 @@
 import ts from 'typescript';
 import allowedHtmlElements from './allowedHtmlElements';
 import availableJsxAttributes from './availableJsxAttributes';
-import dictionary from './dictionary';
+import getDictionary from './getDictionary';
 import createRequireStatement from './helpers/createRequireStatement';
 
 const transformer = (): ts.TransformerFactory<ts.SourceFile> => {
@@ -60,7 +60,7 @@ const transformer = (): ts.TransformerFactory<ts.SourceFile> => {
                     if (ts.isJsxExpression($) || ts.isStringLiteral($)) {
                       return className.push(
                         f.createCallExpression(decodeResponsiveClassName, undefined, [
-                          f.createStringLiteral(dictionary.getKey(attribute.name.text)),
+                          f.createStringLiteral(getDictionary.getKey(attribute.name.text)),
                           ts.isJsxExpression($) ? $.expression! : $,
                         ])
                       );

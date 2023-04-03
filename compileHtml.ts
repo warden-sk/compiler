@@ -4,7 +4,7 @@
 
 import fs from 'fs';
 import compileReact from './compileReact';
-import getIPv4Addresses from './getIPv4Addresses';
+import getIPv4Addresses from './helpers/getIPv4Addresses';
 
 interface Options {
   assets?: string[];

@@ -9,7 +9,7 @@ import ts from 'typescript';
 import type Cache from './Cache';
 import compileHtml from './compileHtml';
 import cssTransformer from './cssTransformer';
-import getIPv4Addresses from './getIPv4Addresses';
+import getIPv4Addresses from './helpers/getIPv4Addresses';
 import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
 import transformer from './transformer';
