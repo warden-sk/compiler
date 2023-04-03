@@ -3,12 +3,12 @@
  */
 
 import ts from 'typescript';
-import allowedHtmlElements from './allowedHtmlElements';
-import availableJsxAttributes from './availableJsxAttributes';
-import getDictionary from './getDictionary';
-import createRequireStatement from './helpers/createRequireStatement';
+import allowedHtmlElements from '../allowedHtmlElements';
+import availableJsxAttributes from '../availableJsxAttributes';
+import getDictionary from '../getDictionary';
+import createRequireStatement from '../helpers/createRequireStatement';
 
-const transformer = (): ts.TransformerFactory<ts.SourceFile> => {
+const jsTransformer = (): ts.TransformerFactory<ts.SourceFile> => {
   return context => {
     const { factory: f } = context;
 
@@ -120,4 +120,4 @@ const transformer = (): ts.TransformerFactory<ts.SourceFile> => {
   };
 };
 
-export default transformer;
+export default jsTransformer;

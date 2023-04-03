@@ -16,7 +16,6 @@
     "./compileCss.ts",
     "./compileHtml.ts",
     "./compileReact.ts",
-    "./cssTransformer.ts",
     "./getDictionary.ts",
     "./helpers/createRequireStatement.ts",
     "./helpers/decodeClassName.ts",
@@ -32,6 +31,7 @@
     "./helpers/sizeToReadable.ts",
     "./index.ts",
     "./storage.ts",
-    "./transformer.ts"
+    "./transformers/cssTransformer.ts",
+    "./transformers/jsTransformer.ts"
   ]
 }

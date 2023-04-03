@@ -7,11 +7,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typescript_1 = __importDefault(require("typescript"));
-const allowedHtmlElements_1 = __importDefault(require("./allowedHtmlElements"));
-const availableJsxAttributes_1 = __importDefault(require("./availableJsxAttributes"));
-const getDictionary_1 = __importDefault(require("./getDictionary"));
-const createRequireStatement_1 = __importDefault(require("./helpers/createRequireStatement"));
-const transformer = () => {
+const allowedHtmlElements_1 = __importDefault(require("../allowedHtmlElements"));
+const availableJsxAttributes_1 = __importDefault(require("../availableJsxAttributes"));
+const getDictionary_1 = __importDefault(require("../getDictionary"));
+const createRequireStatement_1 = __importDefault(require("../helpers/createRequireStatement"));
+const jsTransformer = () => {
     return context => {
         const { factory: f } = context;
         return sourceFile => {
@@ -82,4 +82,4 @@ const transformer = () => {
         };
     };
 };
-exports.default = transformer;
+exports.default = jsTransformer;

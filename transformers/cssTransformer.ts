@@ -4,8 +4,8 @@
 
 import path from 'path';
 import ts from 'typescript';
-import type Cache from './Cache';
-import compileCss from './compileCss';
+import type Cache from '../Cache';
+import compileCss from '../compileCss';
 
 interface Options {
   cache?: Cache;

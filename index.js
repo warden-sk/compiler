@@ -11,11 +11,11 @@ const http_1 = __importDefault(require("http"));
 const path_1 = __importDefault(require("path"));
 const typescript_1 = __importDefault(require("typescript"));
 const compileHtml_1 = __importDefault(require("./compileHtml"));
-const cssTransformer_1 = __importDefault(require("./cssTransformer"));
 const getIPv4Addresses_1 = __importDefault(require("./helpers/getIPv4Addresses"));
 const report_1 = __importDefault(require("./helpers/report"));
 const sizeToReadable_1 = __importDefault(require("./helpers/sizeToReadable"));
-const transformer_1 = __importDefault(require("./transformer"));
+const cssTransformer_1 = __importDefault(require("./transformers/cssTransformer"));
+const jsTransformer_1 = __importDefault(require("./transformers/jsTransformer"));
 const compilerOptions = {
     allowSyntheticDefaultImports: true,
     esModuleInterop: true,
@@ -68,7 +68,7 @@ function compile(filePath, options) {
         isFirstCompilation = false;
     }
     (0, compileHtml_1.default)(updatedOptions);
-    const transformers = { before: [(0, cssTransformer_1.default)(updatedOptions), (0, transformer_1.default)()] };
+    const transformers = { before: [(0, cssTransformer_1.default)(updatedOptions), (0, jsTransformer_1.default)()] };
     if (updatedOptions.reportErrors) {
         let compiled = '';
         const compilerHost = typescript_1.default.createCompilerHost({});

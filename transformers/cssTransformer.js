@@ -8,7 +8,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = __importDefault(require("path"));
 const typescript_1 = __importDefault(require("typescript"));
-const compileCss_1 = __importDefault(require("./compileCss"));
+const compileCss_1 = __importDefault(require("../compileCss"));
 const cssTransformer = (options) => {
     return context => {
         return sourceFile => {
