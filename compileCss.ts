@@ -16,14 +16,14 @@ interface Options {
 
 function compileCss(options: Options) {
   if (options.cache) {
-    options.cache.set(options.path, [fs.readFileSync(options.path), new Date()]);
-
     const DESIGN_CSS_PATH = './node_modules/@warden-sk/compiler/design.css';
 
     if (options.cache.has(DESIGN_CSS_PATH)) {
     } else {
       options.cache.set(DESIGN_CSS_PATH, [fs.readFileSync(DESIGN_CSS_PATH), new Date()]);
     }
+
+    options.cache.set(options.path, [fs.readFileSync(options.path), new Date()]);
 
     fs.writeFileSync(
       path.resolve(options.outputPath, './index.css'),

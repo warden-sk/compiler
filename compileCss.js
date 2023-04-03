@@ -12,13 +12,13 @@ const report_1 = __importDefault(require("./helpers/report"));
 const sizeToReadable_1 = __importDefault(require("./helpers/sizeToReadable"));
 function compileCss(options) {
     if (options.cache) {
-        options.cache.set(options.path, [fs_1.default.readFileSync(options.path), new Date()]);
         const DESIGN_CSS_PATH = './node_modules/@warden-sk/compiler/design.css';
         if (options.cache.has(DESIGN_CSS_PATH)) {
         }
         else {
             options.cache.set(DESIGN_CSS_PATH, [fs_1.default.readFileSync(DESIGN_CSS_PATH), new Date()]);
         }
+        options.cache.set(options.path, [fs_1.default.readFileSync(options.path), new Date()]);
         fs_1.default.writeFileSync(path_1.default.resolve(options.outputPath, './index.css'), Object.keys(options.cache.storage)
             .filter(l => /\.css/.test(l))
             .reduce((l, r) => l + options.cache.storage[r][0], ''));
