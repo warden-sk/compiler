@@ -36,6 +36,24 @@ interface Options {
 
 let isFirstCompilation = true;
 
+const d = `
+     _                _                                  _
+  __| | _____   _____| | ___  _ __  _ __ ___   ___ _ __ | |_
+ / _\` |/ _ \\ \\ / / _ \\ |/ _ \\| '_ \\| '_ \` _ \\ / _ \\ '_ \\| __|
+| (_| |  __/\\ V /  __/ | (_) | |_) | | | | | |  __/ | | | |_
+ \\__,_|\\___| \\_/ \\___|_|\\___/| .__/|_| |_| |_|\\___|_| |_|\\__|
+                             |_|
+`;
+
+const p = `
+                     _            _   _
+ _ __  _ __ ___   __| |_   _  ___| |_(_) ___  _ __
+| '_ \\| '__/ _ \\ / _\` | | | |/ __| __| |/ _ \\| '_ \\
+| |_) | | | (_) | (_| | |_| | (__| |_| | (_) | | | |
+| .__/|_|  \\___/ \\__,_|\\__,_|\\___|\\__|_|\\___/|_| |_|
+|_|
+`;
+
 function compile(filePath: string, options: Options): string {
   const startDate: number = +new Date();
 
@@ -47,7 +65,7 @@ function compile(filePath: string, options: Options): string {
   if (isFirstCompilation) {
     report(
       undefined,
-      `[${process.env.NODE_ENV === 'production' ? 'production' : 'development'}]
+      `
   ____                       _       _     _     ____   ___ ____  _____
  / ___|___  _ __  _   _ _ __(_) __ _| |__ | |_  |___ \\ / _ \\___ \\|___ /
 | |   / _ \\| '_ \\| | | | '__| |/ _\` | '_ \\| __|   __) | | | |__) | |_ \\
@@ -59,6 +77,7 @@ function compile(filePath: string, options: Options): string {
 | |\\/| |/ _\` | '__/ _ \\ |/ / | ' // _ \\| '_ \\| |/ _\` |/ _\` |
 | |  | | (_| | | |  __/   <  | . \\ (_) | |_) | | (_| | (_| |
 |_|  |_|\\__,_|_|  \\___|_|\\_\\ |_|\\_\\___/|_.__/|_|\\__,_|\\__,_|
+${process.env.NODE_ENV === 'production' ? p : d}
 `
     );
 
