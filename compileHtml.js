@@ -29,7 +29,11 @@ function compileHtml({ assets = [], outputPath, publicPath }) {
     const HTML_PATH = `${outputPath}/index.html`;
     let template = '';
     try {
-        template = (0, compileReact_1.default)(fs_1.default.readFileSync(`${outputPath}/index.js`).toString());
+        let files = [fs_1.default.readFileSync(`${outputPath}/index.js`)];
+        if (assets?.findIndex(asset => /react\.js/.test(asset))) {
+            files = [...files, fs_1.default.readFileSync(`${outputPath}/react.js`)];
+        }
+        template = (0, compileReact_1.default)(Buffer.concat(files).toString());
     }
     catch (error) { }
     const html = `<!DOCTYPE html>
