@@ -42,13 +42,7 @@ function compileHtml({ assets = [], outputPath, publicPath }: Options): string {
   let template: [string, string][] | string = '';
 
   try {
-    let files = [fs.readFileSync(`${outputPath}/index.js`)];
-
-    if (assets?.findIndex(asset => /react\.js/.test(asset)) !== -1) {
-      files = [fs.readFileSync(`${outputPath}/react.js`), ...files];
-    }
-
-    template = compileReact(Buffer.concat(files).toString());
+    template = compileReact(fs.readFileSync(`${outputPath}/index.js`).toString());
   } catch (error) {}
 
   const html = `<!DOCTYPE html>
