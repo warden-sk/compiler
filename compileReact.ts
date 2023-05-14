@@ -6,7 +6,7 @@ import ReactDOMServer from 'react-dom/server';
 import vm from 'vm';
 
 function compileReact(code: string): [string, string][] | string {
-  const context = { URL, exports, module: { exports } } as const;
+  const context = { URL, exports, module: { exports }, require } as const;
 
   const script = new vm.Script(code);
 
