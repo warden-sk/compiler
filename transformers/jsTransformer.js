@@ -41,14 +41,14 @@ const jsTransformer = () => {
                                 const $ = attribute.initializer;
                                 if ($) {
                                     /* (1) */
-                                    if (attribute.name.text === 'className') {
+                                    if (typescript_1.default.isIdentifier(attribute.name) && attribute.name.text === 'className') {
                                         /* (1.1) */
                                         if (typescript_1.default.isJsxExpression($) || typescript_1.default.isStringLiteral($)) {
                                             return className.push(typescript_1.default.isJsxExpression($) ? $.expression : $);
                                         }
                                     }
                                     /* (2) */
-                                    if (attribute.name.text in availableJsxAttributes_1.default) {
+                                    if (typescript_1.default.isIdentifier(attribute.name) && attribute.name.text in availableJsxAttributes_1.default) {
                                         /* (2.1) */
                                         if (typescript_1.default.isJsxExpression($) || typescript_1.default.isStringLiteral($)) {
                                             return className.push(f.createCallExpression(decodeResponsiveClassName, undefined, [

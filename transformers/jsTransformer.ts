@@ -48,14 +48,14 @@ const jsTransformer = (): ts.TransformerFactory<ts.SourceFile> => {
 
                 if ($) {
                   /* (1) */
-                  if (attribute.name.text === 'className') {
+                  if (ts.isIdentifier(attribute.name) && attribute.name.text === 'className') {
                     /* (1.1) */
                     if (ts.isJsxExpression($) || ts.isStringLiteral($)) {
                       return className.push(ts.isJsxExpression($) ? $.expression! : $);
                     }
                   }
                   /* (2) */
-                  if (attribute.name.text in availableJsxAttributes) {
+                  if (ts.isIdentifier(attribute.name) && attribute.name.text in availableJsxAttributes) {
                     /* (2.1) */
                     if (ts.isJsxExpression($) || ts.isStringLiteral($)) {
                       return className.push(

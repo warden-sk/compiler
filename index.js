@@ -26,18 +26,6 @@ const compilerOptions = {
     target: typescript_1.default.ScriptTarget.ESNext,
 };
 let isFirstCompilation = true;
-const d = `     _                _                                  _
-  __| | _____   _____| | ___  _ __  _ __ ___   ___ _ __ | |_
- / _\` |/ _ \\ \\ / / _ \\ |/ _ \\| '_ \\| '_ \` _ \\ / _ \\ '_ \\| __|
-| (_| |  __/\\ V /  __/ | (_) | |_) | | | | | |  __/ | | | |_
- \\__,_|\\___| \\_/ \\___|_|\\___/| .__/|_| |_| |_|\\___|_| |_|\\__|
-                             |_|`;
-const p = `                     _            _   _
- _ __  _ __ ___   __| |_   _  ___| |_(_) ___  _ __
-| '_ \\| '__/ _ \\ / _\` | | | |/ __| __| |/ _ \\| '_ \\
-| |_) | | | (_) | (_| | |_| | (__| |_| | (_) | | | |
-| .__/|_|  \\___/ \\__,_|\\__,_|\\___|\\__|_|\\___/|_| |_|
-|_|`;
 function compile(filePath, options) {
     const startDate = +new Date();
     const updatedOptions = {
@@ -45,20 +33,6 @@ function compile(filePath, options) {
         outputPath: path_1.default.resolve(options.outputPath ?? './public'),
     };
     if (isFirstCompilation) {
-        (0, report_1.default)(undefined, `
-  ____                       _       _     _     ____   ___ ____  _____
- / ___|___  _ __  _   _ _ __(_) __ _| |__ | |_  |___ \\ / _ \\___ \\|___ /
-| |   / _ \\| '_ \\| | | | '__| |/ _\` | '_ \\| __|   __) | | | |__) | |_ \\
-| |__| (_) | |_) | |_| | |  | | (_| | | | | |_   / __/| |_| / __/ ___) |
- \\____\\___/| .__/ \\__, |_|  |_|\\__, |_| |_|\\__| |_____|\\___/_____|____/
-           |_|    |___/        |___/
- __  __                _      _  __     _     _     _
-|  \\/  | __ _ _ __ ___| | __ | |/ /___ | |__ (_) __| | __ _
-| |\\/| |/ _\` | '__/ _ \\ |/ / | ' // _ \\| '_ \\| |/ _\` |/ _\` |
-| |  | | (_| | | |  __/   <  | . \\ (_) | |_) | | (_| | (_| |
-|_|  |_|\\__,_|_|  \\___|_|\\_\\ |_|\\_\\___/|_.__/|_|\\__,_|\\__,_|
-${process.env.NODE_ENV === 'production' ? p : d}
-`);
         if (updatedOptions.useServer) {
             // Content-Type
             const server = http_1.default.createServer((request, response) => {
