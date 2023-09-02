@@ -37,6 +37,7 @@ const flexBasis_1 = __importDefault(require("./components/flexBasis"));
 const fontSize_1 = __importDefault(require("./components/fontSize"));
 const height_1 = __importDefault(require("./components/height"));
 const lineHeight_1 = __importDefault(require("./components/lineHeight"));
+const minHeight_1 = __importDefault(require("./components/minHeight"));
 const opacity_1 = __importDefault(require("./components/opacity"));
 const spacing_1 = __importDefault(require("./components/spacing"));
 const width_1 = __importDefault(require("./components/width"));
@@ -118,6 +119,7 @@ const css = [
     justifyItems,
     justifySelf,
     (0, lineHeight_1.default)(),
+    (0, minHeight_1.default)(),
     (0, opacity_1.default)(),
     (0, spacing_1.default)(12),
     textAlign,

@@ -10,6 +10,7 @@ import flexBasis from './components/flexBasis';
 import fontSize from './components/fontSize';
 import height from './components/height';
 import lineHeight from './components/lineHeight';
+import minHeight from './components/minHeight';
 import opacity from './components/opacity';
 import spacing from './components/spacing';
 import width from './components/width';
@@ -102,6 +103,7 @@ const css: EnhancedCSSProperties[] = [
   justifyItems,
   justifySelf,
   lineHeight(),
+  minHeight(),
   opacity(),
   spacing(12),
   textAlign,
