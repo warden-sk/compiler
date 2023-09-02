@@ -17,7 +17,8 @@ class Dictionary {
         return this.#dictionary;
     }
     getKey(key) {
-        return this.#dictionary[key] ?? key;
+        // return this.#dictionary[key] ?? key;
+        return key;
     }
 }
 exports.default = Dictionary;

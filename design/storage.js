@@ -30,7 +30,7 @@ exports.AlignItems = ['baseline', 'stretch', ...exports.SelfPosition];
 // https://drafts.csswg.org/css-align/#propdef-align-self
 exports.AlignSelf = ['baseline', 'stretch', ...exports.SelfPosition];
 exports.Border = ['0', '1', '2'];
-exports.BorderRadius = ['0', '1', '2', '3', '50'];
+exports.BorderRadius = ['0', '1', '2', '50'];
 exports.Cursor = ['pointer'];
 // https://drafts.csswg.org/css-display-3/#propdef-display
 exports.Display = [

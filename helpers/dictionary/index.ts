@@ -18,7 +18,8 @@ class Dictionary {
   }
 
   getKey(key: string): string {
-    return this.#dictionary[key] ?? key;
+    // return this.#dictionary[key] ?? key;
+    return key;
   }
 }
 

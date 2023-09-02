@@ -13,7 +13,7 @@ export declare const AlignContent: readonly ["baseline", "space-around", "space-
 export declare const AlignItems: readonly ["baseline", "stretch", "center", "end", "flex-end", "flex-start", "self-end", "self-start", "start"];
 export declare const AlignSelf: readonly ["baseline", "stretch", "center", "end", "flex-end", "flex-start", "self-end", "self-start", "start"];
 export declare const Border: readonly ["0", "1", "2"];
-export declare const BorderRadius: readonly ["0", "1", "2", "3", "50"];
+export declare const BorderRadius: readonly ["0", "1", "2", "50"];
 export declare const Cursor: readonly ["pointer"];
 export declare const Display: readonly ["contents", "none", "flex", "grid", "inline-block", "inline-flex", "inline-grid", "block", "inline"];
 export declare const Flex: readonly ["1", "none"];

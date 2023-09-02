@@ -3,35 +3,8 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "esModuleInterop": true,
-    "jsx": "react",
     "module": "CommonJS",
-    "resolveJsonModule": true,
     "strict": true,
     "target": "ESNext"
-  },
-  "files": [
-    "./Cache.ts",
-    "./allowedHtmlElements.ts",
-    "./availableJsxAttributes.ts",
-    "./compileCss.ts",
-    "./compileHtml.ts",
-    "./compileReact.ts",
-    "./getDictionary.ts",
-    "./helpers/createRequireStatement.ts",
-    "./helpers/decodeClassName.ts",
-    "./helpers/decodeJsxSpreadAttributes.ts",
-    "./helpers/decodeResponsiveClassName.ts",
-    "./helpers/dictionary/alphabet.ts",
-    "./helpers/dictionary/base54.ts",
-    "./helpers/dictionary/index.ts",
-    "./helpers/filterJsxSpreadAttributes.ts",
-    "./helpers/getIPv4Addresses.ts",
-    "./helpers/isObject.ts",
-    "./helpers/report.ts",
-    "./helpers/sizeToReadable.ts",
-    "./index.ts",
-    "./storage.ts",
-    "./transformers/cssTransformer.ts",
-    "./transformers/jsTransformer.ts"
-  ]
+  }
 }
