@@ -2,7 +2,7 @@
  * Copyright 2023 Marek Kobida
  */
 
-import dictionary from '@warden-sk/babel-plugin/private/dictionary';
+import dictionary from '../getDictionary';
 import border from './components/border';
 import borderRadius from './components/borderRadius';
 import container from './components/container';

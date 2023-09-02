@@ -2,7 +2,7 @@
  * Copyright 2023 Marek Kobida
  */
 
-import dictionary from '@warden-sk/babel-plugin/private/dictionary';
+import dictionary from '../../getDictionary';
 import type { EnhancedCSSProperties } from '../forBreakpoints';
 import forBreakpoints from '../forBreakpoints';
 

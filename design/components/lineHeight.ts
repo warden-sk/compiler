@@ -2,9 +2,9 @@
  * Copyright 2023 Marek Kobida
  */
 
+import dictionary from '../../getDictionary';
 import type { EnhancedCSSProperties } from '../forBreakpoints';
 import forBreakpoints from '../forBreakpoints';
-import dictionary from '@warden-sk/babel-plugin/private/dictionary';
 
 const lineHeights = [
   ['1', '1'],
