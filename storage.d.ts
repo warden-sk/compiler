@@ -28,6 +28,7 @@ export declare const JustifyContent: readonly ["left", "right", "space-around", 
 export declare const JustifyItems: readonly ["baseline", "stretch", "center", "end", "flex-end", "flex-start", "self-end", "self-start", "start"];
 export declare const JustifySelf: readonly ["baseline", "stretch", "center", "end", "flex-end", "flex-start", "self-end", "self-start", "start"];
 export declare const LineHeight: readonly ["1", "2", "3", "4", "5"];
+export declare const MinHeight: readonly ["25", "50", "75", "100"];
 export declare const Opacity: readonly ["0", "25", "50", "75", "100"];
 /**
  * Spacing
