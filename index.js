@@ -7,7 +7,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const node_fs_1 = __importDefault(require("node:fs"));
-const node_https_1 = __importDefault(require("node:https"));
+const node_http_1 = __importDefault(require("node:http"));
 const node_path_1 = __importDefault(require("node:path"));
 const typescript_1 = __importDefault(require("typescript"));
 const compileHtml_1 = __importDefault(require("./compileHtml"));
@@ -21,7 +21,6 @@ const compilerOptions = {
     esModuleInterop: true,
     jsx: typescript_1.default.JsxEmit.React,
     module: typescript_1.default.ModuleKind.CommonJS,
-    resolveJsonModule: true,
     strict: true,
     target: typescript_1.default.ScriptTarget.ESNext,
 };
@@ -35,7 +34,7 @@ function compile(filePath, options) {
     if (isFirstCompilation) {
         if (updatedOptions.useServer) {
             // Content-Type
-            const server = node_https_1.default.createServer((request, response) => {
+            const server = node_http_1.default.createServer((request, response) => {
                 const url = new URL(request.url, 'file:');
                 (0, report_1.default)('IN', '\x1b[34m[SERVER]\x1b[0m', url.pathname);
                 try {
@@ -47,12 +46,12 @@ function compile(filePath, options) {
                     return response.end(file);
                 }
             });
-            server.listen(443, () => {
+            server.listen(80, () => {
                 const IPv4Addresses = (0, getIPv4Addresses_1.default)();
-                (0, report_1.default)(undefined, '\x1b[34m[SERVER]\x1b[0m', IPv4Addresses.map(address => `https://${address}`).join(', '));
+                (0, report_1.default)(undefined, '\x1b[34m[SERVER]\x1b[0m', IPv4Addresses.map(address => `http://${address}`).join(', '));
             });
+            isFirstCompilation = false;
         }
-        isFirstCompilation = false;
     }
     (0, compileHtml_1.default)(updatedOptions);
     const transformers = { before: [(0, cssTransformer_1.default)(updatedOptions), (0, jsTransformer_1.default)()] };

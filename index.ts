@@ -3,7 +3,7 @@
  */
 
 import fs from 'node:fs';
-import https from 'node:https';
+import http from 'node:http';
 import path from 'node:path';
 import ts from 'typescript';
 import type Cache from './Cache';
@@ -19,7 +19,6 @@ const compilerOptions: ts.CompilerOptions = {
   esModuleInterop: true,
   jsx: ts.JsxEmit.React,
   module: ts.ModuleKind.CommonJS,
-  resolveJsonModule: true,
   strict: true,
   target: ts.ScriptTarget.ESNext,
 };
@@ -47,7 +46,7 @@ function compile(filePath: string, options: Options): string {
   if (isFirstCompilation) {
     if (updatedOptions.useServer) {
       // Content-Type
-      const server = https.createServer((request, response) => {
+      const server = http.createServer((request, response) => {
         const url = new URL(request.url!, 'file:');
 
         report('IN', '\x1b[34m[SERVER]\x1b[0m', url.pathname);
@@ -63,14 +62,14 @@ function compile(filePath: string, options: Options): string {
         }
       });
 
-      server.listen(443, () => {
+      server.listen(80, () => {
         const IPv4Addresses = getIPv4Addresses();
 
-        report(undefined, '\x1b[34m[SERVER]\x1b[0m', IPv4Addresses.map(address => `https://${address}`).join(', '));
+        report(undefined, '\x1b[34m[SERVER]\x1b[0m', IPv4Addresses.map(address => `http://${address}`).join(', '));
       });
-    }
 
-    isFirstCompilation = false;
+      isFirstCompilation = false;
+    }
   }
 
   compileHtml(updatedOptions);

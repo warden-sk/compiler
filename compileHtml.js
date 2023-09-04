@@ -19,7 +19,7 @@ function compileHtml({ assets = [], outputPath, publicPath }) {
     const assetToUrl = (asset) => {
         const IPv4Addresses = (0, getIPv4Addresses_1.default)();
         const lastIPv4Address = IPv4Addresses[IPv4Addresses.length - 1];
-        const updatedPublicPath = publicPath ? publicPath : `https://${lastIPv4Address}`;
+        const updatedPublicPath = publicPath ? publicPath : `http://${lastIPv4Address}`;
         const url = /^https?:\/\//.test(asset) ? new URL(asset) : new URL(`${updatedPublicPath}/${asset}`);
         url.searchParams.set('date', (+new Date()).toString());
         return url.toString();
