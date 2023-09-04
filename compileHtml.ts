@@ -2,7 +2,7 @@
  * Copyright 2023 Marek Kobida
  */
 
-import fs from 'fs';
+import fs from 'node:fs';
 import compileReact from './compileReact';
 import getIPv4Addresses from './helpers/getIPv4Addresses';
 

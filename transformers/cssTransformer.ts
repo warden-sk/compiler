@@ -2,7 +2,7 @@
  * Copyright 2023 Marek Kobida
  */
 
-import path from 'path';
+import path from 'node:path';
 import ts from 'typescript';
 import type Cache from '../Cache';
 import compileCss from '../compileCss';

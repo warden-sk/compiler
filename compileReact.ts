@@ -2,8 +2,8 @@
  * Copyright 2023 Marek Kobida
  */
 
+import vm from 'node:vm';
 import ReactDOMServer from 'react-dom/server';
-import vm from 'vm';
 
 function compileReact(code: string): [string, string][] | string {
   const context = { URL, exports, module: { exports }, require } as const;

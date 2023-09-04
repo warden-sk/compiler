@@ -2,9 +2,9 @@
  * Copyright 2023 Marek Kobida
  */
 
-import fs from 'fs';
-import http from 'http';
-import path from 'path';
+import fs from 'node:fs';
+import https from 'node:https';
+import path from 'node:path';
 import ts from 'typescript';
 import type Cache from './Cache';
 import compileHtml from './compileHtml';
@@ -47,7 +47,7 @@ function compile(filePath: string, options: Options): string {
   if (isFirstCompilation) {
     if (updatedOptions.useServer) {
       // Content-Type
-      const server = http.createServer((request, response) => {
+      const server = https.createServer((request, response) => {
         const url = new URL(request.url!, 'file:');
 
         report('IN', '\x1b[34m[SERVER]\x1b[0m', url.pathname);
@@ -63,7 +63,7 @@ function compile(filePath: string, options: Options): string {
         }
       });
 
-      server.listen(80, () => {
+      server.listen(443, () => {
         const IPv4Addresses = getIPv4Addresses();
 
         report(undefined, '\x1b[34m[SERVER]\x1b[0m', IPv4Addresses.map(address => `http://${address}`).join(', '));
