@@ -3,6 +3,7 @@
  */
 
 import dictionary from '../getDictionary';
+import * as t from '../storage';
 import border from './components/border';
 import borderRadius from './components/borderRadius';
 import container from './components/container';
@@ -16,7 +17,6 @@ import spacing from './components/spacing';
 import width from './components/width';
 import type { EnhancedCSSProperties } from './forBreakpoints';
 import forBreakpoints from './forBreakpoints';
-import * as t from './storage';
 import toString from './toString';
 
 function toHelper(propertyName: string, type: readonly string[]): EnhancedCSSProperties {

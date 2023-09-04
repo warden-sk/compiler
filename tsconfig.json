@@ -29,7 +29,6 @@
     "./design/forBreakpoints.ts",
     "./design/index.ts",
     "./design/percentage.ts",
-    "./design/storage.ts",
     "./design/toString.ts",
     "./getDictionary.ts",
     "./helpers/createRequireStatement.ts",
