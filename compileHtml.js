@@ -6,7 +6,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs_1 = __importDefault(require("fs"));
+const node_fs_1 = __importDefault(require("node:fs"));
 const compileReact_1 = __importDefault(require("./compileReact"));
 const getIPv4Addresses_1 = __importDefault(require("./helpers/getIPv4Addresses"));
 function compileHtml({ assets = [], outputPath, publicPath }) {
@@ -29,7 +29,7 @@ function compileHtml({ assets = [], outputPath, publicPath }) {
     const HTML_PATH = `${outputPath}/index.html`;
     let template = '';
     try {
-        template = (0, compileReact_1.default)(fs_1.default.readFileSync(`${outputPath}/index.js`).toString());
+        template = (0, compileReact_1.default)(node_fs_1.default.readFileSync(`${outputPath}/index.js`).toString());
     }
     catch (error) { }
     const html = `<!DOCTYPE html>
@@ -46,7 +46,7 @@ function compileHtml({ assets = [], outputPath, publicPath }) {
   </body>
 </html>
 `;
-    fs_1.default.writeFileSync(HTML_PATH, html);
+    node_fs_1.default.writeFileSync(HTML_PATH, html);
     return html;
 }
 exports.default = compileHtml;

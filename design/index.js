@@ -30,6 +30,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const getDictionary_1 = __importDefault(require("../getDictionary"));
+const t = __importStar(require("../storage"));
 const border_1 = __importDefault(require("./components/border"));
 const borderRadius_1 = __importDefault(require("./components/borderRadius"));
 const container_1 = __importDefault(require("./components/container"));
@@ -42,7 +43,6 @@ const opacity_1 = __importDefault(require("./components/opacity"));
 const spacing_1 = __importDefault(require("./components/spacing"));
 const width_1 = __importDefault(require("./components/width"));
 const forBreakpoints_1 = __importDefault(require("./forBreakpoints"));
-const t = __importStar(require("./storage"));
 const toString_1 = __importDefault(require("./toString"));
 function toHelper(propertyName, type) {
     const $ = getDictionary_1.default.getKey(propertyName);

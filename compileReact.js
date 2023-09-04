@@ -6,11 +6,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const node_vm_1 = __importDefault(require("node:vm"));
 const server_1 = __importDefault(require("react-dom/server"));
-const vm_1 = __importDefault(require("vm"));
 function compileReact(code) {
     const context = { URL, exports, module: { exports }, require };
-    const script = new vm_1.default.Script(code);
+    const script = new node_vm_1.default.Script(code);
     try {
         script.runInNewContext(context);
         const $ = context.module.exports.default;

@@ -6,9 +6,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs_1 = __importDefault(require("fs"));
-const http_1 = __importDefault(require("http"));
-const path_1 = __importDefault(require("path"));
+const node_fs_1 = __importDefault(require("node:fs"));
+const node_https_1 = __importDefault(require("node:https"));
+const node_path_1 = __importDefault(require("node:path"));
 const typescript_1 = __importDefault(require("typescript"));
 const compileHtml_1 = __importDefault(require("./compileHtml"));
 const getIPv4Addresses_1 = __importDefault(require("./helpers/getIPv4Addresses"));
@@ -30,24 +30,24 @@ function compile(filePath, options) {
     const startDate = +new Date();
     const updatedOptions = {
         ...options,
-        outputPath: path_1.default.resolve(options.outputPath ?? './public'),
+        outputPath: node_path_1.default.resolve(options.outputPath ?? './public'),
     };
     if (isFirstCompilation) {
         if (updatedOptions.useServer) {
             // Content-Type
-            const server = http_1.default.createServer((request, response) => {
+            const server = node_https_1.default.createServer((request, response) => {
                 const url = new URL(request.url, 'file:');
                 (0, report_1.default)('IN', '\x1b[34m[SERVER]\x1b[0m', url.pathname);
                 try {
-                    const file = fs_1.default.readFileSync(path_1.default.resolve(updatedOptions.outputPath, `.${url.pathname}`));
+                    const file = node_fs_1.default.readFileSync(node_path_1.default.resolve(updatedOptions.outputPath, `.${url.pathname}`));
                     return response.end(file);
                 }
                 catch (error) {
-                    const file = fs_1.default.readFileSync(path_1.default.resolve(updatedOptions.outputPath, './index.html'));
+                    const file = node_fs_1.default.readFileSync(node_path_1.default.resolve(updatedOptions.outputPath, './index.html'));
                     return response.end(file);
                 }
             });
-            server.listen(80, () => {
+            server.listen(443, () => {
                 const IPv4Addresses = (0, getIPv4Addresses_1.default)();
                 (0, report_1.default)(undefined, '\x1b[34m[SERVER]\x1b[0m', IPv4Addresses.map(address => `http://${address}`).join(', '));
             });
@@ -80,7 +80,7 @@ function compile(filePath, options) {
         }
         return compiled;
     }
-    const { outputText: compiled } = typescript_1.default.transpileModule(fs_1.default.readFileSync(filePath).toString(), {
+    const { outputText: compiled } = typescript_1.default.transpileModule(node_fs_1.default.readFileSync(filePath).toString(), {
         compilerOptions,
         fileName: filePath,
         transformers: updatedOptions.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined,
