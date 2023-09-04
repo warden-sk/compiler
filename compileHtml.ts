@@ -25,7 +25,7 @@ function compileHtml({ assets = [], outputPath, publicPath }: Options): string {
 
     const lastIPv4Address = IPv4Addresses[IPv4Addresses.length - 1];
 
-    const updatedPublicPath = publicPath ? publicPath : `http://${lastIPv4Address}`;
+    const updatedPublicPath = publicPath ? publicPath : `https://${lastIPv4Address}`;
 
     const url = /^https?:\/\//.test(asset) ? new URL(asset) : new URL(`${updatedPublicPath}/${asset}`);
 

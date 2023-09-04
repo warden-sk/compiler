@@ -49,7 +49,7 @@ function compile(filePath, options) {
             });
             server.listen(443, () => {
                 const IPv4Addresses = (0, getIPv4Addresses_1.default)();
-                (0, report_1.default)(undefined, '\x1b[34m[SERVER]\x1b[0m', IPv4Addresses.map(address => `http://${address}`).join(', '));
+                (0, report_1.default)(undefined, '\x1b[34m[SERVER]\x1b[0m', IPv4Addresses.map(address => `https://${address}`).join(', '));
             });
         }
         isFirstCompilation = false;
