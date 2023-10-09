@@ -24,7 +24,7 @@ function width(columns: number): EnhancedCSSProperties {
           width: percentage(i + 1, columns),
         },
       }),
-      {}
+      {},
     ),
     // .width-100
     [`.${breakpointName}${$}${dictionary.getKey('100')}`]: {
@@ -33,6 +33,10 @@ function width(columns: number): EnhancedCSSProperties {
     // .width-auto
     [`.${breakpointName}${$}${dictionary.getKey('auto')}`]: {
       width: 'auto',
+    },
+    // .width-px
+    [`.${breakpointName}${$}${dictionary.getKey('px')}`]: {
+      width: '1px',
     },
   }));
 }

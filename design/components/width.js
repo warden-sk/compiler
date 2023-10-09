@@ -32,6 +32,10 @@ function width(columns) {
         [`.${breakpointName}${$}${getDictionary_1.default.getKey('auto')}`]: {
             width: 'auto',
         },
+        // .width-px
+        [`.${breakpointName}${$}${getDictionary_1.default.getKey('px')}`]: {
+            width: '1px',
+        },
     }));
 }
 exports.default = width;
