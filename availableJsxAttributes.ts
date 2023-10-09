@@ -25,6 +25,8 @@ const availableJsxAttributes = {
   flex: t.Flex,
   flexBasis: t.FlexBasis,
   flexDirection: t.FlexDirection,
+  flexGrow: t.FlexGrow,
+  flexShrink: t.FlexShrink,
   flexWrap: t.FlexWrap,
   fontSize: t.FontSize,
   fontWeight: t.FontWeight,

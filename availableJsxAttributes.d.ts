@@ -19,6 +19,8 @@ declare const availableJsxAttributes: {
     readonly flex: readonly ["1", "none"];
     readonly flexBasis: readonly ["0", "1/12", "2/12", "3/12", "4/12", "5/12", "6/12", "7/12", "8/12", "9/12", "10/12", "11/12", "100", "auto"];
     readonly flexDirection: readonly ["column", "column-reverse", "row", "row-reverse"];
+    readonly flexGrow: readonly ["0", "1"];
+    readonly flexShrink: readonly ["0", "1"];
     readonly flexWrap: readonly ["nowrap", "wrap", "wrap-reverse"];
     readonly fontSize: readonly ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
     readonly fontWeight: readonly ["100", "200", "300", "400", "500", "600", "700", "800", "900"];
