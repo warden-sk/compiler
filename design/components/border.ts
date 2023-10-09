@@ -57,7 +57,7 @@ function border(): EnhancedCSSProperties {
           ..._,
           ...css(breakpointName, left, right),
         }),
-        {}
+        {},
       ),
     };
   });

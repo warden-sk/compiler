@@ -17,7 +17,7 @@ function container(): EnhancedCSSProperties {
           '.container': {
             width: '100%',
           },
-        }
+        },
   );
 }
 

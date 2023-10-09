@@ -24,7 +24,7 @@ function flexBasis(columns: number): EnhancedCSSProperties {
           flexBasis: percentage(i + 1, columns),
         },
       }),
-      {}
+      {},
     ),
     // .flex-basis-100
     [`.${breakpointName}${$}${dictionary.getKey('100')}`]: {

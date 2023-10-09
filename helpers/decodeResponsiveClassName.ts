@@ -20,7 +20,7 @@ export type EncodedResponsiveClassName<T extends string> =
 
 function decodeResponsiveClassName(
   className: string,
-  encodedResponsiveClassName: EncodedResponsiveClassName<string>
+  encodedResponsiveClassName: EncodedResponsiveClassName<string>,
 ): DecodedResponsiveClassName[] {
   const decodedResponsiveClassNames: DecodedResponsiveClassName[] = [];
 
@@ -37,7 +37,7 @@ function decodeResponsiveClassName(
     if (encodedResponsiveClassName[1]) {
       for (const breakpointName in encodedResponsiveClassName[1]) {
         decodedResponsiveClassNames.push(
-          `${breakpointName}${className}${getDictionary.getKey(encodedResponsiveClassName[1][breakpointName])}`
+          `${breakpointName}${className}${getDictionary.getKey(encodedResponsiveClassName[1][breakpointName])}`,
         );
       }
     }
@@ -47,7 +47,7 @@ function decodeResponsiveClassName(
   else if (isObject(encodedResponsiveClassName)) {
     for (const breakpointName in encodedResponsiveClassName) {
       decodedResponsiveClassNames.push(
-        `${breakpointName}${className}${getDictionary.getKey(encodedResponsiveClassName[breakpointName])}`
+        `${breakpointName}${className}${getDictionary.getKey(encodedResponsiveClassName[breakpointName])}`,
       );
     }
   }

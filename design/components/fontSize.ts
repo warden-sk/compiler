@@ -32,8 +32,8 @@ function fontSize(): EnhancedCSSProperties {
           fontSize: right,
         },
       }),
-      {}
-    )
+      {},
+    ),
   );
 }
 

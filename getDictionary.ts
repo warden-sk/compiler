@@ -9,7 +9,7 @@ const getDictionary = new Dictionary([
   ...Object.keys(availableJsxAttributes).reduce<string[]>(($, key) => [...$, key], []),
   ...Object.keys(availableJsxAttributes).reduce<string[]>(
     ($, key) => [...$, ...availableJsxAttributes[key as keyof typeof availableJsxAttributes]],
-    []
+    [],
   ),
 ]);
 

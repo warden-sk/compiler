@@ -46,7 +46,7 @@ function borderRadius(): EnhancedCSSProperties {
             borderTopRightRadius: right,
           },
         }),
-        {}
+        {},
       ),
     };
   });

@@ -25,8 +25,8 @@ function lineHeight(): EnhancedCSSProperties {
           lineHeight: right,
         },
       }),
-      {}
-    )
+      {},
+    ),
   );
 }
 

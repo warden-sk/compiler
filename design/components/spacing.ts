@@ -24,7 +24,7 @@ function css(
   breakpointName: string,
   left: string,
   property: 'margin' | 'padding',
-  right: '0' | 'auto' | `${string}rem`
+  right: '0' | 'auto' | `${string}rem`,
 ): EnhancedCSSProperties {
   const $ = dictionary.getKey(property[0]);
   const b = dictionary.getKey(`${property[0]}B`);
@@ -67,7 +67,7 @@ function spacing(columns: number): EnhancedCSSProperties {
             gridTemplateColumns: `repeat(${left}, minmax(0, 1fr))`,
           },
         }),
-        {}
+        {},
       ),
       // .gap-0
       ...sizes.reduce(
@@ -83,7 +83,7 @@ function spacing(columns: number): EnhancedCSSProperties {
             rowGap: right,
           },
         }),
-        {}
+        {},
       ),
       // .space-x-0
       ...sizes.reduce(
@@ -96,7 +96,7 @@ function spacing(columns: number): EnhancedCSSProperties {
             marginTop: right,
           },
         }),
-        {}
+        {},
       ),
       // .m-!1
       ...sizes.reduce(
@@ -107,7 +107,7 @@ function spacing(columns: number): EnhancedCSSProperties {
                 ..._,
                 ...css(breakpointName, `!${left}`, 'margin', `-${right}`),
               },
-        {}
+        {},
       ),
       // .m-0
       ...sizes.reduce(
@@ -115,7 +115,7 @@ function spacing(columns: number): EnhancedCSSProperties {
           ..._,
           ...css(breakpointName, left, 'margin', right),
         }),
-        {}
+        {},
       ),
       // .m-auto
       ...css(breakpointName, 'auto', 'margin', 'auto'),
@@ -127,7 +127,7 @@ function spacing(columns: number): EnhancedCSSProperties {
             marginLeft: percentage(i + 1, columns),
           },
         }),
-        {}
+        {},
       ),
       // .p-0
       ...sizes.reduce(
@@ -135,7 +135,7 @@ function spacing(columns: number): EnhancedCSSProperties {
           ..._,
           ...css(breakpointName, left, 'padding', right),
         }),
-        {}
+        {},
       ),
     };
   });

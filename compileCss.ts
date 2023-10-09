@@ -45,7 +45,7 @@ function compileCss(options: Options) {
       path.resolve(options.outputPath, './index.css'),
       Object.keys(options.cache.storage)
         .filter(l => /\.css/.test(l))
-        .reduce((l, r) => l + options.cache!.storage[r][0], '')
+        .reduce((l, r) => l + options.cache!.storage[r][0], ''),
     );
   }
 }

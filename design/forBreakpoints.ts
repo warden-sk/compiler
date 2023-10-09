@@ -31,7 +31,7 @@ function forBreakpoints(on: (breakpoint: readonly [string, string]) => EnhancedC
       ..._,
       [`@media(min-width:${breakpoint[1]})`]: on(breakpoint),
     }),
-    on(['', ''])
+    on(['', '']),
   );
 }
 

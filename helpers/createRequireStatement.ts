@@ -18,13 +18,13 @@ function createRequireStatement(name: ts.Identifier, path: string): ts.VariableS
     undefined,
     f.createPropertyAccessExpression(
       f.createCallExpression(f.createIdentifier('require'), undefined, [f.createStringLiteral(path)]),
-      f.createIdentifier('default')
-    )
+      f.createIdentifier('default'),
+    ),
   );
 
   return f.createVariableStatement(
     undefined,
-    f.createVariableDeclarationList([variableDeclaration], ts.NodeFlags.Const)
+    f.createVariableDeclarationList([variableDeclaration], ts.NodeFlags.Const),
   );
 }
 

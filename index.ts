@@ -93,7 +93,7 @@ function compile(filePath: string, options: Options): string {
       undefined,
       undefined,
       undefined,
-      updatedOptions.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined
+      updatedOptions.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined,
     );
 
     const diagnostics: ts.Diagnostic[] = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
@@ -110,7 +110,7 @@ function compile(filePath: string, options: Options): string {
             '\x1b[34m[JS]\x1b[0m',
             sizeToReadable(compiled.length),
             `${((endDate - startDate) / 1000).toFixed(2)} second(s)`,
-            `\x1b[31m${diagnostic.file.fileName}\n\n${message}\n\x1b[0m`
+            `\x1b[31m${diagnostic.file.fileName}\n\n${message}\n\x1b[0m`,
           );
         }
       }
@@ -120,7 +120,7 @@ function compile(filePath: string, options: Options): string {
         '\x1b[34m[JS]\x1b[0m',
         sizeToReadable(compiled.length),
         `${((endDate - startDate) / 1000).toFixed(2)} second(s)`,
-        `\x1b[32m${filePath}\x1b[0m`
+        `\x1b[32m${filePath}\x1b[0m`,
       );
     }
 
@@ -142,7 +142,7 @@ function compile(filePath: string, options: Options): string {
     '\x1b[34m[JS]\x1b[0m',
     sizeToReadable(compiled.length),
     `${((endDate - startDate) / 1000).toFixed(2)} second(s)`,
-    `\x1b[32m${filePath}\x1b[0m`
+    `\x1b[32m${filePath}\x1b[0m`,
   );
 
   return compiled;

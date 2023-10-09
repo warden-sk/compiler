@@ -62,7 +62,7 @@ const jsTransformer = (): ts.TransformerFactory<ts.SourceFile> => {
                         f.createCallExpression(decodeResponsiveClassName, undefined, [
                           f.createStringLiteral(getDictionary.getKey(attribute.name.text)),
                           ts.isJsxExpression($) ? $.expression! : $,
-                        ])
+                        ]),
                       );
                     }
                   }
@@ -72,12 +72,12 @@ const jsTransformer = (): ts.TransformerFactory<ts.SourceFile> => {
               if (ts.isJsxSpreadAttribute(attribute)) {
                 attributes.push(
                   f.createJsxSpreadAttribute(
-                    f.createCallExpression(filterJsxSpreadAttributes, undefined, [attribute.expression])
-                  )
+                    f.createCallExpression(filterJsxSpreadAttributes, undefined, [attribute.expression]),
+                  ),
                 );
 
                 return className.push(
-                  f.createCallExpression(decodeJsxSpreadAttributes, undefined, [attribute.expression])
+                  f.createCallExpression(decodeJsxSpreadAttributes, undefined, [attribute.expression]),
                 );
               }
 
@@ -89,8 +89,8 @@ const jsTransformer = (): ts.TransformerFactory<ts.SourceFile> => {
               attributes.push(
                 f.createJsxAttribute(
                   f.createIdentifier('className'),
-                  f.createJsxExpression(undefined, f.createCallExpression(decodeClassName, undefined, className))
-                )
+                  f.createJsxExpression(undefined, f.createCallExpression(decodeClassName, undefined, className)),
+                ),
               );
             }
 
@@ -99,13 +99,13 @@ const jsTransformer = (): ts.TransformerFactory<ts.SourceFile> => {
                   node,
                   node.tagName,
                   node.typeArguments,
-                  f.updateJsxAttributes(node.attributes, attributes)
+                  f.updateJsxAttributes(node.attributes, attributes),
                 )
               : f.updateJsxSelfClosingElement(
                   node,
                   node.tagName,
                   node.typeArguments,
-                  f.updateJsxAttributes(node.attributes, attributes)
+                  f.updateJsxAttributes(node.attributes, attributes),
                 );
 
             return ts.visitEachChild(updatedNode, visitor, context);
