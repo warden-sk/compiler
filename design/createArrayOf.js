@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 function createArrayOf(length) {
     const $ = [];
     for (let i = 0; i <= length; i++) {
-        $[i] = i;
+        $[i] = i + 1;
     }
     return $;
 }
