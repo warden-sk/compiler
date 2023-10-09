@@ -58,6 +58,8 @@ export const FlexBasis = [
 ] as const;
 // https://drafts.csswg.org/css-flexbox-1/#propdef-flex-direction
 export const FlexDirection = ['column', 'column-reverse', 'row', 'row-reverse'] as const;
+export const FlexGrow = ['0', '1'] as const;
+export const FlexShrink = ['0', '1'] as const;
 // https://drafts.csswg.org/css-flexbox-1/#propdef-flex-wrap
 export const FlexWrap = ['nowrap', 'wrap', 'wrap-reverse'] as const;
 export const FontSize = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'] as const;

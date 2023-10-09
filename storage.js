@@ -3,7 +3,7 @@
  * Copyright 2023 Marek Kobida
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Width = exports.WhiteSpace = exports.TextAlign = exports.MarginLeft = exports.Margin = exports.S = exports.Opacity = exports.MinHeight = exports.LineHeight = exports.JustifySelf = exports.JustifyItems = exports.JustifyContent = exports.Height = exports.GridTemplateColumns = exports.FontWeight = exports.FontSize = exports.FlexWrap = exports.FlexDirection = exports.FlexBasis = exports.Flex = exports.Display = exports.Cursor = exports.BorderRadius = exports.Border = exports.AlignSelf = exports.AlignItems = exports.AlignContent = exports.SelfPosition = exports.DisplayOutside = exports.DisplayLegacy = exports.DisplayInternal = exports.DisplayInside = exports.DisplayBox = exports.ContentPosition = exports.ContentDistribution = void 0;
+exports.Width = exports.WhiteSpace = exports.TextAlign = exports.MarginLeft = exports.Margin = exports.S = exports.Opacity = exports.MinHeight = exports.LineHeight = exports.JustifySelf = exports.JustifyItems = exports.JustifyContent = exports.Height = exports.GridTemplateColumns = exports.FontWeight = exports.FontSize = exports.FlexWrap = exports.FlexShrink = exports.FlexGrow = exports.FlexDirection = exports.FlexBasis = exports.Flex = exports.Display = exports.Cursor = exports.BorderRadius = exports.Border = exports.AlignSelf = exports.AlignItems = exports.AlignContent = exports.SelfPosition = exports.DisplayOutside = exports.DisplayLegacy = exports.DisplayInternal = exports.DisplayInside = exports.DisplayBox = exports.ContentPosition = exports.ContentDistribution = void 0;
 // https://drafts.csswg.org/css-align/#typedef-content-distribution
 exports.ContentDistribution = ['space-around', 'space-between', 'space-evenly', 'stretch'];
 // https://drafts.csswg.org/css-align/#typedef-content-position
@@ -60,6 +60,8 @@ exports.FlexBasis = [
 ];
 // https://drafts.csswg.org/css-flexbox-1/#propdef-flex-direction
 exports.FlexDirection = ['column', 'column-reverse', 'row', 'row-reverse'];
+exports.FlexGrow = ['0', '1'];
+exports.FlexShrink = ['0', '1'];
 // https://drafts.csswg.org/css-flexbox-1/#propdef-flex-wrap
 exports.FlexWrap = ['nowrap', 'wrap', 'wrap-reverse'];
 exports.FontSize = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];

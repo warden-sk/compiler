@@ -30,8 +30,8 @@ function toHelper(propertyName: string, type: readonly string[]): EnhancedCSSPro
           [propertyName]: property,
         },
       }),
-      {}
-    )
+      {},
+    ),
   );
 }
 
@@ -42,6 +42,8 @@ const cursor = toHelper('cursor', t.Cursor);
 const display = toHelper('display', t.Display);
 const flex = toHelper('flex', t.Flex);
 const flexDirection = toHelper('flexDirection', t.FlexDirection);
+const flexGrow = toHelper('flexGrow', t.FlexGrow);
+const flexShrink = toHelper('flexShrink', t.FlexShrink);
 const flexWrap = toHelper('flexWrap', t.FlexWrap);
 const fontWeight = toHelper('fontWeight', t.FontWeight);
 const justifyContent = toHelper('justifyContent', t.JustifyContent);
@@ -95,6 +97,8 @@ const css: EnhancedCSSProperties[] = [
   flex,
   flexBasis(12),
   flexDirection,
+  flexGrow,
+  flexShrink,
   flexWrap,
   fontSize(),
   fontWeight,

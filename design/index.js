@@ -60,6 +60,8 @@ const cursor = toHelper('cursor', t.Cursor);
 const display = toHelper('display', t.Display);
 const flex = toHelper('flex', t.Flex);
 const flexDirection = toHelper('flexDirection', t.FlexDirection);
+const flexGrow = toHelper('flexGrow', t.FlexGrow);
+const flexShrink = toHelper('flexShrink', t.FlexShrink);
 const flexWrap = toHelper('flexWrap', t.FlexWrap);
 const fontWeight = toHelper('fontWeight', t.FontWeight);
 const justifyContent = toHelper('justifyContent', t.JustifyContent);
@@ -111,6 +113,8 @@ const css = [
     flex,
     (0, flexBasis_1.default)(12),
     flexDirection,
+    flexGrow,
+    flexShrink,
     flexWrap,
     (0, fontSize_1.default)(),
     fontWeight,
