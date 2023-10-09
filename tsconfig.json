@@ -27,6 +27,7 @@
     "./design/components/width.ts",
     "./design/createArrayOf.ts",
     "./design/forBreakpoints.ts",
+    "./design/getName.ts",
     "./design/index.ts",
     "./design/percentage.ts",
     "./design/toString.ts",
