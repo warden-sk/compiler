@@ -21,7 +21,15 @@ function compileReact(code: string): [string, string][] | string {
 
     return ReactDOMServer.renderToString($);
   } catch (error) {
-    return error instanceof Error ? error.message : 'Error';
+    if (error instanceof Error) {
+      return error.message;
+    }
+
+    if (typeof error === 'string') {
+      return error;
+    }
+
+    return 'Error';
   }
 }
 

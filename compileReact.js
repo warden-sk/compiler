@@ -20,7 +20,13 @@ function compileReact(code) {
         return server_1.default.renderToString($);
     }
     catch (error) {
-        return error instanceof Error ? error.message : 'Error';
+        if (error instanceof Error) {
+            return error.message;
+        }
+        if (typeof error === 'string') {
+            return error;
+        }
+        return 'Error';
     }
 }
 exports.default = compileReact;
