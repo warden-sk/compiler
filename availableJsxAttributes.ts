@@ -48,6 +48,7 @@ const availableJsxAttributes = {
   mY: t.Margin,
   minHeight: t.MinHeight,
   opacity: t.Opacity,
+  overflow: t.Overflow,
   p: t.S,
   pB: t.S,
   pL: t.S,
