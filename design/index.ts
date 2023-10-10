@@ -13,6 +13,7 @@ import height from './components/height';
 import lineHeight from './components/lineHeight';
 import minHeight from './components/minHeight';
 import opacity from './components/opacity';
+import overflow from './components/overflow';
 import spacing from './components/spacing';
 import width from './components/width';
 import type { EnhancedCSSProperties } from './forBreakpoints';
@@ -109,6 +110,7 @@ const css: EnhancedCSSProperties[] = [
   lineHeight(),
   minHeight(),
   opacity(),
+  overflow(),
   spacing(12),
   textAlign,
   whiteSpace,

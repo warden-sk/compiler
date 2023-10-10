@@ -32,6 +32,7 @@ export declare const JustifySelf: readonly ["baseline", "stretch", "center", "en
 export declare const LineHeight: readonly ["1", "2", "3", "4", "5"];
 export declare const MinHeight: readonly ["25", "50", "75", "100"];
 export declare const Opacity: readonly ["0", "25", "50", "75", "100"];
+export declare const Overflow: readonly ["auto", "hidden"];
 /**
  * Spacing
  */

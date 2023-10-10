@@ -40,6 +40,7 @@ const height_1 = __importDefault(require("./components/height"));
 const lineHeight_1 = __importDefault(require("./components/lineHeight"));
 const minHeight_1 = __importDefault(require("./components/minHeight"));
 const opacity_1 = __importDefault(require("./components/opacity"));
+const overflow_1 = __importDefault(require("./components/overflow"));
 const spacing_1 = __importDefault(require("./components/spacing"));
 const width_1 = __importDefault(require("./components/width"));
 const forBreakpoints_1 = __importDefault(require("./forBreakpoints"));
@@ -125,6 +126,7 @@ const css = [
     (0, lineHeight_1.default)(),
     (0, minHeight_1.default)(),
     (0, opacity_1.default)(),
+    (0, overflow_1.default)(),
     (0, spacing_1.default)(12),
     textAlign,
     whiteSpace,
