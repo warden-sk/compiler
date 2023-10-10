@@ -20,8 +20,8 @@ function flexBasis(columns: number): EnhancedCSSProperties {
     ...createArrayOf(columns).reduce(
       (css, i) => ({
         ...css,
-        [`.${breakpointName}${$}${dictionary.getKey(`${i + 1}/${columns}`)}`]: {
-          flexBasis: percentage(i + 1, columns),
+        [`.${breakpointName}${$}${dictionary.getKey(`${i}/${columns}`)}`]: {
+          flexBasis: percentage(i, columns),
         },
       }),
       {},

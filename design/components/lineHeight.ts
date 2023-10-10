@@ -2,9 +2,9 @@
  * Copyright 2023 Marek Kobida
  */
 
-import dictionary from '../../getDictionary';
 import type { EnhancedCSSProperties } from '../forBreakpoints';
 import forBreakpoints from '../forBreakpoints';
+import getName from '../getName';
 
 const lineHeights = [
   ['1', '1'],
@@ -15,19 +15,19 @@ const lineHeights = [
 ] as const;
 
 function lineHeight(): EnhancedCSSProperties {
-  const $ = dictionary.getKey('lineHeight');
+  return forBreakpoints(([breakpointName]) => {
+    const $ = getName(breakpointName, 'lineHeight');
 
-  return forBreakpoints(([breakpointName]) =>
-    lineHeights.reduce(
+    return lineHeights.reduce(
       (css, [left, right]) => ({
         ...css,
-        [`.${breakpointName}${$}${dictionary.getKey(left)}`]: {
+        [$(left)]: {
           lineHeight: right,
         },
       }),
       {},
-    ),
-  );
+    );
+  });
 }
 
 export default lineHeight;

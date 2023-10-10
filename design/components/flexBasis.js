@@ -20,8 +20,8 @@ function flexBasis(columns) {
         // .flex-basis-1/12
         ...(0, createArrayOf_1.default)(columns).reduce((css, i) => ({
             ...css,
-            [`.${breakpointName}${$}${getDictionary_1.default.getKey(`${i + 1}/${columns}`)}`]: {
-                flexBasis: (0, percentage_1.default)(i + 1, columns),
+            [`.${breakpointName}${$}${getDictionary_1.default.getKey(`${i}/${columns}`)}`]: {
+                flexBasis: (0, percentage_1.default)(i, columns),
             },
         }), {}),
         // .flex-basis-100

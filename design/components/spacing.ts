@@ -123,8 +123,8 @@ function spacing(columns: number): EnhancedCSSProperties {
       ...createArrayOf(columns).reduce(
         (css, i) => ({
           ...css,
-          [`.${breakpointName}${dictionary.getKey('mL')}${dictionary.getKey(`${i + 1}/${columns}`)}`]: {
-            marginLeft: percentage(i + 1, columns),
+          [`.${breakpointName}${dictionary.getKey('mL')}${dictionary.getKey(`${i}/${columns}`)}`]: {
+            marginLeft: percentage(i, columns),
           },
         }),
         {},

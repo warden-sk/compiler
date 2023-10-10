@@ -100,8 +100,8 @@ function spacing(columns) {
             // .m-l-1/12
             ...(0, createArrayOf_1.default)(columns).reduce((css, i) => ({
                 ...css,
-                [`.${breakpointName}${getDictionary_1.default.getKey('mL')}${getDictionary_1.default.getKey(`${i + 1}/${columns}`)}`]: {
-                    marginLeft: (0, percentage_1.default)(i + 1, columns),
+                [`.${breakpointName}${getDictionary_1.default.getKey('mL')}${getDictionary_1.default.getKey(`${i}/${columns}`)}`]: {
+                    marginLeft: (0, percentage_1.default)(i, columns),
                 },
             }), {}),
             // .p-0
