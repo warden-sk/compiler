@@ -19,7 +19,9 @@ const sizes = [
     ['5', '1.25rem'],
     ['6', '1.5rem'],
     ['7', '1.75rem'],
-    ['8', '2rem'], //    32px
+    ['8', '2rem'],
+    ['16', '4rem'],
+    ['32', '8rem'], //   128px
 ];
 function css(breakpointName, left, property, right) {
     const $ = getDictionary_1.default.getKey(property[0]);

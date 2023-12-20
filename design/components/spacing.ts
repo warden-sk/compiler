@@ -18,6 +18,8 @@ const sizes = [
   ['6', '1.5rem'], //  24px
   ['7', '1.75rem'], // 28px
   ['8', '2rem'], //    32px
+  ['16', '4rem'], //   64px
+  ['32', '8rem'], //   128px
 ] as const;
 
 function css(
