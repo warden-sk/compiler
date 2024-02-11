@@ -14,12 +14,12 @@ const sizes = [
 
 function css(breakpointName: string, left: string, right: string): EnhancedCSSProperties {
   const $ = dictionary.getKey('border');
-  const b = dictionary.getKey(`borderBottom`);
-  const l = dictionary.getKey(`borderLeft`);
-  const r = dictionary.getKey(`borderRight`);
-  const t = dictionary.getKey(`borderTop`);
-  const x = dictionary.getKey(`borderX`);
-  const y = dictionary.getKey(`borderY`);
+  const b = dictionary.getKey('borderBottom');
+  const l = dictionary.getKey('borderLeft');
+  const r = dictionary.getKey('borderRight');
+  const t = dictionary.getKey('borderTop');
+  const x = dictionary.getKey('borderX');
+  const y = dictionary.getKey('borderY');
 
   return {
     [`.${breakpointName}${$}${dictionary.getKey(left)}`]: {

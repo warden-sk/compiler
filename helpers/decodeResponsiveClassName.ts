@@ -8,12 +8,12 @@ import isObject from './isObject';
 export type DecodedResponsiveClassName = string;
 
 export type EncodedResponsiveClassName<T extends string> =
+  | Record<string, T>
   | T
   | ''
   | 0
   | false
-  | { [breakpointName: string]: T }
-  | [T, { [breakpointName: string]: T }]
+  | [T, Record<string, T>]
   | [T]
   | null
   | undefined;

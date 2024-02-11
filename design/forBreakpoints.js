@@ -5,9 +5,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.breakpoints = void 0;
 exports.breakpoints = [
-    ['\\#', '40rem'],
-    ['\\#\\#', '48rem'],
-    ['\\#\\#\\#', '64rem'],
+    ['\\#', '40rem'], //          640px
+    ['\\#\\#', '48rem'], //       768px
+    ['\\#\\#\\#', '64rem'], //    1024px
     ['\\#\\#\\#\\#', '80rem'], // 1280px
 ];
 function forBreakpoints(on) {

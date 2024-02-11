@@ -1,4 +1,2 @@
-declare function filterJsxSpreadAttributes(attributes: {
-    [key: string]: any;
-}): {};
+declare function filterJsxSpreadAttributes(attributes: Record<string, any>): {};
 export default filterJsxSpreadAttributes;

@@ -8,11 +8,11 @@ import type Cache from './Cache';
 import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
 
-interface Options {
+type Options = {
   cache?: Cache;
   outputPath: string;
   path: string;
-}
+};
 
 function compileCss(options: Options) {
   if (options.cache) {

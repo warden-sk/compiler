@@ -23,7 +23,7 @@ const compilerOptions: ts.CompilerOptions = {
   target: ts.ScriptTarget.ESNext,
 };
 
-interface Options {
+type Options = {
   assets?: string[];
   cache?: Cache;
   outputPath?: string;
@@ -31,7 +31,7 @@ interface Options {
   reportErrors?: boolean;
   useServer?: boolean;
   useTransformers?: boolean;
-}
+};
 
 let isFirstCompilation = true;
 

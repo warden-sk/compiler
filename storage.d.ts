@@ -14,7 +14,7 @@ export declare const AlignItems: readonly ["baseline", "stretch", "center", "end
 export declare const AlignSelf: readonly ["baseline", "stretch", "center", "end", "flex-end", "flex-start", "self-end", "self-start", "start"];
 export declare const Border: readonly ["0", "1", "2"];
 export declare const BorderRadius: readonly ["0", "1", "2", "3", "50"];
-export declare const Cursor: readonly ["pointer"];
+export declare const Cursor: readonly ["pointer", "zoom-in"];
 export declare const Display: readonly ["contents", "none", "flex", "grid", "inline-block", "inline-flex", "inline-grid", "block", "inline"];
 export declare const Flex: readonly ["1", "none"];
 export declare const FlexBasis: readonly ["0", "1/12", "2/12", "3/12", "4/12", "5/12", "6/12", "7/12", "8/12", "9/12", "10/12", "11/12", "100", "auto"];
@@ -36,9 +36,9 @@ export declare const Overflow: readonly ["auto", "hidden"];
 /**
  * Spacing
  */
-export declare const S: readonly ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
-export declare const Margin: readonly ["!1", "!2", "!3", "!4", "!5", "!6", "!7", "!8", "auto", "0", "1", "2", "3", "4", "5", "6", "7", "8"];
-export declare const MarginLeft: readonly ["1/12", "2/12", "3/12", "4/12", "5/12", "6/12", "7/12", "8/12", "9/12", "10/12", "11/12", "!1", "!2", "!3", "!4", "!5", "!6", "!7", "!8", "auto", "0", "1", "2", "3", "4", "5", "6", "7", "8"];
+export declare const S: readonly ["0", "1", "2", "3", "4", "5", "6", "7", "8", "16", "32"];
+export declare const Margin: readonly ["!1", "!2", "!3", "!4", "!5", "!6", "!7", "!8", "auto", "0", "1", "2", "3", "4", "5", "6", "7", "8", "16", "32"];
+export declare const MarginLeft: readonly ["1/12", "2/12", "3/12", "4/12", "5/12", "6/12", "7/12", "8/12", "9/12", "10/12", "11/12", "!1", "!2", "!3", "!4", "!5", "!6", "!7", "!8", "auto", "0", "1", "2", "3", "4", "5", "6", "7", "8", "16", "32"];
 export declare const TextAlign: readonly ["center", "end", "justify", "left", "right", "start"];
 export declare const WhiteSpace: readonly ["normal", "nowrap", "pre", "pre-line", "pre-wrap"];
 export declare const Width: readonly ["0", "1/12", "2/12", "3/12", "4/12", "5/12", "6/12", "7/12", "8/12", "9/12", "10/12", "11/12", "100", "auto"];

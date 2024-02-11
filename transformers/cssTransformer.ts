@@ -7,10 +7,10 @@ import ts from 'typescript';
 import type Cache from '../Cache';
 import compileCss from '../compileCss';
 
-interface Options {
+type Options = {
   cache?: Cache;
   outputPath: string;
-}
+};
 
 const cssTransformer = (options: Options): ts.TransformerFactory<ts.SourceFile> => {
   return context => {

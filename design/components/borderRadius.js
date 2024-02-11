@@ -9,10 +9,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const getDictionary_1 = __importDefault(require("../../getDictionary"));
 const forBreakpoints_1 = __importDefault(require("../forBreakpoints"));
 const sizes = [
-    ['0', '0'],
-    ['1', '0.125rem'],
-    ['2', '0.25rem'],
-    ['3', '0.5rem'],
+    ['0', '0'], //        0
+    ['1', '0.125rem'], // 2px
+    ['2', '0.25rem'], //  4px
+    ['3', '0.5rem'], //   8px
     ['50', '50%'], //     50%
 ];
 function borderRadius() {

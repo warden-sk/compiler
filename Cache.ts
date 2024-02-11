@@ -3,7 +3,7 @@
  */
 
 class Cache {
-  storage: { [key: string]: [Buffer, Date] } = {};
+  storage: Record<string, [Buffer, Date]> = {};
 
   get(l: string): [Buffer, Date] {
     return this.storage[l];

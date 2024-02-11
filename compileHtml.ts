@@ -6,11 +6,11 @@ import fs from 'node:fs';
 import compileReact from './compileReact';
 import getIPv4Addresses from './helpers/getIPv4Addresses';
 
-interface Options {
+type Options = {
   assets?: string[];
   outputPath: string;
   publicPath?: string;
-}
+};
 
 function compileHtml({ assets = [], outputPath, publicPath }: Options): string {
   const assetsToHtml = (assets: string[], pattern: RegExp, template: (asset: string) => string): string[] => {

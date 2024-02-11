@@ -7,7 +7,7 @@ import getDictionary from '../getDictionary';
 import type { EncodedClassName } from './decodeClassName';
 import decodeResponsiveClassName from './decodeResponsiveClassName';
 
-function decodeJsxSpreadAttributes(attributes: { [key: string]: any }): EncodedClassName[] {
+function decodeJsxSpreadAttributes(attributes: Record<string, any>): EncodedClassName[] {
   return Object.keys(attributes).reduce<EncodedClassName[]>(($, key) => {
     const attribute = attributes[key];
 

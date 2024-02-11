@@ -31,7 +31,7 @@ exports.AlignItems = ['baseline', 'stretch', ...exports.SelfPosition];
 exports.AlignSelf = ['baseline', 'stretch', ...exports.SelfPosition];
 exports.Border = ['0', '1', '2'];
 exports.BorderRadius = ['0', '1', '2', '3', '50'];
-exports.Cursor = ['pointer'];
+exports.Cursor = ['pointer', 'zoom-in'];
 // https://drafts.csswg.org/css-display-3/#propdef-display
 exports.Display = [
     ...exports.DisplayBox,
@@ -81,7 +81,7 @@ exports.Overflow = ['auto', 'hidden'];
 /**
  * Spacing
  */
-exports.S = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
+exports.S = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '16', '32'];
 exports.Margin = ['!1', '!2', '!3', '!4', '!5', '!6', '!7', '!8', 'auto', ...exports.S];
 exports.MarginLeft = [
     '1/12',

@@ -1,5 +1,5 @@
 import type Cache from './Cache';
-interface Options {
+type Options = {
     assets?: string[];
     cache?: Cache;
     outputPath?: string;
@@ -7,6 +7,6 @@ interface Options {
     reportErrors?: boolean;
     useServer?: boolean;
     useTransformers?: boolean;
-}
+};
 declare function compile(filePath: string, options: Options): string;
 export default compile;

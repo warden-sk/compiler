@@ -6,13 +6,7 @@ import isObject from './isObject';
 
 export type DecodedClassName = string | undefined;
 
-export type EncodedClassName =
-  | EncodedClassName[]
-  | Falsy
-  | boolean
-  | number
-  | string
-  | { [decodedClassName: string]: Falsy | boolean };
+export type EncodedClassName = EncodedClassName[] | Falsy | Record<string, Falsy | boolean> | boolean | number | string;
 
 // https://developer.mozilla.org/en-US/docs/Glossary/Falsy
 type Falsy = '' | 0 | false | null | undefined;

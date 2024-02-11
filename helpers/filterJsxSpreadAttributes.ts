@@ -4,7 +4,7 @@
 
 import availableJsxAttributes from '../availableJsxAttributes';
 
-function filterJsxSpreadAttributes(attributes: { [key: string]: any }) {
+function filterJsxSpreadAttributes(attributes: Record<string, any>) {
   return Object.keys(attributes).reduce(($, key) => {
     const attribute = attributes[key];
 
