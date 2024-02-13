@@ -14,7 +14,7 @@ export declare const AlignItems: readonly ["baseline", "stretch", "center", "end
 export declare const AlignSelf: readonly ["baseline", "stretch", "center", "end", "flex-end", "flex-start", "self-end", "self-start", "start"];
 export declare const Border: readonly ["0", "1", "2"];
 export declare const BorderRadius: readonly ["0", "1", "2", "3", "50"];
-export declare const Cursor: readonly ["pointer", "zoom-in"];
+export declare const Cursor: readonly ["pointer", "zoom-in", "zoom-out"];
 export declare const Display: readonly ["contents", "none", "flex", "grid", "inline-block", "inline-flex", "inline-grid", "block", "inline"];
 export declare const Flex: readonly ["1", "none"];
 export declare const FlexBasis: readonly ["0", "1/12", "2/12", "3/12", "4/12", "5/12", "6/12", "7/12", "8/12", "9/12", "10/12", "11/12", "100", "auto"];

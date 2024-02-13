@@ -14,7 +14,7 @@ declare const availableJsxAttributes: {
     readonly borderTopRadius: readonly ["0", "1", "2", "3", "50"];
     readonly borderX: readonly ["0", "1", "2"];
     readonly borderY: readonly ["0", "1", "2"];
-    readonly cursor: readonly ["pointer", "zoom-in"];
+    readonly cursor: readonly ["pointer", "zoom-in", "zoom-out"];
     readonly display: readonly ["contents", "none", "flex", "grid", "inline-block", "inline-flex", "inline-grid", "block", "inline"];
     readonly flex: readonly ["1", "none"];
     readonly flexBasis: readonly ["0", "1/12", "2/12", "3/12", "4/12", "5/12", "6/12", "7/12", "8/12", "9/12", "10/12", "11/12", "100", "auto"];

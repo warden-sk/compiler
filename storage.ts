@@ -29,7 +29,7 @@ export const AlignItems = ['baseline', 'stretch', ...SelfPosition] as const;
 export const AlignSelf = ['baseline', 'stretch', ...SelfPosition] as const;
 export const Border = ['0', '1', '2'] as const;
 export const BorderRadius = ['0', '1', '2', '3', '50'] as const;
-export const Cursor = ['pointer', 'zoom-in'] as const;
+export const Cursor = ['pointer', 'zoom-in', 'zoom-out'] as const;
 // https://drafts.csswg.org/css-display-3/#propdef-display
 export const Display = [
   ...DisplayBox,

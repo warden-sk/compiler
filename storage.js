@@ -31,7 +31,7 @@ exports.AlignItems = ['baseline', 'stretch', ...exports.SelfPosition];
 exports.AlignSelf = ['baseline', 'stretch', ...exports.SelfPosition];
 exports.Border = ['0', '1', '2'];
 exports.BorderRadius = ['0', '1', '2', '3', '50'];
-exports.Cursor = ['pointer', 'zoom-in'];
+exports.Cursor = ['pointer', 'zoom-in', 'zoom-out'];
 // https://drafts.csswg.org/css-display-3/#propdef-display
 exports.Display = [
     ...exports.DisplayBox,
