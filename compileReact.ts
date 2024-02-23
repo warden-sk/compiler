@@ -5,7 +5,9 @@
 import vm from 'node:vm';
 import ReactDOMServer from 'react-dom/server';
 
-function compileReact(code: string): [string, string][] | string {
+type T = { compiled: string; options?: { description?: string; title?: string } };
+
+function compileReact(code: string): T {
   const context = { TextEncoder, URL, exports, module: { exports }, require } as const;
 
   const script = new vm.Script(code);
@@ -16,21 +18,23 @@ function compileReact(code: string): [string, string][] | string {
     const $ = context.module.exports.default;
 
     if (Array.isArray($)) {
-      return $.map(([l, r]) => [l, ReactDOMServer.renderToString(r)]);
+      return { compiled: ReactDOMServer.renderToString($[0]), options: $[1] };
     }
 
-    return ReactDOMServer.renderToString($);
+    return { compiled: ReactDOMServer.renderToString($) };
   } catch (error) {
     if (error instanceof Error) {
-      return error.message;
+      return { compiled: error.message };
     }
 
     if (typeof error === 'string') {
-      return error;
+      return { compiled: error };
     }
 
-    return 'Error';
+    return { compiled: 'Error' };
   }
 }
+
+export type { T };
 
 export default compileReact;

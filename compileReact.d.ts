@@ -1,2 +1,10 @@
-declare function compileReact(code: string): [string, string][] | string;
+type T = {
+    compiled: string;
+    options?: {
+        description?: string;
+        title?: string;
+    };
+};
+declare function compileReact(code: string): T;
+export type { T };
 export default compileReact;

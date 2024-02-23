@@ -39,22 +39,29 @@ function compileHtml({ assets = [], outputPath, publicPath }: Options): string {
 
   const HTML_PATH = `${outputPath}/index.html`;
 
-  let template: [string, string][] | string = '';
+  let compiledReact = compileReact(fs.readFileSync(`${outputPath}/index.js`).toString());
 
-  try {
-    template = compileReact(fs.readFileSync(`${outputPath}/index.js`).toString());
-  } catch (error) {}
+  const head = [
+    '<meta charset="utf-8" />',
+    '<meta content="viewport-fit=cover, width=device-width" name="viewport" />',
+  ];
+
+  if (compiledReact.options) {
+    compiledReact.options.description &&
+      head.push(`<meta content="${compiledReact.options.description}" name="description" />`);
+
+    compiledReact.options.title && head.push(`<title>${compiledReact.options.title}</title>`);
+  }
 
   const html = `<!DOCTYPE html>
 <html>
   <head>
     ${css.join('\n    ')}
-    <meta charset="utf-8" />
-    <meta content="viewport-fit=cover, width=device-width" name="viewport" />
+    ${head.join('\n    ')}
     <script>window.updatedAt=${+new Date()};</script>
   </head>
   <body>
-    ${template}
+    ${compiledReact.compiled}
     ${js.join('\n    ')}
   </body>
 </html>

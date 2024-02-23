@@ -15,18 +15,18 @@ function compileReact(code) {
         script.runInNewContext(context);
         const $ = context.module.exports.default;
         if (Array.isArray($)) {
-            return $.map(([l, r]) => [l, server_1.default.renderToString(r)]);
+            return { compiled: server_1.default.renderToString($[0]), options: $[1] };
         }
-        return server_1.default.renderToString($);
+        return { compiled: server_1.default.renderToString($) };
     }
     catch (error) {
         if (error instanceof Error) {
-            return error.message;
+            return { compiled: error.message };
         }
         if (typeof error === 'string') {
-            return error;
+            return { compiled: error };
         }
-        return 'Error';
+        return { compiled: 'Error' };
     }
 }
 exports.default = compileReact;

@@ -27,21 +27,25 @@ function compileHtml({ assets = [], outputPath, publicPath }) {
     const css = assetsToHtml(assets, /\.css/, url => `<link href="${url}" rel="stylesheet" />`);
     const js = assetsToHtml(assets, /\.js/, url => `<script src="${url}"></script>`);
     const HTML_PATH = `${outputPath}/index.html`;
-    let template = '';
-    try {
-        template = (0, compileReact_1.default)(node_fs_1.default.readFileSync(`${outputPath}/index.js`).toString());
+    let compiledReact = (0, compileReact_1.default)(node_fs_1.default.readFileSync(`${outputPath}/index.js`).toString());
+    const head = [
+        '<meta charset="utf-8" />',
+        '<meta content="viewport-fit=cover, width=device-width" name="viewport" />',
+    ];
+    if (compiledReact.options) {
+        compiledReact.options.description &&
+            head.push(`<meta content="${compiledReact.options.description}" name="description" />`);
+        compiledReact.options.title && head.push(`<title>${compiledReact.options.title}</title>`);
     }
-    catch (error) { }
     const html = `<!DOCTYPE html>
 <html>
   <head>
     ${css.join('\n    ')}
-    <meta charset="utf-8" />
-    <meta content="viewport-fit=cover, width=device-width" name="viewport" />
+    ${head.join('\n    ')}
     <script>window.updatedAt=${+new Date()};</script>
   </head>
   <body>
-    ${template}
+    ${compiledReact.compiled}
     ${js.join('\n    ')}
   </body>
 </html>
