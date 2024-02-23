@@ -27,7 +27,12 @@ function compileHtml({ assets = [], outputPath, publicPath }) {
     const css = assetsToHtml(assets, /\.css/, url => `<link href="${url}" rel="stylesheet" />`);
     const js = assetsToHtml(assets, /\.js/, url => `<script src="${url}"></script>`);
     const HTML_PATH = `${outputPath}/index.html`;
-    let compiledReact = (0, compileReact_1.default)(node_fs_1.default.readFileSync(`${outputPath}/index.js`).toString());
+    let inputFile = '';
+    try {
+        inputFile = node_fs_1.default.readFileSync(`${outputPath}/index.js`).toString();
+    }
+    catch (error) { }
+    let compiledReact = (0, compileReact_1.default)(inputFile);
     const head = [
         '<meta charset="utf-8" />',
         '<meta content="viewport-fit=cover, width=device-width" name="viewport" />',

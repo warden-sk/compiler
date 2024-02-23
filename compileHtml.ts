@@ -39,7 +39,13 @@ function compileHtml({ assets = [], outputPath, publicPath }: Options): string {
 
   const HTML_PATH = `${outputPath}/index.html`;
 
-  let compiledReact = compileReact(fs.readFileSync(`${outputPath}/index.js`).toString());
+  let inputFile = '';
+
+  try {
+    inputFile = fs.readFileSync(`${outputPath}/index.js`).toString();
+  } catch (error) {}
+
+  let compiledReact = compileReact(inputFile);
 
   const head = [
     '<meta charset="utf-8" />',
