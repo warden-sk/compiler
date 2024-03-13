@@ -74,6 +74,7 @@ export const JustifyItems = ['baseline', 'stretch', ...SelfPosition] as const;
 // https://drafts.csswg.org/css-align/#propdef-justify-self
 export const JustifySelf = ['baseline', 'stretch', ...SelfPosition] as const;
 export const LineHeight = ['1', '2', '3', '4', '5'] as const;
+export const MaxWidth = ['#', '##', '###', '####'] as const;
 export const MinHeight = ['25', '50', '75', '100'] as const;
 export const Opacity = ['0', '25', '50', '75', '100'] as const;
 export const Overflow = ['auto', 'hidden'] as const;

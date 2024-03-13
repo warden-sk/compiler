@@ -3,10 +3,10 @@
  */
 
 import createArrayOf from '../createArrayOf';
-import type { EnhancedCSSProperties } from '../forBreakpoints';
 import forBreakpoints from '../forBreakpoints';
 import getName from '../getName';
 import percentage from '../percentage';
+import type { EnhancedCSSProperties } from '../forBreakpoints';
 
 function width(columns: number): EnhancedCSSProperties {
   return forBreakpoints(([breakpointName]) => {

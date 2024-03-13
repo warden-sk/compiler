@@ -3,7 +3,7 @@
  * Copyright 2023 Marek Kobida
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Width = exports.WhiteSpace = exports.TextAlign = exports.MarginLeft = exports.Margin = exports.S = exports.Overflow = exports.Opacity = exports.MinHeight = exports.LineHeight = exports.JustifySelf = exports.JustifyItems = exports.JustifyContent = exports.Height = exports.GridTemplateColumns = exports.FontWeight = exports.FontSize = exports.FlexWrap = exports.FlexShrink = exports.FlexGrow = exports.FlexDirection = exports.FlexBasis = exports.Flex = exports.Display = exports.Cursor = exports.BorderRadius = exports.Border = exports.AspectRatio = exports.AlignSelf = exports.AlignItems = exports.AlignContent = exports.SelfPosition = exports.DisplayOutside = exports.DisplayLegacy = exports.DisplayInternal = exports.DisplayInside = exports.DisplayBox = exports.ContentPosition = exports.ContentDistribution = void 0;
+exports.Width = exports.WhiteSpace = exports.TextAlign = exports.MarginLeft = exports.Margin = exports.S = exports.Overflow = exports.Opacity = exports.MinHeight = exports.MaxWidth = exports.LineHeight = exports.JustifySelf = exports.JustifyItems = exports.JustifyContent = exports.Height = exports.GridTemplateColumns = exports.FontWeight = exports.FontSize = exports.FlexWrap = exports.FlexShrink = exports.FlexGrow = exports.FlexDirection = exports.FlexBasis = exports.Flex = exports.Display = exports.Cursor = exports.BorderRadius = exports.Border = exports.AspectRatio = exports.AlignSelf = exports.AlignItems = exports.AlignContent = exports.SelfPosition = exports.DisplayOutside = exports.DisplayLegacy = exports.DisplayInternal = exports.DisplayInside = exports.DisplayBox = exports.ContentPosition = exports.ContentDistribution = void 0;
 // https://drafts.csswg.org/css-align/#typedef-content-distribution
 exports.ContentDistribution = ['space-around', 'space-between', 'space-evenly', 'stretch'];
 // https://drafts.csswg.org/css-align/#typedef-content-position
@@ -76,6 +76,7 @@ exports.JustifyItems = ['baseline', 'stretch', ...exports.SelfPosition];
 // https://drafts.csswg.org/css-align/#propdef-justify-self
 exports.JustifySelf = ['baseline', 'stretch', ...exports.SelfPosition];
 exports.LineHeight = ['1', '2', '3', '4', '5'];
+exports.MaxWidth = ['#', '##', '###', '####'];
 exports.MinHeight = ['25', '50', '75', '100'];
 exports.Opacity = ['0', '25', '50', '75', '100'];
 exports.Overflow = ['auto', 'hidden'];
