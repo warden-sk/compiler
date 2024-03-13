@@ -27,6 +27,7 @@ export const AlignContent = ['baseline', ...ContentDistribution, ...ContentPosit
 export const AlignItems = ['baseline', 'stretch', ...SelfPosition] as const;
 // https://drafts.csswg.org/css-align/#propdef-align-self
 export const AlignSelf = ['baseline', 'stretch', ...SelfPosition] as const;
+export const AspectRatio = ['1/1', '16/9', ...SelfPosition] as const;
 export const Border = ['0', '1', '2'] as const;
 export const BorderRadius = ['0', '1', '2', '3', '50'] as const;
 export const Cursor = ['pointer', 'zoom-in', 'zoom-out'] as const;
@@ -79,8 +80,8 @@ export const Overflow = ['auto', 'hidden'] as const;
 /**
  * Spacing
  */
-export const S = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '16', '32'] as const;
-export const Margin = ['!1', '!2', '!3', '!4', '!5', '!6', '!7', '!8', 'auto', ...S] as const;
+export const S = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '16', '32', '64'] as const;
+export const Margin = ['!1', '!2', '!3', '!4', '!5', '!6', '!7', '!8', '!16', '!32', '!64', 'auto', ...S] as const;
 export const MarginLeft = [
   '1/12',
   '2/12',

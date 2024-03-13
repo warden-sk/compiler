@@ -39,6 +39,7 @@ function toHelper(propertyName: string, type: readonly string[]): EnhancedCSSPro
 const alignContent = toHelper('alignContent', t.AlignContent);
 const alignItems = toHelper('alignItems', t.AlignItems);
 const alignSelf = toHelper('alignSelf', t.AlignSelf);
+const aspectRatio = toHelper('aspectRatio', t.AspectRatio);
 const cursor = toHelper('cursor', t.Cursor);
 const display = toHelper('display', t.Display);
 const flex = toHelper('flex', t.Flex);
@@ -90,6 +91,7 @@ const css: EnhancedCSSProperties[] = [
   alignContent,
   alignItems,
   alignSelf,
+  aspectRatio,
   border(),
   borderRadius(),
   container(),

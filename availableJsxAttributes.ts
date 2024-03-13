@@ -8,6 +8,7 @@ const availableJsxAttributes = {
   alignContent: t.AlignContent,
   alignItems: t.AlignItems,
   alignSelf: t.AlignSelf,
+  aspectRatio: t.AspectRatio,
   border: t.Border,
   borderBottom: t.Border,
   borderBottomRadius: t.BorderRadius,

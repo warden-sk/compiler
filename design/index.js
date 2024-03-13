@@ -57,6 +57,7 @@ function toHelper(propertyName, type) {
 const alignContent = toHelper('alignContent', t.AlignContent);
 const alignItems = toHelper('alignItems', t.AlignItems);
 const alignSelf = toHelper('alignSelf', t.AlignSelf);
+const aspectRatio = toHelper('aspectRatio', t.AspectRatio);
 const cursor = toHelper('cursor', t.Cursor);
 const display = toHelper('display', t.Display);
 const flex = toHelper('flex', t.Flex);
@@ -106,6 +107,7 @@ const css = [
     alignContent,
     alignItems,
     alignSelf,
+    aspectRatio,
     (0, border_1.default)(),
     (0, borderRadius_1.default)(),
     (0, container_1.default)(),

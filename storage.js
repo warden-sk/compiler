@@ -3,7 +3,7 @@
  * Copyright 2023 Marek Kobida
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Width = exports.WhiteSpace = exports.TextAlign = exports.MarginLeft = exports.Margin = exports.S = exports.Overflow = exports.Opacity = exports.MinHeight = exports.LineHeight = exports.JustifySelf = exports.JustifyItems = exports.JustifyContent = exports.Height = exports.GridTemplateColumns = exports.FontWeight = exports.FontSize = exports.FlexWrap = exports.FlexShrink = exports.FlexGrow = exports.FlexDirection = exports.FlexBasis = exports.Flex = exports.Display = exports.Cursor = exports.BorderRadius = exports.Border = exports.AlignSelf = exports.AlignItems = exports.AlignContent = exports.SelfPosition = exports.DisplayOutside = exports.DisplayLegacy = exports.DisplayInternal = exports.DisplayInside = exports.DisplayBox = exports.ContentPosition = exports.ContentDistribution = void 0;
+exports.Width = exports.WhiteSpace = exports.TextAlign = exports.MarginLeft = exports.Margin = exports.S = exports.Overflow = exports.Opacity = exports.MinHeight = exports.LineHeight = exports.JustifySelf = exports.JustifyItems = exports.JustifyContent = exports.Height = exports.GridTemplateColumns = exports.FontWeight = exports.FontSize = exports.FlexWrap = exports.FlexShrink = exports.FlexGrow = exports.FlexDirection = exports.FlexBasis = exports.Flex = exports.Display = exports.Cursor = exports.BorderRadius = exports.Border = exports.AspectRatio = exports.AlignSelf = exports.AlignItems = exports.AlignContent = exports.SelfPosition = exports.DisplayOutside = exports.DisplayLegacy = exports.DisplayInternal = exports.DisplayInside = exports.DisplayBox = exports.ContentPosition = exports.ContentDistribution = void 0;
 // https://drafts.csswg.org/css-align/#typedef-content-distribution
 exports.ContentDistribution = ['space-around', 'space-between', 'space-evenly', 'stretch'];
 // https://drafts.csswg.org/css-align/#typedef-content-position
@@ -29,6 +29,7 @@ exports.AlignContent = ['baseline', ...exports.ContentDistribution, ...exports.C
 exports.AlignItems = ['baseline', 'stretch', ...exports.SelfPosition];
 // https://drafts.csswg.org/css-align/#propdef-align-self
 exports.AlignSelf = ['baseline', 'stretch', ...exports.SelfPosition];
+exports.AspectRatio = ['1/1', '16/9', ...exports.SelfPosition];
 exports.Border = ['0', '1', '2'];
 exports.BorderRadius = ['0', '1', '2', '3', '50'];
 exports.Cursor = ['pointer', 'zoom-in', 'zoom-out'];
@@ -81,8 +82,8 @@ exports.Overflow = ['auto', 'hidden'];
 /**
  * Spacing
  */
-exports.S = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '16', '32'];
-exports.Margin = ['!1', '!2', '!3', '!4', '!5', '!6', '!7', '!8', 'auto', ...exports.S];
+exports.S = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '16', '32', '64'];
+exports.Margin = ['!1', '!2', '!3', '!4', '!5', '!6', '!7', '!8', '!16', '!32', '!64', 'auto', ...exports.S];
 exports.MarginLeft = [
     '1/12',
     '2/12',
