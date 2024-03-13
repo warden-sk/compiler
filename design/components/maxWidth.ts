@@ -15,7 +15,7 @@ function maxWidth(): EnhancedCSSProperties {
       ...breakpoints.reduce((css, [left, right]) => {
         return {
           ...css,
-          [$(left.replace(/\\/, ''))]: {
+          [$(left.replace(/\\/g, ''))]: {
             maxWidth: right,
           },
         };

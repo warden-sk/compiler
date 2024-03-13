@@ -16,7 +16,7 @@ function maxWidth() {
             ...forBreakpoints_1.breakpoints.reduce((css, [left, right]) => {
                 return {
                     ...css,
-                    [$(left.replace(/\\/, ''))]: {
+                    [$(left.replace(/\\/g, ''))]: {
                         maxWidth: right,
                     },
                 };
