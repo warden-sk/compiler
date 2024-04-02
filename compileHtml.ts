@@ -1,5 +1,6 @@
 /*
- * Copyright 2023 Marek Kobida
+ * Copyright 2024 Marek Kobida
+ * Last Updated: 02.04.2024
  */
 
 import fs from 'node:fs';
@@ -64,7 +65,7 @@ function compileHtml({ assets = [], outputPath, publicPath }: Options): string {
   }
 
   const html = `<!DOCTYPE html>
-<html>
+<html lang="sk">
   <head>
     ${css.join('\n    ')}
     ${head.join('\n    ')}

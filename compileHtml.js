@@ -1,6 +1,7 @@
 "use strict";
 /*
- * Copyright 2023 Marek Kobida
+ * Copyright 2024 Marek Kobida
+ * Last Updated: 02.04.2024
  */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -46,7 +47,7 @@ function compileHtml({ assets = [], outputPath, publicPath }) {
         compiledReact.options.title && head.push(`<title>${compiledReact.options.title}</title>`);
     }
     const html = `<!DOCTYPE html>
-<html>
+<html lang="sk">
   <head>
     ${css.join('\n    ')}
     ${head.join('\n    ')}
