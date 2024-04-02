@@ -2,6 +2,7 @@ type T = {
     compiled: string;
     options?: {
         description?: string;
+        icon?: string;
         title?: string;
     };
 };

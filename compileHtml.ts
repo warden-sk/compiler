@@ -56,6 +56,8 @@ function compileHtml({ assets = [], outputPath, publicPath }: Options): string {
     compiledReact.options.description &&
       head.push(`<meta content="${compiledReact.options.description}" name="description" />`);
 
+    compiledReact.options.icon && head.push(`<link href="${compiledReact.options.icon}" rel="icon" />`);
+
     compiledReact.options.title && head.push(`<title>${compiledReact.options.title}</title>`);
   }
 
