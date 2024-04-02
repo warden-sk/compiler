@@ -57,6 +57,7 @@
     "./index.ts",
     "./storage.ts",
     "./transformers/cssTransformer.ts",
-    "./transformers/jsTransformer.ts"
+    "./transformers/jsTransformer.ts",
+    "./λ.ts"
   ]
 }
