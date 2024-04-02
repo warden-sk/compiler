@@ -7,7 +7,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const getDictionary_1 = __importDefault(require("../getDictionary"));
-const isObject_1 = __importDefault(require("./isObject"));
+const isObject_1 = __importDefault(require("./validation/isObject"));
 function decodeResponsiveClassName(className, encodedResponsiveClassName) {
     const decodedResponsiveClassNames = [];
     // T

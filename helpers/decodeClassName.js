@@ -6,7 +6,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const isObject_1 = __importDefault(require("./isObject"));
+const isObject_1 = __importDefault(require("./validation/isObject"));
 function decodeClassName(...encodedClassNames) {
     const decodedClassNames = [];
     for (const encodedClassName of encodedClassNames) {
