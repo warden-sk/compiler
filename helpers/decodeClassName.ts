@@ -2,7 +2,7 @@
  * Copyright 2023 Marek Kobida
  */
 
-import isObject from './isObject';
+import isObject from './validation/isObject';
 
 export type DecodedClassName = string | undefined;
 

@@ -3,7 +3,7 @@
  */
 
 import getDictionary from '../getDictionary';
-import isObject from './isObject';
+import isObject from './validation/isObject';
 
 export type DecodedResponsiveClassName = string;
 
