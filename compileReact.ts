@@ -5,7 +5,7 @@
 import vm from 'node:vm';
 import ReactDOMServer from 'react-dom/server';
 
-type T = { compiled: string; options?: { description?: string; icon?: string; title?: string } };
+type T = { compiled: string; options?: { description?: string; icon?: string; iconType?: string; title?: string } };
 
 function compileReact(code: string): T {
   const context = { TextEncoder, URL, exports, module: { exports }, require } as const;

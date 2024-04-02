@@ -3,6 +3,7 @@ type T = {
     options?: {
         description?: string;
         icon?: string;
+        iconType?: string;
         title?: string;
     };
 };

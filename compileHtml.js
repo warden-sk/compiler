@@ -40,7 +40,9 @@ function compileHtml({ assets = [], outputPath, publicPath }) {
     if (compiledReact.options) {
         compiledReact.options.description &&
             head.push(`<meta content="${compiledReact.options.description}" name="description" />`);
-        compiledReact.options.icon && head.push(`<link href="${compiledReact.options.icon}" rel="icon" />`);
+        compiledReact.options.icon &&
+            compiledReact.options.iconType &&
+            head.push(`<link href="${compiledReact.options.icon}" rel="icon" type="${compiledReact.options.iconType}" />`);
         compiledReact.options.title && head.push(`<title>${compiledReact.options.title}</title>`);
     }
     const html = `<!DOCTYPE html>
