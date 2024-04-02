@@ -8,9 +8,9 @@
     "target": "ESNext"
   },
   "files": [
-    "./Cache.ts",
     "./allowedHtmlElements.ts",
     "./availableJsxAttributes.ts",
+    "./Cache.ts",
     "./compileCss.ts",
     "./compileHtml.ts",
     "./compileReact.ts",
@@ -42,9 +42,9 @@
     "./helpers/dictionary/index.ts",
     "./helpers/filterJsxSpreadAttributes.ts",
     "./helpers/getIPv4Addresses.ts",
-    "./helpers/isObject.ts",
     "./helpers/report.ts",
     "./helpers/sizeToReadable.ts",
+    "./helpers/validation/isObject.ts",
     "./index.ts",
     "./storage.ts",
     "./transformers/cssTransformer.ts",
