@@ -44,6 +44,7 @@ declare const availableJsxAttributes: {
     readonly maxWidth: readonly ["#", "##", "###", "####"];
     readonly minHeight: readonly ["25", "50", "75", "100"];
     readonly opacity: readonly ["0", "25", "50", "75", "100"];
+    readonly order: readonly ["first", "last"];
     readonly overflow: readonly ["auto", "hidden"];
     readonly p: readonly ["0", "1", "2", "3", "4", "5", "6", "7", "8", "16", "32", "64"];
     readonly pB: readonly ["0", "1", "2", "3", "4", "5", "6", "7", "8", "16", "32", "64"];
