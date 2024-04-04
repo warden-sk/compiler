@@ -34,6 +34,7 @@ export declare const LineHeight: readonly ["1", "2", "3", "4", "5"];
 export declare const MaxWidth: readonly ["#", "##", "###", "####"];
 export declare const MinHeight: readonly ["25", "50", "75", "100"];
 export declare const Opacity: readonly ["0", "25", "50", "75", "100"];
+export declare const Order: readonly ["first", "last"];
 export declare const Overflow: readonly ["auto", "hidden"];
 /**
  * Spacing

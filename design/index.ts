@@ -1,25 +1,27 @@
 /*
- * Copyright 2023 Marek Kobida
+ * Copyright 2024 Marek Kobida
+ * Last Updated: 04.04.2024
  */
 
+import dictionary from '../getDictionary';
 import * as t from '../storage';
 import border from './components/border';
 import borderRadius from './components/borderRadius';
 import container from './components/container';
-import dictionary from '../getDictionary';
 import flexBasis from './components/flexBasis';
 import fontSize from './components/fontSize';
-import forBreakpoints from './forBreakpoints';
 import height from './components/height';
 import lineHeight from './components/lineHeight';
 import maxWidth from './components/maxWidth';
 import minHeight from './components/minHeight';
 import opacity from './components/opacity';
+import order from './components/order';
 import overflow from './components/overflow';
 import spacing from './components/spacing';
-import toString from './toString';
-import type { EnhancedCSSProperties } from './forBreakpoints';
 import width from './components/width';
+import forBreakpoints from './forBreakpoints';
+import type { EnhancedCSSProperties } from './forBreakpoints';
+import toString from './toString';
 
 function toHelper(propertyName: string, type: readonly string[]): EnhancedCSSProperties {
   const $ = dictionary.getKey(propertyName);
@@ -114,6 +116,7 @@ const css: EnhancedCSSProperties[] = [
   maxWidth(),
   minHeight(),
   opacity(),
+  order(),
   overflow(),
   spacing(12),
   textAlign,

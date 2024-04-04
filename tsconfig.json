@@ -23,6 +23,7 @@
     "./design/components/lineHeight.ts",
     "./design/components/minHeight.ts",
     "./design/components/opacity.ts",
+    "./design/components/order.ts",
     "./design/components/overflow.ts",
     "./design/components/spacing.ts",
     "./design/components/width.ts",

@@ -1,6 +1,7 @@
 "use strict";
 /*
- * Copyright 2023 Marek Kobida
+ * Copyright 2024 Marek Kobida
+ * Last Updated: 04.04.2024
  */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -29,23 +30,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const getDictionary_1 = __importDefault(require("../getDictionary"));
 const t = __importStar(require("../storage"));
 const border_1 = __importDefault(require("./components/border"));
 const borderRadius_1 = __importDefault(require("./components/borderRadius"));
 const container_1 = __importDefault(require("./components/container"));
-const getDictionary_1 = __importDefault(require("../getDictionary"));
 const flexBasis_1 = __importDefault(require("./components/flexBasis"));
 const fontSize_1 = __importDefault(require("./components/fontSize"));
-const forBreakpoints_1 = __importDefault(require("./forBreakpoints"));
 const height_1 = __importDefault(require("./components/height"));
 const lineHeight_1 = __importDefault(require("./components/lineHeight"));
 const maxWidth_1 = __importDefault(require("./components/maxWidth"));
 const minHeight_1 = __importDefault(require("./components/minHeight"));
 const opacity_1 = __importDefault(require("./components/opacity"));
+const order_1 = __importDefault(require("./components/order"));
 const overflow_1 = __importDefault(require("./components/overflow"));
 const spacing_1 = __importDefault(require("./components/spacing"));
-const toString_1 = __importDefault(require("./toString"));
 const width_1 = __importDefault(require("./components/width"));
+const forBreakpoints_1 = __importDefault(require("./forBreakpoints"));
+const toString_1 = __importDefault(require("./toString"));
 function toHelper(propertyName, type) {
     const $ = getDictionary_1.default.getKey(propertyName);
     return (0, forBreakpoints_1.default)(([breakpointName]) => type.reduce((_, property) => ({
@@ -130,6 +132,7 @@ const css = [
     (0, maxWidth_1.default)(),
     (0, minHeight_1.default)(),
     (0, opacity_1.default)(),
+    (0, order_1.default)(),
     (0, overflow_1.default)(),
     (0, spacing_1.default)(12),
     textAlign,
