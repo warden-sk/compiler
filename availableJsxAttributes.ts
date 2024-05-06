@@ -1,6 +1,6 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 04.04.2024
+ * Last Updated: 06.05.2024
  */
 
 import * as t from './storage';
@@ -50,6 +50,7 @@ const availableJsxAttributes = {
   mY: t.Margin,
   maxWidth: t.MaxWidth,
   minHeight: t.MinHeight,
+  minWidth: t.MinWidth,
   opacity: t.Opacity,
   order: t.Order,
   overflow: t.Overflow,

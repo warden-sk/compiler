@@ -1,7 +1,7 @@
 "use strict";
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 04.04.2024
+ * Last Updated: 06.05.2024
  */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -41,6 +41,7 @@ const height_1 = __importDefault(require("./components/height"));
 const lineHeight_1 = __importDefault(require("./components/lineHeight"));
 const maxWidth_1 = __importDefault(require("./components/maxWidth"));
 const minHeight_1 = __importDefault(require("./components/minHeight"));
+const minWidth_1 = __importDefault(require("./components/minWidth"));
 const opacity_1 = __importDefault(require("./components/opacity"));
 const order_1 = __importDefault(require("./components/order"));
 const overflow_1 = __importDefault(require("./components/overflow"));
@@ -131,6 +132,7 @@ const css = [
     (0, lineHeight_1.default)(),
     (0, maxWidth_1.default)(),
     (0, minHeight_1.default)(),
+    (0, minWidth_1.default)(12),
     (0, opacity_1.default)(),
     (0, order_1.default)(),
     (0, overflow_1.default)(),

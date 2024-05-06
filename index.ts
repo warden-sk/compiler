@@ -1,5 +1,6 @@
 /*
- * Copyright 2023 Marek Kobida
+ * Copyright 2024 Marek Kobida
+ * Last Updated: 10.04.2024
  */
 
 import fs from 'node:fs';
@@ -11,8 +12,10 @@ import compileHtml from './compileHtml';
 import getIPv4Addresses from './helpers/getIPv4Addresses';
 import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
+import isObject from './helpers/validation/isObject';
 import cssTransformer from './transformers/cssTransformer';
 import jsTransformer from './transformers/jsTransformer';
+import * as λ from './λ';
 
 const compilerOptions: ts.CompilerOptions = {
   allowSyntheticDefaultImports: true,
@@ -33,7 +36,8 @@ type Options = {
   useTransformers?: boolean;
 };
 
-let isFirstCompilation = true;
+let isFirstCompilation = true,
+  projects = new Map<string, number>();
 
 function compile(filePath: string, options: Options): string {
   const startDate: number = +new Date();
@@ -43,29 +47,32 @@ function compile(filePath: string, options: Options): string {
     outputPath: path.resolve(options.outputPath ?? './public'),
   };
 
+  projects.set(updatedOptions.outputPath, +new Date());
+
   if (isFirstCompilation) {
     if (updatedOptions.useServer) {
-      // Content-Type
+      // dokončiť – Content-Type
       const server = http.createServer((request, response) => {
-        const url = new URL(request.url!, 'file:');
+        // const url = new URL(request.url!, 'file:');
 
-        report('IN', '\x1b[34m[SERVER]\x1b[0m', url.pathname);
+        // report('IN', '\x1b[34m[SERVER]\x1b[0m', url.pathname);
 
-        try {
-          const file = fs.readFileSync(path.resolve(updatedOptions.outputPath, `.${url.pathname}`));
+        response.setHeader('Access-Control-Allow-Origin', '*');
+        response.setHeader('Content-Type', 'application/json; charset=utf-8');
 
-          return response.end(file);
-        } catch (error) {
-          const file = fs.readFileSync(path.resolve(updatedOptions.outputPath, './index.html'));
-
-          return response.end(file);
-        }
+        response.end(λ.encodeJSON([...projects]));
       });
 
-      server.listen(80, () => {
-        const IPv4Addresses = getIPv4Addresses();
+      server.listen('8080', () => {
+        const IPv4Addresses = getIPv4Addresses(),
+          address = server.address(),
+          port = isObject(address) ? address.port : address;
 
-        report(undefined, '\x1b[34m[SERVER]\x1b[0m', IPv4Addresses.map(address => `http://${address}`).join(', '));
+        report(
+          undefined,
+          '\x1b[34m[SERVER]\x1b[0m',
+          IPv4Addresses.map(address => `https://${address}:${port}`).join(', '),
+        );
       });
 
       isFirstCompilation = false;

@@ -43,6 +43,7 @@ declare const availableJsxAttributes: {
     readonly mY: readonly ["!1", "!2", "!3", "!4", "!5", "!6", "!7", "!8", "!16", "!32", "!64", "auto", "0", "1", "2", "3", "4", "5", "6", "7", "8", "16", "32", "64"];
     readonly maxWidth: readonly ["#", "##", "###", "####"];
     readonly minHeight: readonly ["25", "50", "75", "100"];
+    readonly minWidth: readonly ["0", "1/12", "2/12", "3/12", "4/12", "5/12", "6/12", "7/12", "8/12", "9/12", "10/12", "11/12", "100", "auto"];
     readonly opacity: readonly ["0", "25", "50", "75", "100"];
     readonly order: readonly ["first", "last"];
     readonly overflow: readonly ["auto", "hidden"];

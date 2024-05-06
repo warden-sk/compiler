@@ -1,7 +1,7 @@
 "use strict";
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 04.04.2024
+ * Last Updated: 06.05.2024
  */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -73,6 +73,7 @@ const availableJsxAttributes = {
     mY: t.Margin,
     maxWidth: t.MaxWidth,
     minHeight: t.MinHeight,
+    minWidth: t.MinWidth,
     opacity: t.Opacity,
     order: t.Order,
     overflow: t.Overflow,

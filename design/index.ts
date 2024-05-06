@@ -1,6 +1,6 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 04.04.2024
+ * Last Updated: 06.05.2024
  */
 
 import dictionary from '../getDictionary';
@@ -14,6 +14,7 @@ import height from './components/height';
 import lineHeight from './components/lineHeight';
 import maxWidth from './components/maxWidth';
 import minHeight from './components/minHeight';
+import minWidth from './components/minWidth';
 import opacity from './components/opacity';
 import order from './components/order';
 import overflow from './components/overflow';
@@ -115,6 +116,7 @@ const css: EnhancedCSSProperties[] = [
   lineHeight(),
   maxWidth(),
   minHeight(),
+  minWidth(12),
   opacity(),
   order(),
   overflow(),

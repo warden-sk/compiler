@@ -1,6 +1,6 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 04.04.2024
+ * Last Updated: 06.05.2024
  */
 
 // https://drafts.csswg.org/css-align/#typedef-content-distribution
@@ -77,6 +77,7 @@ export const JustifySelf = ['baseline', 'stretch', ...SelfPosition] as const;
 export const LineHeight = ['1', '2', '3', '4', '5'] as const;
 export const MaxWidth = ['#', '##', '###', '####'] as const;
 export const MinHeight = ['25', '50', '75', '100'] as const;
+export const MinWidth = FlexBasis;
 export const Opacity = ['0', '25', '50', '75', '100'] as const;
 export const Order = ['first', 'last'] as const;
 export const Overflow = ['auto', 'hidden'] as const;
