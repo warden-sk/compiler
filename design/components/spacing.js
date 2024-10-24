@@ -1,6 +1,7 @@
 "use strict";
 /*
- * Copyright 2023 Marek Kobida
+ * Copyright 2024 Marek Kobida
+ * Last Updated: 24.10.2024
  */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -87,12 +88,10 @@ function spacing(columns) {
                 },
             }), {}),
             // .m-!1
-            ...sizes.reduce((_, [left, right]) => right === '0'
-                ? _
-                : {
-                    ..._,
-                    ...css(breakpointName, `!${left}`, 'margin', `-${right}`),
-                }, {}),
+            ...sizes.reduce((_, [left, right]) => right === '0' ? _ : ({
+                ..._,
+                ...css(breakpointName, `!${left}`, 'margin', `-${right}`),
+            }), {}),
             // .m-0
             ...sizes.reduce((_, [left, right]) => ({
                 ..._,

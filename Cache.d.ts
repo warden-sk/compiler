@@ -1,4 +1,3 @@
-/// <reference types="node" />
 declare class Cache {
     storage: Record<string, [Buffer, Date]>;
     get(l: string): [Buffer, Date];

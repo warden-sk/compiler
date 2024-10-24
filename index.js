@@ -1,7 +1,7 @@
 "use strict";
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 10.04.2024
+ * Last Updated: 24.10.2024
  */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -85,7 +85,11 @@ function compile(filePath, options) {
             updatedOptions.cache?.set(fileName, [Buffer.from(compiled), new Date()]);
         };
         const program = typescript_1.default.createProgram([filePath], compilerOptions, compilerHost);
-        const emitResult = program.emit(undefined, undefined, undefined, undefined, updatedOptions.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined);
+        const emitResult = program.emit(undefined, undefined, undefined, undefined, updatedOptions.useTransformers ?
+            /compiler\//.test(filePath) ?
+                undefined
+                : transformers
+            : undefined);
         const diagnostics = typescript_1.default.getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
         const endDate = +new Date();
         if (diagnostics.length > 0) {
@@ -104,7 +108,11 @@ function compile(filePath, options) {
     const { outputText: compiled } = typescript_1.default.transpileModule(node_fs_1.default.readFileSync(filePath).toString(), {
         compilerOptions,
         fileName: filePath,
-        transformers: updatedOptions.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined,
+        transformers: updatedOptions.useTransformers ?
+            /compiler\//.test(filePath) ?
+                undefined
+                : transformers
+            : undefined,
     });
     updatedOptions.cache?.set(filePath, [Buffer.from(compiled), new Date()]);
     const endDate = +new Date();

@@ -1,6 +1,7 @@
 "use strict";
 /*
- * Copyright 2023 Marek Kobida
+ * Copyright 2024 Marek Kobida
+ * Last Updated: 24.10.2024
  */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -70,8 +71,8 @@ const jsTransformer = () => {
                         if (className.length) {
                             attributes.push(f.createJsxAttribute(f.createIdentifier('className'), f.createJsxExpression(undefined, f.createCallExpression(decodeClassName, undefined, className))));
                         }
-                        const updatedNode = typescript_1.default.isJsxOpeningElement(node)
-                            ? f.updateJsxOpeningElement(node, node.tagName, node.typeArguments, f.updateJsxAttributes(node.attributes, attributes))
+                        const updatedNode = typescript_1.default.isJsxOpeningElement(node) ?
+                            f.updateJsxOpeningElement(node, node.tagName, node.typeArguments, f.updateJsxAttributes(node.attributes, attributes))
                             : f.updateJsxSelfClosingElement(node, node.tagName, node.typeArguments, f.updateJsxAttributes(node.attributes, attributes));
                         return typescript_1.default.visitEachChild(updatedNode, visitor, context);
                     }
