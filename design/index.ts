@@ -1,6 +1,6 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 06.05.2024
+ * Last Updated: 24.10.2024
  */
 
 import dictionary from '../getDictionary';
@@ -69,9 +69,6 @@ const root: EnhancedCSSProperties = {
   a: {
     color: 'inherit',
     textDecoration: 'none',
-  },
-  'a:hover': {
-    // textDecoration: 'underline',
   },
   body: {
     fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif",
