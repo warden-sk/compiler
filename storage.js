@@ -1,10 +1,10 @@
 "use strict";
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 06.05.2024
+ * Last Updated: 24.10.2024
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Width = exports.WhiteSpace = exports.TextAlign = exports.MarginLeft = exports.Margin = exports.S = exports.Overflow = exports.Order = exports.Opacity = exports.MinWidth = exports.MinHeight = exports.MaxWidth = exports.LineHeight = exports.JustifySelf = exports.JustifyItems = exports.JustifyContent = exports.Height = exports.GridTemplateColumns = exports.FontWeight = exports.FontSize = exports.FlexWrap = exports.FlexShrink = exports.FlexGrow = exports.FlexDirection = exports.FlexBasis = exports.Flex = exports.Display = exports.Cursor = exports.BorderRadius = exports.Border = exports.AspectRatio = exports.AlignSelf = exports.AlignItems = exports.AlignContent = exports.SelfPosition = exports.DisplayOutside = exports.DisplayLegacy = exports.DisplayInternal = exports.DisplayInside = exports.DisplayBox = exports.ContentPosition = exports.ContentDistribution = void 0;
+exports.Width = exports.WhiteSpace = exports.Top = exports.TextAlign = exports.Right = exports.MarginLeft = exports.Margin = exports.Left = exports.Bottom = exports.S = exports.Position = exports.Overflow = exports.Order = exports.Opacity = exports.MinWidth = exports.MinHeight = exports.MaxWidth = exports.LineHeight = exports.JustifySelf = exports.JustifyItems = exports.JustifyContent = exports.Height = exports.GridTemplateColumns = exports.FontWeight = exports.FontSize = exports.FlexWrap = exports.FlexShrink = exports.FlexGrow = exports.FlexDirection = exports.FlexBasis = exports.Flex = exports.Display = exports.Cursor = exports.BorderRadius = exports.Border = exports.AspectRatio = exports.AlignSelf = exports.AlignItems = exports.AlignContent = exports.SelfPosition = exports.DisplayOutside = exports.DisplayLegacy = exports.DisplayInternal = exports.DisplayInside = exports.DisplayBox = exports.ContentPosition = exports.ContentDistribution = void 0;
 // https://drafts.csswg.org/css-align/#typedef-content-distribution
 exports.ContentDistribution = ['space-around', 'space-between', 'space-evenly', 'stretch'];
 // https://drafts.csswg.org/css-align/#typedef-content-position
@@ -83,10 +83,13 @@ exports.MinWidth = exports.FlexBasis;
 exports.Opacity = ['0', '25', '50', '75', '100'];
 exports.Order = ['first', 'last'];
 exports.Overflow = ['auto', 'hidden'];
+exports.Position = ['absolute', 'fixed', 'relative', 'static', 'sticky'];
 /**
  * Spacing
  */
 exports.S = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '16', '32', '64'];
+exports.Bottom = ['0', '50', '100'];
+exports.Left = ['0', '50', '100'];
 exports.Margin = ['!1', '!2', '!3', '!4', '!5', '!6', '!7', '!8', '!16', '!32', '!64', 'auto', ...exports.S];
 exports.MarginLeft = [
     '1/12',
@@ -102,6 +105,8 @@ exports.MarginLeft = [
     '11/12',
     ...exports.Margin,
 ];
+exports.Right = ['0', '50', '100'];
 exports.TextAlign = ['center', 'end', 'justify', 'left', 'right', 'start'];
+exports.Top = ['0', '50', '100'];
 exports.WhiteSpace = ['normal', 'nowrap', 'pre', 'pre-line', 'pre-wrap'];
 exports.Width = exports.FlexBasis;

@@ -1,7 +1,7 @@
 "use strict";
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 06.05.2024
+ * Last Updated: 24.10.2024
  */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -45,6 +45,7 @@ const availableJsxAttributes = {
     borderTopRadius: t.BorderRadius,
     borderX: t.Border,
     borderY: t.Border,
+    bottom: t.Bottom,
     cursor: t.Cursor,
     display: t.Display,
     flex: t.Flex,
@@ -63,6 +64,7 @@ const availableJsxAttributes = {
     justifyContent: t.JustifyContent,
     justifyItems: t.JustifyItems,
     justifySelf: t.JustifySelf,
+    left: t.Left,
     lineHeight: t.LineHeight,
     m: t.Margin,
     mB: t.Margin,
@@ -84,9 +86,12 @@ const availableJsxAttributes = {
     pT: t.S,
     pX: t.S,
     pY: t.S,
+    position: t.Position,
+    right: t.Right,
     spaceX: t.S,
     spaceY: t.S,
     textAlign: t.TextAlign,
+    top: t.Top,
     whiteSpace: t.WhiteSpace,
     width: t.Width,
 };

@@ -1,7 +1,7 @@
 "use strict";
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 06.05.2024
+ * Last Updated: 24.10.2024
  */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -45,6 +45,7 @@ const minWidth_1 = __importDefault(require("./components/minWidth"));
 const opacity_1 = __importDefault(require("./components/opacity"));
 const order_1 = __importDefault(require("./components/order"));
 const overflow_1 = __importDefault(require("./components/overflow"));
+const position_1 = __importDefault(require("./components/position"));
 const spacing_1 = __importDefault(require("./components/spacing"));
 const width_1 = __importDefault(require("./components/width"));
 const forBreakpoints_1 = __importDefault(require("./forBreakpoints"));
@@ -86,9 +87,6 @@ const root = {
     a: {
         color: 'inherit',
         textDecoration: 'none',
-    },
-    'a:hover': {
-    // textDecoration: 'underline',
     },
     body: {
         fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif",
@@ -136,6 +134,7 @@ const css = [
     (0, opacity_1.default)(),
     (0, order_1.default)(),
     (0, overflow_1.default)(),
+    (0, position_1.default)(),
     (0, spacing_1.default)(12),
     textAlign,
     whiteSpace,

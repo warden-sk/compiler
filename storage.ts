@@ -1,6 +1,6 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 06.05.2024
+ * Last Updated: 24.10.2024
  */
 
 // https://drafts.csswg.org/css-align/#typedef-content-distribution
@@ -81,10 +81,14 @@ export const MinWidth = FlexBasis;
 export const Opacity = ['0', '25', '50', '75', '100'] as const;
 export const Order = ['first', 'last'] as const;
 export const Overflow = ['auto', 'hidden'] as const;
+export const Position = ['absolute', 'fixed', 'relative', 'static', 'sticky'] as const;
 /**
  * Spacing
  */
 export const S = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '16', '32', '64'] as const;
+
+export const Bottom = ['0', '50', '100'] as const;
+export const Left = ['0', '50', '100'] as const;
 export const Margin = ['!1', '!2', '!3', '!4', '!5', '!6', '!7', '!8', '!16', '!32', '!64', 'auto', ...S] as const;
 export const MarginLeft = [
   '1/12',
@@ -100,6 +104,8 @@ export const MarginLeft = [
   '11/12',
   ...Margin,
 ] as const;
+export const Right = ['0', '50', '100'] as const;
 export const TextAlign = ['center', 'end', 'justify', 'left', 'right', 'start'] as const;
+export const Top = ['0', '50', '100'] as const;
 export const WhiteSpace = ['normal', 'nowrap', 'pre', 'pre-line', 'pre-wrap'] as const;
 export const Width = FlexBasis;

@@ -18,6 +18,7 @@ import minWidth from './components/minWidth';
 import opacity from './components/opacity';
 import order from './components/order';
 import overflow from './components/overflow';
+import position from './components/position';
 import spacing from './components/spacing';
 import width from './components/width';
 import type { EnhancedCSSProperties } from './forBreakpoints';
@@ -117,6 +118,7 @@ const css: EnhancedCSSProperties[] = [
   opacity(),
   order(),
   overflow(),
+  position(),
   spacing(12),
   textAlign,
   whiteSpace,
