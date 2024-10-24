@@ -1,6 +1,6 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 10.04.2024
+ * Last Updated: 24.10.2024
  */
 
 import fs from 'node:fs';
@@ -100,7 +100,11 @@ function compile(filePath: string, options: Options): string {
       undefined,
       undefined,
       undefined,
-      updatedOptions.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined,
+      updatedOptions.useTransformers ?
+        /compiler\//.test(filePath) ?
+          undefined
+        : transformers
+      : undefined,
     );
 
     const diagnostics: ts.Diagnostic[] = ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics);
@@ -137,7 +141,12 @@ function compile(filePath: string, options: Options): string {
   const { outputText: compiled } = ts.transpileModule(fs.readFileSync(filePath).toString(), {
     compilerOptions,
     fileName: filePath,
-    transformers: updatedOptions.useTransformers ? (/compiler\//.test(filePath) ? undefined : transformers) : undefined,
+    transformers:
+      updatedOptions.useTransformers ?
+        /compiler\//.test(filePath) ?
+          undefined
+        : transformers
+      : undefined,
   });
 
   updatedOptions.cache?.set(filePath, [Buffer.from(compiled), new Date()]);

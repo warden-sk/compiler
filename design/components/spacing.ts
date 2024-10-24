@@ -1,5 +1,6 @@
 /*
- * Copyright 2023 Marek Kobida
+ * Copyright 2024 Marek Kobida
+ * Last Updated: 24.10.2024
  */
 
 import dictionary from '../../getDictionary';
@@ -104,12 +105,12 @@ function spacing(columns: number): EnhancedCSSProperties {
       // .m-!1
       ...sizes.reduce(
         (_, [left, right]) =>
-          right === '0'
-            ? _
-            : {
-                ..._,
-                ...css(breakpointName, `!${left}`, 'margin', `-${right}`),
-              },
+          right === '0' ? _ : (
+            {
+              ..._,
+              ...css(breakpointName, `!${left}`, 'margin', `-${right}`),
+            }
+          ),
         {},
       ),
       // .m-0

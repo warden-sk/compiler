@@ -20,8 +20,8 @@ import order from './components/order';
 import overflow from './components/overflow';
 import spacing from './components/spacing';
 import width from './components/width';
-import forBreakpoints from './forBreakpoints';
 import type { EnhancedCSSProperties } from './forBreakpoints';
+import forBreakpoints from './forBreakpoints';
 import toString from './toString';
 
 function toHelper(propertyName: string, type: readonly string[]): EnhancedCSSProperties {
