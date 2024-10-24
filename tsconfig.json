@@ -8,9 +8,9 @@
     "target": "ESNext"
   },
   "files": [
+    "./Cache.ts",
     "./allowedHtmlElements.ts",
     "./availableJsxAttributes.ts",
-    "./Cache.ts",
     "./compileCss.ts",
     "./compileHtml.ts",
     "./compileReact.ts",
