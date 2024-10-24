@@ -4,18 +4,14 @@
  */
 
 import fs from 'node:fs';
-import http from 'node:http';
 import path from 'node:path';
 import ts from 'typescript';
 import type Cache from './Cache';
 import compileHtml from './compileHtml';
-import getIPv4Addresses from './helpers/getIPv4Addresses';
 import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
-import isObject from './helpers/validation/isObject';
 import cssTransformer from './transformers/cssTransformer';
 import jsTransformer from './transformers/jsTransformer';
-import * as λ from './λ';
 
 const compilerOptions: ts.CompilerOptions = {
   allowSyntheticDefaultImports: true,
@@ -32,12 +28,10 @@ type Options = {
   outputPath?: string;
   publicPath?: string;
   reportErrors?: boolean;
-  useServer?: boolean;
   useTransformers?: boolean;
 };
 
-let isFirstCompilation = true,
-  projects = new Map<string, number>();
+const projects = new Map<string, number>();
 
 function compile(filePath: string, options: Options): string {
   const startDate: number = +new Date();
@@ -48,36 +42,6 @@ function compile(filePath: string, options: Options): string {
   };
 
   projects.set(updatedOptions.outputPath, +new Date());
-
-  if (isFirstCompilation) {
-    if (updatedOptions.useServer) {
-      // dokončiť – Content-Type
-      const server = http.createServer((request, response) => {
-        // const url = new URL(request.url!, 'file:');
-
-        // report('IN', '\x1b[34m[SERVER]\x1b[0m', url.pathname);
-
-        response.setHeader('Access-Control-Allow-Origin', '*');
-        response.setHeader('Content-Type', 'application/json; charset=utf-8');
-
-        response.end(λ.encodeJSON([...projects]));
-      });
-
-      server.listen('8080', () => {
-        const IPv4Addresses = getIPv4Addresses(),
-          address = server.address(),
-          port = isObject(address) ? address.port : address;
-
-        report(
-          undefined,
-          '\x1b[34m[SERVER]\x1b[0m',
-          IPv4Addresses.map(address => `https://${address}:${port}`).join(', '),
-        );
-      });
-
-      isFirstCompilation = false;
-    }
-  }
 
   compileHtml(updatedOptions);
 
