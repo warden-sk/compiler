@@ -140,6 +140,7 @@ declare const allowedHtmlElements: {
     readonly search: "";
     readonly section: "";
     readonly select: "";
+    readonly set: "";
     readonly slot: "";
     readonly small: "";
     readonly source: "";

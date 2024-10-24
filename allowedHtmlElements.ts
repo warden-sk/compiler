@@ -1,5 +1,6 @@
 /*
- * Copyright 2023 Marek Kobida
+ * Copyright 2024 Marek Kobida
+ * Last Updated: 24.10.2024
  */
 
 const allowedHtmlElements = {
@@ -144,6 +145,7 @@ const allowedHtmlElements = {
   search: '',
   section: '',
   select: '',
+  set: '',
   slot: '',
   small: '',
   source: '',
