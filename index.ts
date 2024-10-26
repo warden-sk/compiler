@@ -28,6 +28,7 @@ type Options = {
   outputPath?: string;
   publicPath?: string;
   reportErrors?: boolean;
+  useHtml?: boolean;
   useTransformers?: boolean;
 };
 
@@ -43,7 +44,7 @@ function compile(filePath: string, options: Options): string {
 
   projects.set(updatedOptions.outputPath, +new Date());
 
-  compileHtml(updatedOptions);
+  updatedOptions.useHtml && compileHtml(updatedOptions);
 
   const transformers: ts.CustomTransformers = { before: [cssTransformer(updatedOptions), jsTransformer()] };
 
