@@ -1,6 +1,6 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 02.04.2024
+ * Last Updated: 26.10.2024
  */
 
 import fs from 'node:fs';
@@ -69,7 +69,7 @@ function compileHtml({ assets = [], outputPath, publicPath }: Options): string {
   <head>
     ${css.join('\n    ')}
     ${head.join('\n    ')}
-    <script>window.updatedAt=${+new Date()};</script>
+    <script>window.compiledAt=${+new Date()};</script>
   </head>
   <body>
     ${compiledReact.compiled}
