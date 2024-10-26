@@ -1,11 +1,12 @@
 /*
- * Copyright 2023 Marek Kobida
+ * Copyright 2024 Marek Kobida
+ * Last Updated: 26.10.2024
  */
 
 class Cache {
   storage: Record<string, [Buffer, Date]> = {};
 
-  get(l: string): [Buffer, Date] {
+  get(l: string): [Buffer, Date] | undefined {
     return this.storage[l];
   }
 

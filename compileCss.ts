@@ -1,5 +1,6 @@
 /*
- * Copyright 2023 Marek Kobida
+ * Copyright 2024 Marek Kobida
+ * Last Updated: 26.10.2024
  */
 
 import fs from 'node:fs';
@@ -45,7 +46,7 @@ function compileCss(options: Options) {
       path.resolve(options.outputPath, './index.css'),
       Object.keys(options.cache.storage)
         .filter(l => /\.css/.test(l))
-        .reduce((l, r) => l + options.cache!.storage[r][0], ''),
+        .reduce((l, r) => l + options.cache!.storage[r]![0], ''),
     );
   }
 }
