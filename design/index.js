@@ -30,7 +30,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const getDictionary_1 = __importDefault(require("../getDictionary"));
+const dictionary_1 = __importDefault(require("../dictionary"));
 const t = __importStar(require("../storage"));
 const border_1 = __importDefault(require("./components/border"));
 const borderRadius_1 = __importDefault(require("./components/borderRadius"));
@@ -51,10 +51,10 @@ const width_1 = __importDefault(require("./components/width"));
 const forBreakpoints_1 = __importDefault(require("./forBreakpoints"));
 const toString_1 = __importDefault(require("./toString"));
 function toHelper(propertyName, type) {
-    const $ = getDictionary_1.default.getKey(propertyName);
+    const $ = dictionary_1.default.getKey(propertyName);
     return (0, forBreakpoints_1.default)(([breakpointName]) => type.reduce((_, property) => ({
         ..._,
-        [`.${breakpointName}${$}${getDictionary_1.default.getKey(property)}`]: {
+        [`.${breakpointName}${$}${dictionary_1.default.getKey(property)}`]: {
             [propertyName]: property,
         },
     }), {}));

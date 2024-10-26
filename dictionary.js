@@ -1,7 +1,7 @@
 "use strict";
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 03.04.2024
+ * Last Updated: 24.10.2024
  */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -33,8 +33,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const availableJsxAttributes_1 = __importDefault(require("./availableJsxAttributes"));
 const dictionary_1 = __importDefault(require("./helpers/dictionary"));
 const λ = __importStar(require("./\u03BB"));
-const getDictionary = new dictionary_1.default([
-    ...λ.keys(availableJsxAttributes_1.default).reduce(($, key) => [...$, key], []),
-    ...λ.keys(availableJsxAttributes_1.default).reduce(($, key) => [...$, ...availableJsxAttributes_1.default[key]], []),
-]);
-exports.default = getDictionary;
+const dictionary = new dictionary_1.default(λ.keys(availableJsxAttributes_1.default).reduce(($, key) => [...$, key, ...availableJsxAttributes_1.default[key]], []));
+exports.default = dictionary;

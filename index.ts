@@ -1,6 +1,6 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 24.10.2024
+ * Last Updated: 26.10.2024
  */
 
 import fs from 'node:fs';

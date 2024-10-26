@@ -1,9 +1,9 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 04.04.2024
+ * Last Updated: 24.10.2024
  */
 
-import dictionary from '../../getDictionary';
+import dictionary from '../../dictionary';
 import type { EnhancedCSSProperties } from '../forBreakpoints';
 import forBreakpoints from '../forBreakpoints';
 

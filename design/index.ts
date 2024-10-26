@@ -3,7 +3,7 @@
  * Last Updated: 24.10.2024
  */
 
-import dictionary from '../getDictionary';
+import dictionary from '../dictionary';
 import * as t from '../storage';
 import border from './components/border';
 import borderRadius from './components/borderRadius';

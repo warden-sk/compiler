@@ -1,12 +1,13 @@
 "use strict";
 /*
- * Copyright 2023 Marek Kobida
+ * Copyright 2024 Marek Kobida
+ * Last Updated: 24.10.2024
  */
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const getDictionary_1 = __importDefault(require("../../getDictionary"));
+const dictionary_1 = __importDefault(require("../../dictionary"));
 const forBreakpoints_1 = __importDefault(require("../forBreakpoints"));
 const fontSizes = [
     ['1', '0.75rem'], //  12px
@@ -23,10 +24,10 @@ const fontSizes = [
     ['12', '3rem'], //    48px
 ];
 function fontSize() {
-    const $ = getDictionary_1.default.getKey('fontSize');
+    const $ = dictionary_1.default.getKey('fontSize');
     return (0, forBreakpoints_1.default)(([breakpointName]) => fontSizes.reduce((css, [left, right]) => ({
         ...css,
-        [`.${breakpointName}${$}${getDictionary_1.default.getKey(left)}`]: {
+        [`.${breakpointName}${$}${dictionary_1.default.getKey(left)}`]: {
             fontSize: right,
         },
     }), {}));

@@ -1,9 +1,10 @@
 /*
- * Copyright 2023 Marek Kobida
+ * Copyright 2024 Marek Kobida
+ * Last Updated: 24.10.2024
  */
 
 import availableJsxAttributes from '../availableJsxAttributes';
-import getDictionary from '../getDictionary';
+import dictionary from '../dictionary';
 import type { EncodedClassName } from './decodeClassName';
 import decodeResponsiveClassName from './decodeResponsiveClassName';
 
@@ -16,7 +17,7 @@ function decodeJsxSpreadAttributes(attributes: Record<string, any>): EncodedClas
     }
 
     if (key in availableJsxAttributes) {
-      return [...$, decodeResponsiveClassName(getDictionary.getKey(key), attribute)];
+      return [...$, decodeResponsiveClassName(dictionary.getKey(key), attribute)];
     }
 
     return $;

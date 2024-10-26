@@ -3,7 +3,7 @@
  * Last Updated: 24.10.2024
  */
 
-import dictionary from '../../getDictionary';
+import dictionary from '../../dictionary';
 import createArrayOf from '../createArrayOf';
 import type { EnhancedCSSProperties } from '../forBreakpoints';
 import forBreakpoints from '../forBreakpoints';

@@ -7,7 +7,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const getDictionary_1 = __importDefault(require("../../getDictionary"));
+const dictionary_1 = __importDefault(require("../../dictionary"));
 const createArrayOf_1 = __importDefault(require("../createArrayOf"));
 const forBreakpoints_1 = __importDefault(require("../forBreakpoints"));
 const percentage_1 = __importDefault(require("../percentage"));
@@ -26,31 +26,31 @@ const sizes = [
     ['64', '16rem'], //  256px
 ];
 function css(breakpointName, left, property, right) {
-    const $ = getDictionary_1.default.getKey(property[0]);
-    const b = getDictionary_1.default.getKey(`${property[0]}B`);
-    const l = getDictionary_1.default.getKey(`${property[0]}L`);
-    const r = getDictionary_1.default.getKey(`${property[0]}R`);
-    const t = getDictionary_1.default.getKey(`${property[0]}T`);
-    const x = getDictionary_1.default.getKey(`${property[0]}X`);
-    const y = getDictionary_1.default.getKey(`${property[0]}Y`);
+    const $ = dictionary_1.default.getKey(property[0]);
+    const b = dictionary_1.default.getKey(`${property[0]}B`);
+    const l = dictionary_1.default.getKey(`${property[0]}L`);
+    const r = dictionary_1.default.getKey(`${property[0]}R`);
+    const t = dictionary_1.default.getKey(`${property[0]}T`);
+    const x = dictionary_1.default.getKey(`${property[0]}X`);
+    const y = dictionary_1.default.getKey(`${property[0]}Y`);
     return {
-        [`.${breakpointName}${$}${getDictionary_1.default.getKey(left)}`]: {
+        [`.${breakpointName}${$}${dictionary_1.default.getKey(left)}`]: {
             [property]: right,
         },
         // "b", "y"
-        [`.${breakpointName}${b}${getDictionary_1.default.getKey(left)},.${breakpointName}${y}${getDictionary_1.default.getKey(left)}`]: {
+        [`.${breakpointName}${b}${dictionary_1.default.getKey(left)},.${breakpointName}${y}${dictionary_1.default.getKey(left)}`]: {
             [`${property}Bottom`]: right,
         },
         // "l", "x"
-        [`.${breakpointName}${l}${getDictionary_1.default.getKey(left)},.${breakpointName}${x}${getDictionary_1.default.getKey(left)}`]: {
+        [`.${breakpointName}${l}${dictionary_1.default.getKey(left)},.${breakpointName}${x}${dictionary_1.default.getKey(left)}`]: {
             [`${property}Left`]: right,
         },
         // "r", "x"
-        [`.${breakpointName}${r}${getDictionary_1.default.getKey(left)},.${breakpointName}${x}${getDictionary_1.default.getKey(left)}`]: {
+        [`.${breakpointName}${r}${dictionary_1.default.getKey(left)},.${breakpointName}${x}${dictionary_1.default.getKey(left)}`]: {
             [`${property}Right`]: right,
         },
         // "t", "y"
-        [`.${breakpointName}${t}${getDictionary_1.default.getKey(left)},.${breakpointName}${y}${getDictionary_1.default.getKey(left)}`]: {
+        [`.${breakpointName}${t}${dictionary_1.default.getKey(left)},.${breakpointName}${y}${dictionary_1.default.getKey(left)}`]: {
             [`${property}Top`]: right,
         },
     };
@@ -60,30 +60,30 @@ function spacing(columns) {
         return {
             ...['1', '2', '3', '4'].reduce((_, left) => ({
                 ..._,
-                [`.${breakpointName}${getDictionary_1.default.getKey('gridTemplateColumns')}${getDictionary_1.default.getKey(left)}`]: {
+                [`.${breakpointName}${dictionary_1.default.getKey('gridTemplateColumns')}${dictionary_1.default.getKey(left)}`]: {
                     gridTemplateColumns: `repeat(${left}, minmax(0, 1fr))`,
                 },
             }), {}),
             // .gap-0
             ...sizes.reduce((_, [left, right]) => ({
                 ..._,
-                [`.${breakpointName}${getDictionary_1.default.getKey('gap')}${getDictionary_1.default.getKey(left)}`]: {
+                [`.${breakpointName}${dictionary_1.default.getKey('gap')}${dictionary_1.default.getKey(left)}`]: {
                     gap: right,
                 },
-                [`.${breakpointName}${getDictionary_1.default.getKey('gapX')}${getDictionary_1.default.getKey(left)}`]: {
+                [`.${breakpointName}${dictionary_1.default.getKey('gapX')}${dictionary_1.default.getKey(left)}`]: {
                     columnGap: right,
                 },
-                [`.${breakpointName}${getDictionary_1.default.getKey('gapY')}${getDictionary_1.default.getKey(left)}`]: {
+                [`.${breakpointName}${dictionary_1.default.getKey('gapY')}${dictionary_1.default.getKey(left)}`]: {
                     rowGap: right,
                 },
             }), {}),
             // .space-x-0
             ...sizes.reduce((_, [left, right]) => ({
                 ..._,
-                [`.${breakpointName}${getDictionary_1.default.getKey('spaceX')}${getDictionary_1.default.getKey(left)} > * + *`]: {
+                [`.${breakpointName}${dictionary_1.default.getKey('spaceX')}${dictionary_1.default.getKey(left)} > * + *`]: {
                     marginLeft: right,
                 },
-                [`.${breakpointName}${getDictionary_1.default.getKey('spaceY')}${getDictionary_1.default.getKey(left)} > * + *`]: {
+                [`.${breakpointName}${dictionary_1.default.getKey('spaceY')}${dictionary_1.default.getKey(left)} > * + *`]: {
                     marginTop: right,
                 },
             }), {}),
@@ -102,7 +102,7 @@ function spacing(columns) {
             // .m-l-1/12
             ...(0, createArrayOf_1.default)(columns).reduce((css, i) => ({
                 ...css,
-                [`.${breakpointName}${getDictionary_1.default.getKey('mL')}${getDictionary_1.default.getKey(`${i}/${columns}`)}`]: {
+                [`.${breakpointName}${dictionary_1.default.getKey('mL')}${dictionary_1.default.getKey(`${i}/${columns}`)}`]: {
                     marginLeft: (0, percentage_1.default)(i, columns),
                 },
             }), {}),

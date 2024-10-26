@@ -35,7 +35,7 @@
     "./design/index.ts",
     "./design/percentage.ts",
     "./design/toString.ts",
-    "./getDictionary.ts",
+    "./dictionary.ts",
     "./helpers/createRequireStatement.ts",
     "./helpers/decodeClassName.ts",
     "./helpers/decodeJsxSpreadAttributes.ts",
