@@ -8,9 +8,13 @@ import fs from 'node:fs';
 import test from 'node:test';
 import compile from '../index';
 
-test('compile', () => {
-  const compiled = compile('./samples/application/index.tsx', {});
-  const js = fs.readFileSync('./samples/application/index.js').toString();
+test('application', () => {
+  //                ↓ The path where the HTML compiler creates the HTML file "index.html."
+  const options = { outputPath: './samples/application', useHtmlCompiler: true };
+
+  const compiled = compile(`${options.outputPath}/index.tsx`, options);
+
+  const js = fs.readFileSync(`${options.outputPath}/index.js`).toString();
 
   assert.strictEqual(compiled, js);
 });
