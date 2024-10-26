@@ -1,10 +1,10 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 24.10.2024
+ * Last Updated: 26.10.2024
  */
 
+import isObject from '@warden-sk/helpers/validation/isObject';
 import dictionary from '../dictionary';
-import isObject from './validation/isObject';
 
 export type DecodedResponsiveClassName = string;
 

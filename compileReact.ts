@@ -1,16 +1,16 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 02.04.2024
+ * Last Updated: 26.10.2024
  */
 
+import invariant from '@warden-sk/helpers/validation/invariant';
+import isArray from '@warden-sk/helpers/validation/isArray';
+import isError from '@warden-sk/helpers/validation/isError';
+import isObject from '@warden-sk/helpers/validation/isObject';
+import isString from '@warden-sk/helpers/validation/isString';
 import vm from 'node:vm';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import invariant from './helpers/validation/invariant';
-import isArray from './helpers/validation/isArray';
-import isError from './helpers/validation/isError';
-import isObject from './helpers/validation/isObject';
-import isString from './helpers/validation/isString';
 
 type T = {
   compiled: string;

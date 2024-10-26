@@ -1,8 +1,9 @@
 /*
- * Copyright 2023 Marek Kobida
+ * Copyright 2024 Marek Kobida
+ * Last Updated: 26.10.2024
  */
 
-import isObject from './validation/isObject';
+import isObject from '@warden-sk/helpers/validation/isObject';
 
 export type DecodedClassName = string | undefined;
 
