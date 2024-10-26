@@ -1,6 +1,6 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 24.10.2024
+ * Last Updated: 26.10.2024
  */
 
 import dictionary from '../../dictionary';
@@ -30,7 +30,7 @@ function css(
   property: 'margin' | 'padding',
   right: '0' | 'auto' | `${string}rem`,
 ): EnhancedCSSProperties {
-  const $ = dictionary.getKey(property[0]);
+  const $ = dictionary.getKey(property[0]!);
   const b = dictionary.getKey(`${property[0]}B`);
   const l = dictionary.getKey(`${property[0]}L`);
   const r = dictionary.getKey(`${property[0]}R`);
