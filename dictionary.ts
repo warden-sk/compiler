@@ -1,9 +1,9 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 26.10.2024
+ * Last Updated: 29.10.2024
  */
 
-import * as λ from '@warden-sk/helpers/λ';
+import * as λ from 'common-helpers/λ';
 import availableJsxAttributes from './availableJsxAttributes';
 import Dictionary from './helpers/dictionary';
 

@@ -3,7 +3,7 @@
  * Last Updated: 29.10.2024
  */
 
-import isObject from '@warden-sk/helpers/validation/isObject';
+import isObject from 'common-helpers/validation/isObject';
 import dictionary from '../dictionary';
 
 export type DecodedResponsiveClassName = string;
