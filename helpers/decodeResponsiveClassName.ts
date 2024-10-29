@@ -1,6 +1,6 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 26.10.2024
+ * Last Updated: 29.10.2024
  */
 
 import isObject from '@warden-sk/helpers/validation/isObject';
@@ -38,7 +38,7 @@ function decodeResponsiveClassName(
     if (encodedResponsiveClassName[1]) {
       for (const breakpointName in encodedResponsiveClassName[1]) {
         decodedResponsiveClassNames.push(
-          `${breakpointName}${className}${dictionary.getKey(encodedResponsiveClassName[1][breakpointName])}`,
+          `${breakpointName}${className}${dictionary.getKey(encodedResponsiveClassName[1][breakpointName]!)}`,
         );
       }
     }
@@ -48,7 +48,7 @@ function decodeResponsiveClassName(
   else if (isObject(encodedResponsiveClassName)) {
     for (const breakpointName in encodedResponsiveClassName) {
       decodedResponsiveClassNames.push(
-        `${breakpointName}${className}${dictionary.getKey(encodedResponsiveClassName[breakpointName])}`,
+        `${breakpointName}${className}${dictionary.getKey(encodedResponsiveClassName[breakpointName]!)}`,
       );
     }
   }
