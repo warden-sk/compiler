@@ -6,20 +6,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import ts from 'typescript';
+import compileCss from './compileCss';
 import compileHtml from './compileHtml';
 import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
 import cssTransformer from './transformers/cssTransformer';
 import jsTransformer from './transformers/jsTransformer';
-
-const compilerOptions: ts.CompilerOptions = {
-  allowSyntheticDefaultImports: true,
-  esModuleInterop: true,
-  jsx: ts.JsxEmit.React,
-  module: ts.ModuleKind.CommonJS,
-  strict: true,
-  target: ts.ScriptTarget.ESNext,
-};
 
 type Options = {
   assets?: string[];
@@ -29,7 +21,9 @@ type Options = {
   useTransformers?: boolean;
 };
 
-function compile(filePath: string, options: Options): string {
+function compile(input: string, options: Options): string {
+  const isFilePath = /^(\.\/|\/)/.test(input);
+
   const startDate: number = +new Date();
 
   const updatedOptions: Options & { outputPath: string } = {
@@ -41,18 +35,22 @@ function compile(filePath: string, options: Options): string {
 
   const transformers: ts.CustomTransformers = { before: [cssTransformer(updatedOptions), jsTransformer()] };
 
-  const { outputText: compiled } = ts.transpileModule(fs.readFileSync(filePath).toString(), {
-    compilerOptions,
-    fileName: filePath,
-    transformers:
-      updatedOptions.useTransformers ?
-        /compiler\//.test(filePath) ?
-          undefined
-        : transformers
-      : undefined,
-  });
-
-  updatedOptions.cache?.set(filePath, [Buffer.from(compiled), new Date()]);
+  const { outputText: compiled } = ts.transpileModule(
+    /**/ isFilePath ? fs.readFileSync(input).toString() : input,
+    /**/ {
+      compilerOptions: {
+        allowSyntheticDefaultImports: true,
+        esModuleInterop: true,
+        jsx: ts.JsxEmit.React,
+        module: ts.ModuleKind.CommonJS,
+        noUncheckedIndexedAccess: true,
+        strict: true,
+        target: ts.ScriptTarget.ESNext,
+      },
+      fileName: isFilePath ? input : 'index.tsx',
+      transformers: updatedOptions.useTransformers && !/compiler\//.test(input) ? transformers : undefined,
+    },
+  );
 
   const endDate: number = +new Date();
 
@@ -61,10 +59,12 @@ function compile(filePath: string, options: Options): string {
     '\x1b[34m[JS]\x1b[0m',
     sizeToReadable(compiled.length),
     `${((endDate - startDate) / 1000).toFixed(2)} second(s)`,
-    `\x1b[32m${filePath}\x1b[0m`,
+    `\x1b[32m${isFilePath ? input : 'index.tsx'}\x1b[0m`,
   );
 
   return compiled;
 }
+
+export { compile, compileCss };
 
 export default compile;
