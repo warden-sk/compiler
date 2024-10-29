@@ -1,12 +1,11 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 26.10.2024
+ * Last Updated: 29.10.2024
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
 import ts from 'typescript';
-import type Cache from './Cache';
 import compileHtml from './compileHtml';
 import report from './helpers/report';
 import sizeToReadable from './helpers/sizeToReadable';
@@ -24,7 +23,6 @@ const compilerOptions: ts.CompilerOptions = {
 
 type Options = {
   assets?: string[];
-  cache?: Cache;
   outputPath?: string;
   publicPath?: string;
   useHtmlCompiler?: boolean;

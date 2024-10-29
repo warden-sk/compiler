@@ -1,6 +1,6 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 24.10.2024
+ * Last Updated: 29.10.2024
  */
 
 import dictionary from '../dictionary';
@@ -125,4 +125,4 @@ const css: EnhancedCSSProperties[] = [
   width(12),
 ];
 
-console.log(toString(root) + css.reduce((left, right) => left + toString(right, true), ''));
+export default toString(root) + css.reduce((left, right) => left + toString(right, true), '');
