@@ -1,6 +1,6 @@
 /*
  * Copyright 2024 Marek Kobida
- * Last Updated: 29.10.2024
+ * Last Updated: 05.11.2024
  */
 
 import isObject from 'common-helpers/validation/isObject';
@@ -43,7 +43,7 @@ function decodeClassName(...encodedClassNames: EncodedClassName[]): DecodedClass
     }
   }
 
-  return decodedClassNames.filter(decodedClassName => !!decodedClassName).join(' ');
+  return decodedClassNames.filter(decodedClassName => !!decodedClassName).join(' ') || undefined;
 }
 
 export default decodeClassName;
